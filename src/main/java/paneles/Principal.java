@@ -14,11 +14,9 @@ public class Principal extends javax.swing.JFrame {
     private static Connection conn = null;
     private static Statement query = null;
     */
-    // LOS NUMEROS EN LOS BOTONES DE LA PANTALLA DE CONSULTAS ESPECIFICAN EL ITEM PEDIDO EN EL LABORATORIO
     
     public Principal(){
         initComponents();
-        
     }
 
     // go_to es una funcion que nos ayuda a cambiar entre los paneles del sistema
