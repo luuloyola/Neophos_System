@@ -21,6 +21,7 @@ public class Principal extends javax.swing.JFrame {
         
     }
 
+    // go_to es una funcion que nos ayuda a cambiar entre los paneles del sistema
     public void go_to(JPanel panel) {
         contenedor.removeAll();
         contenedor.add(panel);
@@ -28,6 +29,10 @@ public class Principal extends javax.swing.JFrame {
         contenedor.revalidate();
     }
 
+    // PopUp es una funcion que mostrara por pantalla mensajes necesarios para comunicar al usuario
+    // por parametro toma Imprimir (string que dira la informacion importante), 
+    // imagen (URL que nos llevara a la imagen que queremos utilizar)
+    // y toma titulo (el titulo que tendra la pantalla emergente de PopUp)
     public void PopUp(String Imprimir, String imagen, String titulo) {
         JLabel jLabel9 = new JLabel();
         jLabel9.setFont(new Font("Microsoft YaHei", 1, 17));
