@@ -1,13 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package base_de_datos;
 
-/**
- *
- * @author lucil
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class ConexionBD {
+    protected Connection conexion;
+    private final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; // org.postgresql.Driver
+    private final String BD_URL = "jdbc:mysql://localhost:3306/ejemplo"; // jdbc:postgresql://localhost:{puerto}/ejemplo
+    
+    private final String USER = "root"; //Ese es el que yo tengo configurado
+    private final String PASS = "1234";
+    
+    public void conectar() throws Exception{
+        try {
+            conexion = DriverManager.getConnection(BD_URL,USER,PASS);
+            Class.forName(JDBC_DRIVER);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    public void cerrar() throws SQLException{
+        if(conexion!=null){
+            if(!conexion.isClosed()){
+                conexion.close();
+            }
+        }
+    }
+    
     
 }
