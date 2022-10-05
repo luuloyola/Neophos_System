@@ -12,15 +12,16 @@ public abstract class Orden {
     }
 
     public boolean agregar_Renglon(){
-
+        return false;
     }
 
     public boolean eliminar_Renglon(){
-
+        return false;
     }
 
     public boolean modificar_renglon(){
 
+        return false;
     }
 
 }
