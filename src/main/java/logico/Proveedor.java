@@ -4,10 +4,16 @@
  */
 package logico;
 
-/**
- *
- * @author lucil
- */
 public class Proveedor {
     
+    private int ID;
+    private int telefono;
+    private String nombre;
+    private String mail;
+    
+    public Proveedor(int telefono, String nombre, String mail){
+        this.ID = 0;
+        this.nombre = nombre;
+        this.mail = mail;
+    }
 }

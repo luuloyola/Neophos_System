@@ -14,4 +14,8 @@ public class Orden_Compra extends Orden {
         super(fecha_pedido, precio_total);
     }
     
+    public void seleccionar_Proveedor(){
+        
+    }
+    
 }
