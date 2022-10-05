@@ -11,11 +11,16 @@ public abstract class Orden {
         this.precio_total = precio_total;
     }
 
-    public boolean Agregar_Renglon(){
+    public boolean agregar_Renglon(){
 
     }
 
-    public boolean Eliminar_Renglon(){
+    public boolean eliminar_Renglon(){
 
     }
+
+    public boolean modificar_renglon(){
+
+    }
+
 }

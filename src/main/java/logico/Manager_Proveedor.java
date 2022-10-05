@@ -4,14 +4,10 @@
  */
 package logico;
 
-import java.sql.Date;
-
-public class Orden_Compra extends Orden {
-
-    private Proveedor proveedor;
-
-    public Orden_Compra(Date fecha_pedido, double precio_total){
-        super(fecha_pedido, precio_total);
-    }
+/**
+ *
+ * @author lucil
+ */
+public class Manager_Proveedor {
     
 }
