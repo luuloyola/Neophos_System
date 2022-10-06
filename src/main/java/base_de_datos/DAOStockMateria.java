@@ -1,14 +1,16 @@
 package base_de_datos;
 
-import static base_de_datos.DAO.conexion;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 import logico.StockMateria;
 
 public class DAOStockMateria implements DAO<StockMateria>{
+    ConexionBD conexion;
 
+    public DAOStockMateria() {
+        conexion = new ConexionBD();
+    }
+    
     @Override
     public void create(StockMateria object) throws Exception {
         try {
@@ -26,49 +28,21 @@ public class DAOStockMateria implements DAO<StockMateria>{
 
     @Override
     public void update(StockMateria object) throws Exception {
-        try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("UPDATE StockMateria set cantidad = ? WHERE id = ?");
-            st.setInt(1,object.getCantidad());
-            
-        } catch (Exception e) {
-        }finally {conexion.cerrar();}
+        //No Support yet
     }
 
     @Override
     public void delete(StockMateria object) throws Exception {
-        try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("DELETE FROM StockMateria WHERE id = ?");
-            st.setInt(1,object.getId());
-            
-        } catch (Exception e) {
-        }finally {conexion.cerrar();}
+        //No Support yet
     }
 
     @Override
     public List<StockMateria> findAll() throws Exception {
-        List<StockMateria> lista = null;
-        try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("SELECT * FROM StockMateria");
-            lista = new ArrayList<>();
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                StockMateria stock = new StockMateria();
-                stock.setId(rs.getInt("id"));
-                stock.setCantidad(rs.getInt("cantidad"));
-                lista.add(stock);
-            }
-            rs.close();
-            st.close();
-        } catch (Exception e) {
-        }finally {conexion.cerrar();}
-        
-        return lista;
+        return null; //No Support yet
+    }
+    @Override
+    public Object read(int id) throws Exception {
+        return null; //No Support yet
     }
     
 }
