@@ -10,9 +10,28 @@ package logico;
  */
 public class Manager_OrdenCompra {
     
+    private Manager_Proveedor managerProveedor;
+    private Manager_Renglon managerRenglon;
+    
+    public Manager_OrdenCompra(Manager_Proveedor managerProveedor, Manager_Renglon managerRenglon){
+        this.managerProveedor = managerProveedor;
+        this.managerRenglon = managerRenglon;
+    }
 
-    public Manager_OrdenCompra(){
+    public void setManagerP(Manager_Proveedor managerProveedor){
+        this.managerProveedor = managerProveedor;
+    }
 
+    public Manager_Proveedor getManagerP(){
+        return managerProveedor;
+    }
+
+    public void setManagerR(Manager_Renglon managerRenglon){
+        this.managerRenglon = managerRenglon;
+    }
+
+    public Manager_Renglon getManagerR(){
+        return managerRenglon;
     }
 
     public void generarOrdenDeCompra(){

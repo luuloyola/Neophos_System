@@ -39,7 +39,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
             st.setDate(1, object.getFechaPedido());
             st.setDouble(2, object.getPrecioTotal());
             st.setObject(3, object.getProveedor());
-            st.setDouble(5, object.getID());
+            st.setDouble(4, object.getID());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -90,4 +90,5 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         }
         return listaOrdenes;
     }
+
     }
