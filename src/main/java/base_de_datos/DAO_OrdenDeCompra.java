@@ -90,5 +90,9 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         }
         return listaOrdenes;
     }
-
+    @Override
+    public Object read(int id) throws Exception {
+        return null;
     }
+
+}

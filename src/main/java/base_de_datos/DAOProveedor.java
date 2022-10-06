@@ -90,5 +90,9 @@ public class DAOProveedor implements DAO<Proveedor>{
         }
         return listaProveedores;
     }
+    @Override
+    public Object read(int id) throws Exception {
+        return null;
+    }
 
 }
