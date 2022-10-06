@@ -13,10 +13,10 @@ public class Manager_StockMateria {
         daostockMateria.create(stock);
     }
     public void modificarStockMateria(StockMateria stock) throws Exception{
-        daostockMateria.update(stock);
+        //No Support yet
     }
     public void eliminarStockMateria(StockMateria stock) throws Exception{
-        daostockMateria.delete(stock);
+        //No Support yet
     }
     
     

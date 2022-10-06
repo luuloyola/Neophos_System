@@ -1,6 +1,7 @@
 package logico;
 
 import base_de_datos.DAOMateriaPrima;
+import java.util.List;
 
 public class Manager_MateriaPrima {
     
@@ -10,21 +11,20 @@ public class Manager_MateriaPrima {
         daoMatPrima = new DAOMateriaPrima();
     }
     
-    public void cargarMateriaPrima() throws Exception{
-        MateriaPrima materia_nueva = new MateriaPrima();
+    public void cargarMateriaPrima(int id, String nombre, String descripcion, int tipo, double precio_unidad, int cant) throws Exception{
+        MateriaPrima materia_nueva = new MateriaPrima(id,nombre,descripcion,tipo,precio_unidad);
         Manager_StockMateria stock = new Manager_StockMateria();
-        stock.cargarStockMateria(5,Deposito.getSinglentonInstance(0), materia_nueva);
+        stock.cargarStockMateria(cant,Deposito.getSinglentonInstance(0), materia_nueva);
         daoMatPrima.create(materia_nueva);
     }
     public void modificarMateriaPrima(MateriaPrima materia) throws Exception{
-        daoMatPrima.update(materia);
+        //No Support yet
     }
     public void eliminarMateriaPrima(MateriaPrima materia) throws Exception{
-        daoMatPrima.delete(materia);
+        //No Support yet
     }
-
-    public void consultarMateriaPrima(){
-        
+    public List<MateriaPrima> consultarListaMaterias() throws Exception{
+        return null; //No Support yet
     }
     
 }
