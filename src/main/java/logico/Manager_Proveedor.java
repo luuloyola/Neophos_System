@@ -10,4 +10,12 @@ package logico;
  */
 public class Manager_Proveedor {
     
+
+    public Manager_Proveedor(){
+
+    }
+
+    public void consultarProveedor(){
+        
+    }
 }

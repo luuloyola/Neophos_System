@@ -15,5 +15,9 @@ public class Manager_MateriaPrima {
         MateriaPrima materia_nueva = new MateriaPrima();
         
     }
+
+    public void consultarMateriaPrima(){
+        
+    }
     
 }

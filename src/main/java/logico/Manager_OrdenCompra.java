@@ -10,4 +10,16 @@ package logico;
  */
 public class Manager_OrdenCompra {
     
+
+    public Manager_OrdenCompra(){
+
+    }
+
+    public void generarOrdenDeCompra(){
+
+    }
+
+    public void consultarOrdenDeCompra(){
+        
+    }
 }

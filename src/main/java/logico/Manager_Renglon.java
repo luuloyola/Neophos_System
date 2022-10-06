@@ -10,4 +10,15 @@ package logico;
  */
 public class Manager_Renglon {
     
+    public Manager_Renglon(){
+
+    }
+
+    public void generarRenglon(){
+
+    }
+
+    public void consultarRenglon(){
+        
+    }
 }
