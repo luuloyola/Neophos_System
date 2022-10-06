@@ -13,6 +13,7 @@ public class Proveedor {
     
     public Proveedor(int telefono, String nombre, String mail){
         this.ID = 0;
+        this.telefono = telefono;
         this.nombre = nombre;
         this.mail = mail;
     }
