@@ -18,7 +18,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setInt(3, object.getTipo());
-            st.setDouble(4, object.getPrecioUnidad());
+            st.setDouble(4, object.getPrecio_unidad());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -36,7 +36,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setInt(3, object.getTipo());
-            st.setDouble(4, object.getPrecioUnidad());
+            st.setDouble(4, object.getPrecio_unidad());
             st.setDouble(5, object.getId());
             st.executeUpdate();
         } catch (Exception e) {
@@ -76,7 +76,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
                 mat.setNombre(rs.getString("nombre"));
                 mat.setDescripcion(rs.getString("descripcion"));
                 mat.setTipo(rs.getInt("tipo"));
-                mat.setPrecioUnidad(rs.getDouble("precio"));
+                mat.setPrecio_unidad(rs.getDouble("precio"));
                 lista.add(mat);
             }
             rs.close();
