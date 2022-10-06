@@ -9,12 +9,12 @@ public class MateriaPrima {
     private int tipo;
     private double precio_unidad;
 
-    public MateriaPrima(int id, String nombre, String descripcion, TipoMat tipoMateriaPrima, int tipo, double precio_unidad) {
+    public MateriaPrima(int id, String nombre, String descripcion, int tipo, double precio_unidad) {
         this.id = id; 
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.tipoMateriaPrima = tipoMateriaPrima;
         this.tipo = tipo;
+        //this.tipoMateriaPrima = tipoMateriaPrima;
         this.precio_unidad = precio_unidad;
     }
     
