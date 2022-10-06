@@ -22,5 +22,9 @@ public class Manager_MateriaPrima {
     public void eliminarMateriaPrima(MateriaPrima materia) throws Exception{
         daoMatPrima.delete(materia);
     }
+
+    public void consultarMateriaPrima(){
+        
+    }
     
 }

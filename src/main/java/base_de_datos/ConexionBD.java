@@ -12,6 +12,8 @@ public class ConexionBD {
     private final String USER = "root"; //Ese es el que yo tengo configurado
     private final String PASS = "1234";
     
+    //Aqui deberiamos crear las tablas si todavia no existen verdad??
+    
     public void conectar() throws Exception{
         try {
             conexion = DriverManager.getConnection(BD_URL,USER,PASS);

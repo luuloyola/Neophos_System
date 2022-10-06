@@ -9,5 +9,16 @@ package logico;
  * @author lucil
  */
 public class Manager_Proveedor {
+
+    public Manager_Proveedor(){
+
+    }
+
+    public void seleccionarProveedor(){
+
+    }
     
+    public void consultarProveedor(){
+        
+    }
 }

@@ -6,15 +6,6 @@ import javax.swing.*;
 
 public class Principal extends javax.swing.JFrame {
     
-    /*private static final String DB_NAME = "resto";
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/" + DB_NAME;
-    private static final String DB_USER = "postgres";
-    private static final String DB_PWD = "admin";
-    
-    private static Connection conn = null;
-    private static Statement query = null;
-    */
-    
     public Principal(){
         initComponents();
     }
