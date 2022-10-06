@@ -8,7 +8,6 @@ import logico.MateriaPrima;
 
 public class DAOMateriaPrima implements DAO<MateriaPrima>{
     
-    ConexionBD conexion;
     @Override
     public void create(MateriaPrima object) throws Exception {
         try {

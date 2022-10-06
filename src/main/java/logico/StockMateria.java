@@ -2,6 +2,7 @@ package logico;
 
 public class StockMateria {
     
+    public int id;
     public int cantidad;
     public Deposito deposito;
     public MateriaPrima materiaPrima;
@@ -9,6 +10,13 @@ public class StockMateria {
         this.deposito = deposito;
         this.materiaPrima = materiaPrima;
         this.cantidad = cantidad;
+    }
+
+    public StockMateria() {
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getCantidad() {
@@ -23,6 +31,10 @@ public class StockMateria {
         return materiaPrima;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
@@ -34,5 +46,5 @@ public class StockMateria {
     public void setMateriaPrima(MateriaPrima materiaPrima) {
         this.materiaPrima = materiaPrima;
     }
-    
+        
 }
