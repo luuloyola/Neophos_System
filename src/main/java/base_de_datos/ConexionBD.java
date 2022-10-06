@@ -5,16 +5,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionBD {
-    protected Connection conexion;
-    private final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; // org.postgresql.Driver
-    private final String BD_URL = "jdbc:mysql://localhost:3306/ejemplo"; // jdbc:postgresql://localhost:{puerto}/ejemplo
+    protected static Connection conexion;
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; // org.postgresql.Driver
+    private static final String BD_URL = "jdbc:mysql://localhost:3306/ejemplo"; // jdbc:postgresql://localhost:{puerto}/ejemplo
     
-    private final String USER = "root"; //Ese es el que yo tengo configurado
-    private final String PASS = "1234";
+    private static final String USER = "root"; //Ese es el que yo tengo configurado
+    private static final String PASS = "1234";
     
     //Aqui deberiamos crear las tablas si todavia no existen verdad??
     
-    public void conectar() throws Exception{
+    public static void conectar() throws Exception{
         try {
             conexion = DriverManager.getConnection(BD_URL,USER,PASS);
             Class.forName(JDBC_DRIVER);
@@ -22,14 +22,14 @@ public class ConexionBD {
             throw e;
         }
     }
-    public void cerrar() throws SQLException{
+    public static void cerrar() throws SQLException{
         if(conexion!=null){
             if(!conexion.isClosed()){
                 conexion.close();
             }
         }
     }
-    public Connection getConexion(){
+    public static Connection getConexion(){
         return conexion;
     }
     
