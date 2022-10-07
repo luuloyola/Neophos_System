@@ -10,28 +10,16 @@ package logico;
  */
 public class Manager_OrdenCompra {
     
-    private Manager_Proveedor managerProveedor;
-    private Manager_Renglon managerRenglon;
+    private static Manager_OrdenCompra manager;
     
-    public Manager_OrdenCompra(Manager_Proveedor managerProveedor, Manager_Renglon managerRenglon){
-        this.managerProveedor = managerProveedor;
-        this.managerRenglon = managerRenglon;
+    public Manager_OrdenCompra(){
     }
+    
+    public static Manager_OrdenCompra getInstance() {
+        if (Manager_OrdenCompra.manager == null)
+        Manager_OrdenCompra.manager = new Manager_OrdenCompra();
 
-    public void setManagerP(Manager_Proveedor managerProveedor){
-        this.managerProveedor = managerProveedor;
-    }
-
-    public Manager_Proveedor getManagerP(){
-        return managerProveedor;
-    }
-
-    public void setManagerR(Manager_Renglon managerRenglon){
-        this.managerRenglon = managerRenglon;
-    }
-
-    public Manager_Renglon getManagerR(){
-        return managerRenglon;
+        return Manager_OrdenCompra.manager;
     }
 
     public void generarOrdenDeCompra(){
