@@ -25,8 +25,16 @@ public class Manager_Renglon {
     public void generarRenglon(){
 
     }
+<<<<<<< Updated upstream
 
     public void consultarRenglon(){
         
+=======
+    
+    public Renglon consultarRenglon(int id) throws Exception{
+        Renglon renglon = new Renglon();
+        renglon = dao.consulta(id);
+        return renglon;
+>>>>>>> Stashed changes
     }
 }
