@@ -29,7 +29,6 @@ public class Manager_Renglon {
         Renglon renglon = new Renglon(cantidad, precio, materiaPrima);
         dao.create(renglon);
     }
-    
     public Renglon consultarRenglon(int id) throws Exception{
         Renglon renglon = new Renglon();
         renglon = dao.consulta(id);
