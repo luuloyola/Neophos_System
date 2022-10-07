@@ -1,13 +1,14 @@
 package base_de_datos;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import logico.StockMateria;
 
 public class DAOStockMateria implements DAO<StockMateria>{
     ConexionBD conexion;
 
-    public DAOStockMateria() {
+    public DAOStockMateria() throws SQLException {
         conexion = new ConexionBD();
     }
     

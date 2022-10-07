@@ -58,6 +58,7 @@ public class ConexionBD {
                 + "CREATE TABLE IF NOT EXISTS Renglon("
                 + "ID_Renglon INTEGER NOT NULL auto_increment, "
                 + "Cantidad DOUBLE NOT NULL, "
+                + "Precio DOUBLE NOT NULL, "
                 + "ID_Materia_Tiene INTEGER NOT NULL, "
                 + "PRIMARY KEY (ID_Proveedor)"
                 + "FOREIGN KEY (ID_Materia_Tiene) REFERENCES MateriaPrima (ID_Materia));"
