@@ -14,12 +14,10 @@ public class Manager_MateriaPrima {
     
     public void cargarMateriaPrima(String nombre, String descripcion, String tipo, double precio_unidad, int cant) throws Exception{
         MateriaPrima materia_nueva = new MateriaPrima(nombre,descripcion,tipo,precio_unidad);
-        System.out.println("Se creo la materia prima");
-        /*Manager_StockMateria stock = new Manager_StockMateria();
-        stock.cargarStockMateria(cant,Deposito.getSinglentonInstance(0), materia_nueva);*/
-        System.out.println("Se puso en la BD el stock");
         daoMatPrima.create(materia_nueva);
-        System.out.println("Se puso en la BD la materia prima");
+        
+        Manager_StockMateria stock = new Manager_StockMateria();
+        stock.cargarStockMateria(10,Deposito.getSinglentonInstance(0), materia_nueva);
     }
     public void modificarMateriaPrima(MateriaPrima materia) throws Exception{
         //No Support yet

@@ -19,12 +19,13 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         try {
             conexion.conectar();
             PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("INSERT INTO MateriaPrima (nombre, descripcion, tipo, precio) VALUES (?,?,?,?)");
+                    .prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,?,?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setString(3, object.getTipoMateriaPrima().name());
             st.setDouble(4, object.getPrecio_unidad());
             st.executeUpdate();
+            st.close();
         } catch (Exception e) {
             throw e;
         } finally{
