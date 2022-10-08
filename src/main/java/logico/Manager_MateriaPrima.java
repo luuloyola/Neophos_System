@@ -18,6 +18,13 @@ public class Manager_MateriaPrima {
         stock.cargarStockMateria(cant,Deposito.getSinglentonInstance(0), materia_nueva);
         daoMatPrima.create(materia_nueva);
     }
+    
+    public MateriaPrima consultarMateriaPrima(int id) throws Exception{
+        MateriaPrima materia = new MateriaPrima();
+        materia = daoMatPrima.consulta(id);
+        return materia;
+    }
+    
     public void modificarMateriaPrima(MateriaPrima materia) throws Exception{
         //No Support yet
     }

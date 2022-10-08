@@ -21,9 +21,9 @@ public class Manager_Proveedor {
 
         return Manager_Proveedor.manager;
     }
-
-    public void seleccionarProveedor(){
-
+    
+    public void generarProveedor(){
+        //si queremos hacer esta funcion primero hay q eliminar ID de proveedor
     }
     
     public void consultarProveedor(){

@@ -28,12 +28,12 @@ public class DAOStockMateria implements DAO<StockMateria>{
     }
 
     @Override
-    public void update(StockMateria object) throws Exception {
+    public void update(StockMateria object, int id) throws Exception {
         //No Support yet
     }
 
     @Override
-    public void delete(StockMateria object) throws Exception {
+    public void delete(int id) throws Exception {
         //No Support yet
     }
 

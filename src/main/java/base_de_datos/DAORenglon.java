@@ -37,8 +37,9 @@ public class DAORenglon implements DAO<Renglon>{
         
     }
 
+    @Override
     public void delete(int id) throws Exception {
-        try {
+         try {
             conexion.conectar();
             PreparedStatement st = conexion.getConexion()
                     .prepareStatement("DELETE FROM Renglon where ID_Renglon = ?");
@@ -49,7 +50,24 @@ public class DAORenglon implements DAO<Renglon>{
         } finally{
             conexion.cerrar();
         }
-        
+    }
+    
+     @Override
+    public void update(Renglon object, int id) throws Exception {
+        try {
+            conexion.conectar();
+            PreparedStatement st = conexion.getConexion()
+                    .prepareStatement("UPDATE Renglon set Cantidad = ?, Precio = ?, ID_Materia_Tiene = ?, where ID_Renglon = ?");
+            st.setDouble(1, object.getCantidad());
+            st.setDouble(2, object.getPrecio());
+            st.setObject(3, object.getMateria());
+            st.setInt(4, id);
+            st.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            conexion.cerrar();
+        }
     }
 
     @Override
@@ -107,14 +125,6 @@ public class DAORenglon implements DAO<Renglon>{
         return null;
     }
 
-    @Override
-    public void update(Renglon object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Renglon object) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
 }
