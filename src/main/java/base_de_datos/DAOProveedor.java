@@ -16,8 +16,7 @@ public class DAOProveedor implements DAO<Proveedor>{
         try {
             conexion.conectar();
             PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("INSERT INTO Proveedor (id, telefono, nombre, mail) VALUES (?,?,?,?)");
-            st.setInt(1, object.getID());
+                    .prepareStatement("INSERT INTO Proveedor (ID_Proveedor, Telefono, Nombre, Mail) VALUES (?,?,?,?)");
             st.setInt(2, object.getTelefono());
             st.setString(3, object.getNombre());
             st.setString(4, object.getMail());
@@ -27,19 +26,33 @@ public class DAOProveedor implements DAO<Proveedor>{
         } finally{
             conexion.cerrar();
         }
-        
     }
-
+    
     @Override
-    public void update(Proveedor object) throws Exception {
+    public void delete(int id) throws Exception {
         try {
             conexion.conectar();
             PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("UPDATE Proveedor set telefono = ?, nombre = ?, mail = ?, where id = ?");
-                    st.setInt(1, object.getTelefono());
-                    st.setString(2, object.getNombre());
-                    st.setString(3, object.getMail());
-                    st.setInt(4, object.getID());
+                    .prepareStatement("DELETE FROM Proveedor where ID_Proveedor = ?");
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            conexion.cerrar();
+        }
+    }
+    
+    @Override
+    public void update(Proveedor object, int id) throws Exception {
+         try {
+            conexion.conectar();
+            PreparedStatement st = conexion.getConexion()
+                    .prepareStatement("UPDATE Proveedor set Telefono = ?, Nombre = ?, Mail = ?, where ID_Proveedor = ?");
+            st.setInt(1, object.getTelefono());
+            st.setString(2, object.getNombre());
+            st.setString(3, object.getMail());
+            st.setInt(4, id);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -48,38 +61,22 @@ public class DAOProveedor implements DAO<Proveedor>{
         }
     }
 
-    @Override
-    public void delete(Proveedor object) throws Exception {
-        try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("DELETE FROM Proveedor where id = ?");
-            st.setInt(1, object.getID());
-            st.executeUpdate();
-        } catch (Exception e) {
-            throw e;
-        } finally{
-            conexion.cerrar();
-        }
-        
-    }
-
+  
     @Override
     public List<Proveedor> findAll() throws Exception {
         List<Proveedor> listaProveedores = null;
         try {
             conexion.conectar();
             PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("SELECT * FROM Orden_Compra");
+                    .prepareStatement("SELECT * FROM Proveedor");
             listaProveedores = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                Proveedor prov = new Proveedor();
-                prov.setID(rs.getInt("ID"));
-                prov.setTelefono(rs.getInt("TELEFONO"));
-                prov.setNombre(rs.getString("NOMBRE"));
-                prov.setMail(rs.getString("MAIL"));
-                listaProveedores.add(prov);
+                Proveedor proveedor = new Proveedor();
+                proveedor.setTelefono(rs.getInt(2));
+                proveedor.setNombre(rs.getString(3));
+                proveedor.setMail(rs.getString(4));
+                listaProveedores.add(proveedor);
             }
             rs.close();
             st.close();
@@ -90,9 +87,36 @@ public class DAOProveedor implements DAO<Proveedor>{
         }
         return listaProveedores;
     }
+    
+    public Proveedor consulta(int id) throws Exception {
+        Proveedor proveedor = new Proveedor();
+        
+        try {
+            conexion.conectar();
+            PreparedStatement st = conexion.getConexion()
+                    .prepareStatement("SELECT * FROM Proveedor WHERE ID_Proveedor = ?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                proveedor.setTelefono(rs.getInt(2));
+                proveedor.setNombre(rs.getString(3));
+                proveedor.setMail(rs.getString(4));
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            conexion.cerrar();
+        }
+        return proveedor;
+    }
+    
     @Override
     public Object read(int id) throws Exception {
         return null;
     }
+
+    
 
 }

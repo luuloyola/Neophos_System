@@ -4,6 +4,8 @@
  */
 package logico;
 
+import java.sql.Date;
+
 /**
  *
  * @author lucil
@@ -22,7 +24,7 @@ public class Manager_OrdenCompra {
         return Manager_OrdenCompra.manager;
     }
 
-    public void generarOrdenDeCompra(){
+    public void generarOrdenDeCompra(int ID_proveedor, Date fecha_pedido){
 
     }
 
