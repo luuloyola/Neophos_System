@@ -1,5 +1,6 @@
 package paneles;
 
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +42,11 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         botonCargar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         JTipo = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        fieldCantidad = new javax.swing.JTextField();
+        error_nom = new javax.swing.JLabel();
+        error_precio = new javax.swing.JLabel();
+        error_cant = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,19 +72,19 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Ingrese Nombre");
+        jLabel1.setText("Nombre");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Ingrese Descripcion");
+        jLabel2.setText("Descripcion");
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Ingrese tipo");
+        jLabel3.setText("Tipo");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Ingrese precio Unidad");
+        jLabel4.setText("Precio por Unidad");
 
         botonCargar.setText("Cargar");
         botonCargar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,61 +102,90 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Cantidad");
+
+        fieldCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldCantidadActionPerformed(evt);
+            }
+        });
+
+        error_nom.setBackground(new java.awt.Color(0, 0, 0));
+        error_nom.setForeground(new java.awt.Color(51, 51, 51));
+        error_nom.setText("(*)");
+
+        error_precio.setBackground(new java.awt.Color(0, 0, 0));
+        error_precio.setForeground(new java.awt.Color(51, 51, 51));
+        error_precio.setText("(*)");
+
+        error_cant.setBackground(new java.awt.Color(0, 0, 0));
+        error_cant.setForeground(new java.awt.Color(51, 51, 51));
+        error_cant.setText("(*)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(159, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(botonCargar, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fieldDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fieldPrecio, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fieldCantidad)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(26, 26, 26))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fieldPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                            .addComponent(fieldDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                            .addComponent(fieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                            .addComponent(JTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap(209, Short.MAX_VALUE))
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(error_precio)
+                    .addComponent(error_cant)
+                    .addComponent(error_nom))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(41, 41, 41)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(JTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(error_nom))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(54, 54, 54)
+                    .addComponent(error_precio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(error_cant))
+                .addGap(43, 43, 43)
                 .addComponent(botonCargar)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,25 +215,56 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldPrecioActionPerformed
 
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
-        String nombre,des,tipo;
-        int cant,precio;
-        nombre = fieldNombre.getText();
-        des = fieldDescripcion.getText();
-        tipo = (String) JTipo.getSelectedItem();
-        precio = Integer.parseInt(fieldPrecio.getText());
-        System.out.println("Tipo: "+tipo+"\n");
-        cant = Integer.parseInt(fieldPrecio.getText());
-        try {
-            manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
-            JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Hubo un problema al cargar :(");
+        int control =0;
+        //Caso de campos que no cumplen el formato
+        
+        if(fieldNombre.getText().isEmpty()){
+            error_nom.setText("Campo obligatorio (*)");
+            error_nom.setForeground(Color.red);
+            control++;
+        } else {error_nom.setText("(*)");
+            error_nom.setForeground(Color.black);}
+        if(fieldPrecio.getText().isEmpty()){
+            error_precio.setText("Campo obligatorio (*)");
+            error_precio.setForeground(Color.red);
+            control++;
+        }else {error_nom.setText("(*)");
+            error_nom.setForeground(Color.black);}
+        if(fieldCantidad.getText().isEmpty()){
+            error_cant.setText("Campo obligatorio (*)");
+            error_cant.setForeground(Color.red);
+            control++;
+        }else {error_nom.setText("(*)");
+            error_nom.setForeground(Color.black);}
+        
+        if(control ==0){
+            
+        //Caso donde todos los campos cumplen el formato
+            String nombre,des,tipo;
+            int cant,precio;
+            nombre = fieldNombre.getText();
+            des = fieldDescripcion.getText();
+            tipo = (String) JTipo.getSelectedItem();
+            precio = Integer.parseInt(fieldPrecio.getText());
+            System.out.println("Tipo: "+tipo+"\n");
+            cant = Integer.parseInt(fieldCantidad.getText());
+            try {
+                manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
+                JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Hubo un problema al cargar :(");
+            }
         }
+       
     }//GEN-LAST:event_botonCargarActionPerformed
 
     private void JTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTipoActionPerformed
+
+    private void fieldCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldCantidadActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -239,6 +305,10 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JTipo;
     private javax.swing.JButton botonCargar;
+    private javax.swing.JLabel error_cant;
+    private javax.swing.JLabel error_nom;
+    private javax.swing.JLabel error_precio;
+    private javax.swing.JTextField fieldCantidad;
     private javax.swing.JTextField fieldDescripcion;
     private javax.swing.JTextField fieldNombre;
     private javax.swing.JTextField fieldPrecio;
@@ -247,6 +317,7 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
