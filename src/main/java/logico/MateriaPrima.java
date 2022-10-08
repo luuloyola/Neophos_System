@@ -10,7 +10,7 @@ public class MateriaPrima {
     public MateriaPrima( String nombre, String descripcion, String tipo, double precio_unidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        if("Producto Quimico".equals(tipo))
+        if("PRODUCTO_QUIMICO".equals(tipo))
         tipoMateriaPrima = TipoMat.PRODUCTO_QUIMICO;
         else tipoMateriaPrima = TipoMat.INSUMO;
         this.precio_unidad = precio_unidad;
