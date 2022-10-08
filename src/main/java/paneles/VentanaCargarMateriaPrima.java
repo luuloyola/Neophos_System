@@ -13,6 +13,8 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     public VentanaCargarMateriaPrima() throws SQLException {
         initComponents();
         manager_mat = new Manager_MateriaPrima();
+        JTipo.addItem("PRODUCTO_QUIMICO");
+        JTipo.addItem("INSUMO");
     }
     
     //Metodos del Formulario
@@ -22,7 +24,6 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         fieldNombre.setText("");
         fieldDescripcion.setText("");
         fieldPrecio.setText("");
-        fieldTipo.setText("");
     }
     
     @SuppressWarnings("unchecked")
@@ -32,7 +33,6 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         fieldDescripcion = new javax.swing.JTextField();
         fieldNombre = new javax.swing.JTextField();
-        fieldTipo = new javax.swing.JTextField();
         fieldPrecio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -40,6 +40,7 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         botonCargar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        JTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,12 +55,6 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         fieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldNombreActionPerformed(evt);
-            }
-        });
-
-        fieldTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldTipoActionPerformed(evt);
             }
         });
 
@@ -95,12 +90,18 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("REGISTRAR MATERIA PRIMA");
 
+        JTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTipoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(185, 185, 185)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -115,21 +116,21 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(179, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fieldPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(fieldDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(fieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(JTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(232, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(227, 227, 227))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -141,15 +142,15 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(JTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(54, 54, 54)
                 .addComponent(botonCargar)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,10 +175,6 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         
     }//GEN-LAST:event_fieldNombreActionPerformed
 
-    private void fieldTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTipoActionPerformed
-        
-    }//GEN-LAST:event_fieldTipoActionPerformed
-
     private void fieldPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPrecioActionPerformed
         
     }//GEN-LAST:event_fieldPrecioActionPerformed
@@ -187,8 +184,9 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         int cant,precio;
         nombre = fieldNombre.getText();
         des = fieldDescripcion.getText();
-        tipo = fieldTipo.getText();
+        tipo = (String) JTipo.getSelectedItem();
         precio = Integer.parseInt(fieldPrecio.getText());
+        System.out.println("Tipo: "+tipo+"\n");
         cant = Integer.parseInt(fieldPrecio.getText());
         try {
             manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
@@ -197,6 +195,10 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Hubo un problema al cargar :(");
         }
     }//GEN-LAST:event_botonCargarActionPerformed
+
+    private void JTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTipoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -235,11 +237,11 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> JTipo;
     private javax.swing.JButton botonCargar;
     private javax.swing.JTextField fieldDescripcion;
     private javax.swing.JTextField fieldNombre;
     private javax.swing.JTextField fieldPrecio;
-    private javax.swing.JTextField fieldTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
