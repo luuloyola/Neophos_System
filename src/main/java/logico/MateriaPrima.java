@@ -2,19 +2,17 @@ package logico;
 
 public class MateriaPrima {
     
-    private int id;
     private String nombre;
     private String descripcion;
     private TipoMat tipoMateriaPrima;
-    private int tipo;
     private double precio_unidad;
 
-    public MateriaPrima(int id, String nombre, String descripcion, int tipo, double precio_unidad) {
-        this.id = id; 
+    public MateriaPrima( String nombre, String descripcion, String tipo, double precio_unidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.tipo = tipo;
-        //this.tipoMateriaPrima = tipoMateriaPrima;
+        if("Producto Quimico".equals(tipo))
+        tipoMateriaPrima = TipoMat.PRODUCTO_QUIMICO;
+        else tipoMateriaPrima = TipoMat.INSUMO;
         this.precio_unidad = precio_unidad;
     }
     
@@ -25,12 +23,6 @@ public class MateriaPrima {
     }
     public String getDescripcion(){
         return descripcion;
-    }
-    public int getTipo(){
-        return tipo;
-    }
-    public int getId(){
-        return id;
     }
     public double getPrecio_unidad() {
         return precio_unidad;
@@ -46,12 +38,6 @@ public class MateriaPrima {
     }
     public void setDescripcion(String descripcion){
         this.descripcion=descripcion;
-    }
-    public void setTipo(int tipo){
-        this.tipo=tipo;
-    }
-    public void setId(int id){
-        this.id=id;
     }
     public void setPrecio_unidad(double precio_unidad) {
         this.precio_unidad = precio_unidad;

@@ -1,15 +1,30 @@
 package paneles;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import logico.Manager_MateriaPrima;
 
 public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     
     Manager_MateriaPrima manager_mat;
 
-    public VentanaCargarMateriaPrima() {
+    public VentanaCargarMateriaPrima() throws SQLException {
         initComponents();
         manager_mat = new Manager_MateriaPrima();
     }
+    
+    //Metodos del Formulario
+    
+    //Metodo para limpiar campos
+    public void clean(){
+        fieldNombre.setText("");
+        fieldDescripcion.setText("");
+        fieldPrecio.setText("");
+        fieldTipo.setText("");
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -168,7 +183,19 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldPrecioActionPerformed
 
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
-        
+        String nombre,des,tipo;
+        int cant,precio;
+        nombre = fieldNombre.getText();
+        des = fieldDescripcion.getText();
+        tipo = fieldTipo.getText();
+        precio = Integer.parseInt(fieldPrecio.getText());
+        cant = Integer.parseInt(fieldPrecio.getText());
+        try {
+            manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
+            JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Hubo un problema al cargar :(");
+        }
     }//GEN-LAST:event_botonCargarActionPerformed
 
     public static void main(String args[]) {
@@ -198,7 +225,11 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaCargarMateriaPrima().setVisible(true);
+                try {
+                    new VentanaCargarMateriaPrima().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaCargarMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

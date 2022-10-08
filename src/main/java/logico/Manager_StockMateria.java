@@ -11,6 +11,7 @@ public class Manager_StockMateria {
     }
     public void cargarStockMateria(int cant, Deposito dep, MateriaPrima mat) throws Exception{
         StockMateria stock = new StockMateria(dep, mat, cant);
+        System.out.println("Se creo el stock");
         daostockMateria.create(stock);
     }
     public void modificarStockMateria(StockMateria stock) throws Exception{
