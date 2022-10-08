@@ -12,7 +12,7 @@ import base_de_datos.DAORenglon;
 public class Manager_Renglon {
     
     private static Manager_Renglon manager;
-    public DAORenglon dao;
+    public static DAORenglon dao;
     
     public Manager_Renglon(){
         DAORenglon dao = new DAORenglon();
@@ -25,12 +25,12 @@ public class Manager_Renglon {
         return Manager_Renglon.manager;
     }
     
-    public void generarRenglon(double cantidad, double precio, MateriaPrima materiaPrima) throws Exception{
-        Renglon renglon = new Renglon(cantidad, precio, materiaPrima);
+    public static void generarRenglon(double cantidad, double precio, int ID_materiaPrima) throws Exception{
+        Renglon renglon = new Renglon(cantidad, precio, ID_materiaPrima);
         dao.create(renglon);
     }
     
-    public Renglon consultarRenglon(int id) throws Exception{
+    public static Renglon consultarRenglon(int id) throws Exception{
         Renglon renglon = new Renglon();
         renglon = dao.consulta(id);
         return renglon;

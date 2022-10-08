@@ -7,19 +7,19 @@ package logico;
 public class Renglon {
     private double cantidad;
     private double precio;
-    private MateriaPrima materia; // No deberia ser materia porque sino no es muy reutilizable, 
+    private int ID; // No deberia ser materia porque sino no es muy reutilizable, 
     // hay que hacer una clase padre entre mat prima y producto final -> Esto yo diria que lo podemos hacer dsp de ultima, no se (firma agus ahre)
 
-    public Renglon(double cantidad, double precio, MateriaPrima materia){
+    public Renglon(double cantidad, double precio, int ID){
         this.cantidad = cantidad;
         this.precio = precio;
-        this.materia = materia;
+        this.ID = ID;
     }
 
     public Renglon() {
         this.cantidad = 0;
         this.precio = 0;
-        this.materia = new MateriaPrima();
+        this.ID = 0;
     }
 
     public void setCantidad(double cantidad){
@@ -38,12 +38,12 @@ public class Renglon {
         return precio;
     }
 
-    public void setMateria(MateriaPrima materia){
-        this.materia = materia;
+    public void setID_Tiene(int ID){
+        this.ID = ID;
     }
 
-    public MateriaPrima getMateria(){
-        return materia;
+    public int getID_Tiene(){
+        return ID;
     }
 
     
