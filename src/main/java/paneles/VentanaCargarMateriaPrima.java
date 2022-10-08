@@ -1,5 +1,8 @@
 package paneles;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logico.Manager_MateriaPrima;
 
@@ -7,7 +10,7 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     
     Manager_MateriaPrima manager_mat;
 
-    public VentanaCargarMateriaPrima() {
+    public VentanaCargarMateriaPrima() throws SQLException {
         initComponents();
         manager_mat = new Manager_MateriaPrima();
     }
@@ -222,7 +225,11 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaCargarMateriaPrima().setVisible(true);
+                try {
+                    new VentanaCargarMateriaPrima().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaCargarMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
