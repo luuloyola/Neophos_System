@@ -4,6 +4,10 @@
  */
 package logico;
 
+import java.sql.Date;
+
+import base_de_datos.DAO_OrdenDeCompra;
+
 /**
  *
  * @author lucil
@@ -11,6 +15,7 @@ package logico;
 public class Manager_OrdenCompra {
     
     private static Manager_OrdenCompra manager;
+    public DAO_OrdenDeCompra dao;
     
     public Manager_OrdenCompra(){
     }
@@ -22,11 +27,13 @@ public class Manager_OrdenCompra {
         return Manager_OrdenCompra.manager;
     }
 
-    public void generarOrdenDeCompra(){
+    public void generarOrdenDeCompra(int ID_proveedor, Date fecha_pedido){
 
     }
 
-    public void consultarOrdenDeCompra(){
-        
+    public Orden_Compra consultarOrdenDeCompra(int id) throws Exception{
+        Orden_Compra orden = null;
+        orden = dao.consulta(id);
+        return orden;
     }
 }

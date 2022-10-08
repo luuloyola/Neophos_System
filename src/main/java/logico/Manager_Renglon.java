@@ -30,7 +30,9 @@ public class Manager_Renglon {
         dao.create(renglon);
     }
     
-    public void consultarRenglon(){
-        
+    public Renglon consultarRenglon(int id) throws Exception{
+        Renglon renglon = new Renglon();
+        renglon = dao.consulta(id);
+        return renglon;
     }
 }

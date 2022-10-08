@@ -6,33 +6,22 @@ package logico;
 
 public class Proveedor {
     
-    private int ID;
     private int telefono;
     private String nombre;
     private String mail;
     
     public Proveedor(int telefono, String nombre, String mail){
-        this.ID = 0;
         this.telefono = telefono;
         this.nombre = nombre;
         this.mail = mail;
     }
 
     public Proveedor(){
-        this.ID = 0;
         this.telefono = 0;
         this.nombre = "";
         this.mail = "";
     }
     
-    public void setID(int ID){
-        this.ID = ID;
-    }
-
-    public int getID(){
-        return ID;
-    }
-
     public void setTelefono(int telefono){
         this.telefono = telefono;
     }
