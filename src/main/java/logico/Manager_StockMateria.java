@@ -1,11 +1,12 @@
 package logico;
 
 import base_de_datos.DAOStockMateria;
+import java.sql.SQLException;
 
 public class Manager_StockMateria {
     public DAOStockMateria daostockMateria;
 
-    public Manager_StockMateria() {
+    public Manager_StockMateria() throws SQLException {
         daostockMateria = new DAOStockMateria();
     }
     public void cargarStockMateria(int cant, Deposito dep, MateriaPrima mat) throws Exception{
