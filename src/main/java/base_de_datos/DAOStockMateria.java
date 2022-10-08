@@ -3,6 +3,7 @@ package base_de_datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import javax.swing.JOptionPane;
 import logico.StockMateria;
 
 public class DAOStockMateria implements DAO<StockMateria>{
@@ -15,17 +16,23 @@ public class DAOStockMateria implements DAO<StockMateria>{
         int id_mat=0;
         try {
             ConexionBD.conectar();
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("IDENT_CURRENT('MateriaPrima')");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(id_materiaprima) from materiaprima;");
             ResultSet rs = st.executeQuery();
             if(rs.next()) id_mat = rs.getInt(1);
+            System.out.println("id es: "+id_mat);
             st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO StockMateria (cantidad, id_materiaPrima, id_deposito) VALUES (?,?,?)");
+                    .prepareStatement("INSERT INTO Stock_Materia (Cantidad, ID_MateriaPrima_Proveida, ID_Deposito) VALUES (?,?,?)");
             st.setInt(1,object.getCantidad());
             st.setInt(2,id_mat);
             st.setInt(3,0); // Esto porque el deposito es Unico
+            st.executeUpdate();
+            rs.close();
+            st.close();
             
         } catch (Exception e) {
-        }finally {ConexionBD.cerrar();}
+            JOptionPane.showMessageDialog(null, "Ocurrio un problema");
+        }finally {ConexionBD.cerrar();
+                  }
         
     }
 
