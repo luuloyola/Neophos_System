@@ -20,10 +20,20 @@ public class ConexionBD {
         query = conexion.createStatement();
         
         query.execute(
-                "CREATE TYPE Tipo_Empaquetado AS ENUM ('TIRAS', 'SOBRES', 'PASTILLAS');"
-                
-                + "CREATE TYPE Tipo_Mat AS ENUM ('PRODUCTO_QUIMICO', 'INSUMO');"
-                        
+                 "DO $$"
+                + "BEGIN"
+                + "  CREATE TYPE Tipo_Mat AS ENUM ('PRODUCTO_QUIMICO', 'INSUMO');"
+                + "EXCEPTION"
+                + "   WHEN duplicate_object THEN null;"
+                + "END $$;"
+                         
+                + "DO $$"
+                + "BEGIN"
+                + "  CREATE TYPE Tipo_Empaquetado AS ENUM ('TIRAS', 'SOBRES', 'PASTILLAS');"
+                + "EXCEPTION"
+                + "   WHEN duplicate_object THEN null;"
+                + "END $$;"
+                         
                 + "CREATE TABLE IF NOT EXISTS MateriaPrima("
                 + "ID_MateriaPrima SERIAL, "
                 + "Nombre TEXT NOT NULL, "
@@ -83,26 +93,10 @@ public class ConexionBD {
                 + "Cantidad FLOAT8 NOT NULL,"
                 + "PRIMARY KEY (ID_Deposito, ID_MateriaPrima_Proveida),"
                 + "FOREIGN KEY (ID_MateriaPrima_Proveida) REFERENCES MateriaPrima (ID_MateriaPrima));");
-        /*query.execute("DROP TABLE Renglon; "
-                + "DROP Table Stock;"
-                + "DROP Table Provee;"
-                + "DROP Table OrdenDeCompra;"
-                + "DROP Table Proveedor;"
-                + "DROP Table Compuesto_Por;"
-                + "DROP Table ProductoFinal;"
-                + "DROP Table MateriaPrima;"
-                + "DROP Type Tipo_Mat;"
-                + "DROP Type Tipo_Empaquetado;");*/
     }
     
     public static void conectar() throws Exception{
         conexion = DriverManager.getConnection(DB_URL, DB_USER, DB_PWD);
-        /*try {
-            conexion = DriverManager.getConnection(BD_URL,USER,PASS);
-            Class.forName(JDBC_DRIVER);
-        } catch (Exception e) {
-            throw e;
-        }*/
     }
     public static void cerrar() throws SQLException{
         if(conexion!=null){
