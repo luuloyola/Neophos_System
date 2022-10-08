@@ -21,10 +21,14 @@ public class DAORenglon implements DAO<Renglon>{
 
     @Override
     public void create(Renglon object) throws Exception {
+        int id_Orden = 0;
         try {
             conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("INSERT INTO Renglon (ID_Renglon, Cantidad, Precio, ID_Materia_Tiene) VALUES (?,?,?,?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(ID_OrdenDeCompra) from OrdenDeCompra;");
+            ResultSet rs = st.executeQuery();
+            if(rs.next()) id_Orden = rs.getInt(1);
+            st = conexion.getConexion()
+                    .prepareStatement("INSERT INTO Renglon (ID_Renglon, Cantidad, Precio, ID_Materia_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
             st.setDouble(2, object.getCantidad());
             st.setDouble(3, object.getPrecio());
             st.setObject(4, object.getMateria());
