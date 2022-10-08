@@ -12,11 +12,12 @@ public class Manager_MateriaPrima {
         daoMatPrima = new DAOMateriaPrima();
     }
     
-    public void cargarMateriaPrima(int id, String nombre, String descripcion, int tipo, double precio_unidad, int cant) throws Exception{
-        MateriaPrima materia_nueva = new MateriaPrima(id,nombre,descripcion,tipo,precio_unidad);
-        Manager_StockMateria stock = new Manager_StockMateria();
-        stock.cargarStockMateria(cant,Deposito.getSinglentonInstance(0), materia_nueva);
+    public void cargarMateriaPrima(String nombre, String descripcion, String tipo, double precio_unidad, int cant) throws Exception{
+        MateriaPrima materia_nueva = new MateriaPrima(nombre,descripcion,tipo,precio_unidad);
         daoMatPrima.create(materia_nueva);
+        
+        Manager_StockMateria stock = new Manager_StockMateria();
+        stock.cargarStockMateria(10,Deposito.getSinglentonInstance(0), materia_nueva);
     }
     
     public MateriaPrima consultarMateriaPrima(int id) throws Exception{

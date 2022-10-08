@@ -3,10 +3,8 @@ package base_de_datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import logico.MateriaPrima;
-import logico.Orden_Compra;
 import logico.TipoMat;
 
 public class DAOMateriaPrima implements DAO<MateriaPrima>{
@@ -20,8 +18,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     public void create(MateriaPrima object) throws Exception {
         try {
             conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("INSERT INTO MateriaPrima (ID_MateriaPrima, Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,?,?,?)");
+            PreparedStatement st = conexion.getConexion().prepareStatement("INSERT INTO MateriaPrima (ID_MateriaPrima, Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,?,?,?)");
             st.setString(2, object.getNombre());
             st.setString(3, object.getDescripcion());
             st.setObject(4, object.getTipoMateriaPrima());
@@ -61,6 +58,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             st.setDouble(4, object.getPrecio_unidad());
             st.setInt(5, id);
             st.executeUpdate();
+            st.close();
         } catch (Exception e) {
             throw e;
         } finally{
@@ -105,7 +103,6 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                materia.setId(rs.getInt(1));
                 materia.setNombre(rs.getString(2));
                 materia.setDescripcion(rs.getString(3));
                 materia.setTipoMateriaPrima((TipoMat) rs.getObject(4)); //REVISAR
