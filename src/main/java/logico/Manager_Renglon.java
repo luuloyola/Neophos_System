@@ -4,6 +4,8 @@
  */
 package logico;
 import base_de_datos.DAORenglon;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -34,5 +36,11 @@ public class Manager_Renglon {
         Renglon renglon = new Renglon();
         renglon = dao.consulta(id);
         return renglon;
+    }
+    
+    public static List<Renglon> consultarRenglonConIDOrden(int idOrden) throws Exception{
+        List<Renglon> renglones = new ArrayList<>();
+        renglones = dao.findAllDeOrden(idOrden);
+        return renglones;
     }
 }
