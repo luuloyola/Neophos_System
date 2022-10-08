@@ -1,28 +1,31 @@
 package base_de_datos;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 import logico.StockMateria;
 
 public class DAOStockMateria implements DAO<StockMateria>{
-    ConexionBD conexion;
 
     public DAOStockMateria() {
-        conexion = new ConexionBD();
     }
     
     @Override
     public void create(StockMateria object) throws Exception {
+        int id_mat=0;
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            ConexionBD.conectar();
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("IDENT_CURRENT('MateriaPrima')");
+            ResultSet rs = st.executeQuery();
+            if(rs.next()) id_mat = rs.getInt(1);
+            st = ConexionBD.getConexion()
                     .prepareStatement("INSERT INTO StockMateria (cantidad, id_materiaPrima, id_deposito) VALUES (?,?,?)");
             st.setInt(1,object.getCantidad());
-            st.setInt(2,object.getMateriaPrima().getId());
-            st.setInt(3,object.getDeposito().getId());
+            st.setInt(2,id_mat);
+            st.setInt(3,0); // Esto porque el deposito es Unico
             
         } catch (Exception e) {
-        }finally {conexion.cerrar();}
+        }finally {ConexionBD.cerrar();}
         
     }
 
