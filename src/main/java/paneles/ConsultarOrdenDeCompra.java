@@ -43,6 +43,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
         Separador6 = new javax.swing.JLabel();
         ingresarID = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        textIDConsultar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -66,7 +67,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(542, Short.MAX_VALUE)
+                .addContainerGap(597, Short.MAX_VALUE)
                 .addComponent(Titulo2)
                 .addGap(386, 386, 386))
         );
@@ -88,16 +89,20 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
         Separador6.setForeground(new java.awt.Color(97, 34, 34));
         Separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
-        ingresarID.setFont(new java.awt.Font("Microsoft YaHei", 0, 18)); // NOI18N
+        ingresarID.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
         ingresarID.setForeground(new java.awt.Color(97, 34, 34));
         ingresarID.setText("Ingrese el ID de la Orden de Compra que desea consultar:");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Aceptar");
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(738, 738, 738))
             .addGroup(inicioLayout.createSequentialGroup()
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inicioLayout.createSequentialGroup()
@@ -105,19 +110,15 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
                         .addComponent(Titulo))
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(Separador6)))
-                .addContainerGap(45, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
-                        .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                        .addComponent(Separador6))
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
                         .addComponent(ingresarID)
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton1)
-                        .addGap(280, 280, 280))))
+                        .addGap(87, 87, 87)
+                        .addComponent(textIDConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -128,11 +129,12 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
                 .addComponent(Titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Separador6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ingresarID)
+                    .addComponent(textIDConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
             .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,5 +215,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mesas;
+    private javax.swing.JTextField textIDConsultar;
     // End of variables declaration//GEN-END:variables
 }

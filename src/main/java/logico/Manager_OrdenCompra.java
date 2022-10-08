@@ -8,7 +8,9 @@ import java.sql.Date;
 
 import base_de_datos.DAO_OrdenDeCompra;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Manager_OrdenCompra {
     
@@ -35,15 +37,17 @@ public class Manager_OrdenCompra {
         }
     }
 
-    public void consultarOrdenDeCompra(int id) throws Exception{
+    public Map<Orden_Compra, List<Renglon>> consultarOrdenDeCompra(int id) throws Exception{
        Orden_Compra orden = null;
        List<Renglon> renglones = new ArrayList<>();
+       Map<Orden_Compra, List<Renglon>> ordenCompleta = new HashMap<>();
        
        orden = dao.consulta(id);
        
        renglones = Manager_Renglon.consultarRenglonConIDOrden(id);
        
-       //aca deberia devolver la orden de compra y los renglones, capaz eso se puede hacer con un hashmap 
+       ordenCompleta.put(orden, renglones);
        
+       return ordenCompleta; 
     }
 }
