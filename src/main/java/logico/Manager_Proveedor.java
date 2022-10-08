@@ -10,8 +10,16 @@ package logico;
  */
 public class Manager_Proveedor {
 
+    private static Manager_Proveedor manager;
+    
     public Manager_Proveedor(){
+    }
+    
+    public static Manager_Proveedor getInstance() {
+        if (Manager_Proveedor.manager == null)
+        Manager_Proveedor.manager = new Manager_Proveedor();
 
+        return Manager_Proveedor.manager;
     }
 
     public void seleccionarProveedor(){

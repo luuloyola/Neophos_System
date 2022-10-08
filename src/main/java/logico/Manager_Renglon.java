@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package logico;
+import base_de_datos.DAORenglon;
 
 /**
  *
@@ -10,24 +11,25 @@ package logico;
  */
 public class Manager_Renglon {
     
-    private Manager_MateriaPrima managerMateriaPrima;
-
-    public Manager_Renglon(Manager_MateriaPrima manager_MateriaPrima){
-        this.managerMateriaPrima = manager_MateriaPrima;
-    }
-
-    public void setManagerMP(Manager_MateriaPrima manager_MateriaPrima){
-        this.managerMateriaPrima = manager_MateriaPrima;
-    }
-
-    public Manager_MateriaPrima getManagerMP(){
-        return managerMateriaPrima;
+    private static Manager_Renglon manager;
+    public DAORenglon dao;
+    
+    public Manager_Renglon(){
+        DAORenglon dao = new DAORenglon();
     }
     
-    public void generarRenglon(){
+    public static Manager_Renglon getInstance() {
+        if (Manager_Renglon.manager == null)
+        Manager_Renglon.manager = new Manager_Renglon();
 
+        return Manager_Renglon.manager;
     }
-
+    
+    public void generarRenglon(double cantidad, double precio, MateriaPrima materiaPrima) throws Exception{
+        Renglon renglon = new Renglon(cantidad, precio, materiaPrima);
+        dao.create(renglon);
+    }
+    
     public void consultarRenglon(){
         
     }

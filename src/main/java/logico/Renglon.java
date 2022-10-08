@@ -16,6 +16,12 @@ public class Renglon {
         this.materia = materia;
     }
 
+    public Renglon() {
+        this.cantidad = 0;
+        this.precio = 0;
+        this.materia = new MateriaPrima();
+    }
+
     public void setCantidad(double cantidad){
         this.cantidad = cantidad;
     }

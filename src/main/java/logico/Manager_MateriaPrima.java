@@ -1,13 +1,14 @@
 package logico;
 
 import base_de_datos.DAOMateriaPrima;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Manager_MateriaPrima {
     
     public DAOMateriaPrima daoMatPrima;
 
-    public Manager_MateriaPrima() {
+    public Manager_MateriaPrima() throws SQLException {
         daoMatPrima = new DAOMateriaPrima();
     }
     
