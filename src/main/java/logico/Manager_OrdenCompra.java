@@ -31,9 +31,7 @@ public class Manager_OrdenCompra {
 
     }
 
-    public Orden_Compra consultarOrdenDeCompra(int id) throws Exception{
-        Orden_Compra orden = null;
-        orden = dao.consulta(id);
-        return orden;
+    public void consultarOrdenDeCompra(int id) throws Exception{
+       
     }
 }

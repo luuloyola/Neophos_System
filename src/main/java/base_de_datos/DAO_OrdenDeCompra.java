@@ -20,8 +20,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
                     .prepareStatement("INSERT INTO OrdenDeCompra (Fecha_Pedido, Precio_Total, ID_Proveedor_Tiene, ID_OrdenDeCompra) VALUES (?,?,?,?)");
             st.setDate(1, object.getFechaPedido());
             st.setDouble(2, object.getPrecioTotal());
-            st.setObject(3, object.getProveedor());
-            st.setInt(4, object.getID());
+            st.setInt(3, object.getID_Proveedor());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -55,8 +54,8 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
                     .prepareStatement("UPDATE OrdenDeCompra set Fecha_Pedido = ?, Precio_Total = ?, ID_Proveedor_Tiene = ?, where ID_OrdenDeCompra = ?");
             st.setDate(1, object.getFechaPedido());
             st.setDouble(2, object.getPrecioTotal());
-            st.setObject(3, object.getProveedor());
-            st.setDouble(4, id);
+            st.setObject(3, object.getID_Proveedor());
+            st.setInt(4, id);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -76,10 +75,10 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
             listaOrdenes = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                Orden_Compra orden = new Orden_Compra();
+                Orden_Compra orden = null;
                 orden.setFechaPedido(rs.getDate(1));
                 orden.setPrecioTotal(rs.getDouble(2));
-                orden.setProveedor((Proveedor) rs.getObject(3));
+                orden.setID_Proveedor(rs.getInt(3));
                 listaOrdenes.add(orden);
             }
             rs.close();
@@ -93,7 +92,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     }
     
     public Orden_Compra consulta(int id) throws Exception {
-        Orden_Compra orden = new Orden_Compra();
+        Orden_Compra orden = null;
         
         try {
             conexion.conectar();
@@ -104,7 +103,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
             while(rs.next()){
                 orden.setFechaPedido(rs.getDate(1));
                 orden.setPrecioTotal(rs.getDouble(2));
-                orden.setProveedor((Proveedor) rs.getObject(3));
+                orden.setID_Proveedor(rs.getInt(3));
             }
             rs.close();
             st.close();
