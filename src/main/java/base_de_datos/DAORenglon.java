@@ -32,6 +32,7 @@ public class DAORenglon implements DAO<Renglon>{
             st.setDouble(2, object.getCantidad());
             st.setDouble(3, object.getPrecio());
             st.setObject(4, object.getMateria());
+            st.setObject(5, id_Orden);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;

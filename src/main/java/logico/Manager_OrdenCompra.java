@@ -8,10 +8,6 @@ import java.sql.Date;
 
 import base_de_datos.DAO_OrdenDeCompra;
 
-/**
- *
- * @author lucil
- */
 public class Manager_OrdenCompra {
     
     private static Manager_OrdenCompra manager;
