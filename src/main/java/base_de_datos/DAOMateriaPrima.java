@@ -3,10 +3,8 @@ package base_de_datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import logico.MateriaPrima;
-import logico.Orden_Compra;
 import logico.TipoMat;
 
 public class DAOMateriaPrima implements DAO<MateriaPrima>{
@@ -44,7 +42,6 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                materia.setId(rs.getInt(1));
                 materia.setNombre(rs.getString(2));
                 materia.setDescripcion(rs.getString(3));
                 materia.setTipoMateriaPrima((TipoMat) rs.getObject(4)); //REVISAR
