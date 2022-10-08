@@ -19,7 +19,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
                     .prepareStatement("INSERT INTO MateriaPrima (nombre, descripcion, tipo, precio) VALUES (?,?,?,?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
-            st.setInt(3, object.getTipo());
+            st.setString(3, object.getTipoMateriaPrima().name());
             st.setDouble(4, object.getPrecio_unidad());
             st.executeUpdate();
         } catch (Exception e) {
