@@ -4,6 +4,9 @@
  */
 package logico;
 
+import base_de_datos.DAOProveedor;
+import java.util.ArrayList;
+
 /**
  *
  * @author lucil
@@ -11,8 +14,10 @@ package logico;
 public class Manager_Proveedor {
 
     private static Manager_Proveedor manager;
+    private DAOProveedor dao;
     
     public Manager_Proveedor(){
+        dao = new DAOProveedor();
     }
     
     public static Manager_Proveedor getInstance() {
@@ -26,7 +31,11 @@ public class Manager_Proveedor {
         //si queremos hacer esta funcion primero hay q eliminar ID de proveedor
     }
     
-    public void consultarProveedor(){
-        
+    public Proveedor consultarProveedor(int id) throws Exception{
+        return dao.consulta(id);
+    }
+    
+    public ArrayList<Proveedor> getAllProveedores() throws Exception{
+        return dao.findAll();
     }
 }

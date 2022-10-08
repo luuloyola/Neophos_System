@@ -63,8 +63,8 @@ public class DAOProveedor implements DAO<Proveedor>{
 
   
     @Override
-    public List<Proveedor> findAll() throws Exception {
-        List<Proveedor> listaProveedores = null;
+    public ArrayList<Proveedor> findAll() throws Exception {
+        ArrayList<Proveedor> listaProveedores = null;
         try {
             conexion.conectar();
             PreparedStatement st = conexion.getConexion()

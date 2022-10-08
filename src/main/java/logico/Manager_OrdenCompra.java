@@ -24,6 +24,15 @@ public class Manager_OrdenCompra {
         return Manager_OrdenCompra.manager;
     }
 
+    /*
+    La funcion generarOrdenDeCompra se encarga de cargar las ordenes de compra al sistema, este toma como 
+    parametro el ID del proveedor con el decidio realizar la orden de compra, la fecha que se realizo el pedido,
+    el precio total que tendra la orden de compra (atributo que es la suma de los precios de los renglones),
+    luego, toma tres arreglos de listas que cada uno guardara la informacion del renglon
+    es decir, en la posicion i de todos los arreglos se encuentra la informacion asociado a este renglon i
+    por ejemplo: el primer renglon ingresado tendra su informacion guardada de la siguiente forma
+    cantidades.get(0), precios.get(0), ID_MateriasPrimas.get(0)
+    */
     public void generarOrdenDeCompra(int ID_proveedor, Date fecha_pedido, double precio_total, ArrayList<Double> cantidades, ArrayList<Double> precios, ArrayList<Integer> ID_MateriasPrimas) throws Exception{
         
         Orden_Compra nueva_Orden = new Orden_Compra(fecha_pedido, precio_total, ID_proveedor);
@@ -37,4 +46,5 @@ public class Manager_OrdenCompra {
     public void consultarOrdenDeCompra(int id) throws Exception{
        
     }
+    
 }
