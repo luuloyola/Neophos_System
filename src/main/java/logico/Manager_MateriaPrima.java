@@ -21,8 +21,7 @@ public class Manager_MateriaPrima {
     }
     
     public MateriaPrima consultarMateriaPrima(int id) throws Exception{
-        MateriaPrima materia = new MateriaPrima();
-        materia = daoMatPrima.consulta(id);
+        MateriaPrima materia = daoMatPrima.consulta(id);
         return materia;
     }
     
