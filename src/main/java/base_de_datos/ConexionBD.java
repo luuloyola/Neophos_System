@@ -25,7 +25,7 @@ public class ConexionBD {
                 + "CREATE TYPE Tipo_Mat AS ENUM ('PRODUCTO_QUIMICO', 'INSUMO');"
                         
                 + "CREATE TABLE IF NOT EXISTS MateriaPrima("
-                + "ID_MateriaPrima INTEGER NOT NULL, "
+                + "ID_MateriaPrima SERIAL, "
                 + "Nombre TEXT NOT NULL, "
                 + "Descripcion TEXT NOT NULL, "
                 + "Tipo_Mat TEXT NOT NULL, " 
@@ -33,7 +33,7 @@ public class ConexionBD {
                 + "PRIMARY KEY (ID_MateriaPrima));"
                 
                 + "CREATE TABLE IF NOT EXISTS ProductoFinal("
-                + "ID_Producto INTEGER NOT NULL, "
+                + "ID_Producto SERIAL, "
                 + "Nombre TEXT NOT NULL, "
                 + "Descripcion TEXT NOT NULL, "
                 + "Empaquetado Tipo_Empaquetado NOT NULL, "
@@ -41,14 +41,14 @@ public class ConexionBD {
                 + "PRIMARY KEY (ID_Producto));"
                 
                 + "CREATE TABLE IF NOT EXISTS Proveedor("
-                + "ID_Proveedor INTEGER NOT NULL, "
+                + "ID_Proveedor SERIAL, "
                 + "Telefono INTEGER NOT NULL, "
                 + "Nombre TEXT NOT NULL, "
                 + "Mail TEXT NOT NULL, "
                 + "PRIMARY KEY (ID_Proveedor));"
                 
                 + "CREATE TABLE IF NOT EXISTS Renglon("
-                + "ID_Renglon INTEGER NOT NULL, "
+                + "ID_Renglon SERIAL, "
                 + "Cantidad FLOAT8 NOT NULL, "
                 + "Precio FLOAT8 NOT NULL, "
                 + "ID_Materia_Tiene INTEGER NOT NULL, "
@@ -59,7 +59,7 @@ public class ConexionBD {
                 + "Fecha_Pedido DATE NOT NULL, "
                 + "Precio_Total FLOAT8 NOT NULL, "
                 + "ID_Proveedor_Tiene INTEGER NOT NULL, "
-                + "ID_OrdenDeCompra INTEGER NOT NULL, "                
+                + "ID_OrdenDeCompra SERIAL, "                
                 + "PRIMARY KEY (ID_OrdenDeCompra),"
                 + "FOREIGN KEY (ID_Proveedor_Tiene) REFERENCES Proveedor (ID_Proveedor));"
         
@@ -77,12 +77,22 @@ public class ConexionBD {
                 + "FOREIGN KEY (ID_Producto_Compuesto) REFERENCES ProductoFinal (ID_Producto),"
                 + "FOREIGN KEY (ID_MateriaPrima_Compuesta) REFERENCES MateriaPrima (ID_MateriaPrima));"
                 
-                + "CREATE TABLE IF NOT EXISTS Stock("
+                + "CREATE TABLE IF NOT EXISTS Stock_Materia("
                 + "ID_Deposito INTEGER NOT NULL, "
                 + "ID_MateriaPrima_Proveida INTEGER NOT NULL, "
                 + "Cantidad FLOAT8 NOT NULL,"
                 + "PRIMARY KEY (ID_Deposito, ID_MateriaPrima_Proveida),"
                 + "FOREIGN KEY (ID_MateriaPrima_Proveida) REFERENCES MateriaPrima (ID_MateriaPrima));");
+        /*query.execute("DROP TABLE Renglon; "
+                + "DROP Table Stock;"
+                + "DROP Table Provee;"
+                + "DROP Table OrdenDeCompra;"
+                + "DROP Table Proveedor;"
+                + "DROP Table Compuesto_Por;"
+                + "DROP Table ProductoFinal;"
+                + "DROP Table MateriaPrima;"
+                + "DROP Type Tipo_Mat;"
+                + "DROP Type Tipo_Empaquetado;");*/
     }
     
     public static void conectar() throws Exception{
