@@ -32,7 +32,7 @@ public class DAORenglon implements DAO<Renglon>{
             st.setDouble(2, object.getCantidad());
             st.setDouble(3, object.getPrecio());
             st.setObject(4, object.getID_Tiene());
-            st.setObject(5, id_Orden);
+            st.setInt(5, id_Orden);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -66,7 +66,7 @@ public class DAORenglon implements DAO<Renglon>{
             st.setDouble(1, object.getCantidad());
             st.setDouble(2, object.getPrecio());
             st.setObject(3, object.getID_Tiene());
-            st.setInt(4, id);
+            st.setInt(5, id);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -123,6 +123,31 @@ public class DAORenglon implements DAO<Renglon>{
             conexion.cerrar();
         }
         return renglon;
+    }
+    
+    public List<Renglon> findAllDeOrden(int id) throws Exception {
+        List<Renglon> listaRenglones = null;
+        try {
+            conexion.conectar();
+            PreparedStatement st = conexion.getConexion()
+                    .prepareStatement("SELECT * FROM Renglon WHERE ID_Orden_Corresponde = ?");
+            listaRenglones = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Renglon renglon = new Renglon();
+                renglon.setCantidad(rs.getDouble(2));
+                renglon.setPrecio(rs.getDouble(3));
+                renglon.setID_Tiene(rs.getInt(4));
+                listaRenglones.add(renglon);
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            conexion.cerrar();
+        }
+        return listaRenglones;
     }
 
     @Override

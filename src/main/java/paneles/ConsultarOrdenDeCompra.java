@@ -41,7 +41,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
         mesas = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
         Separador6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        ingresarID = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -66,7 +66,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(532, Short.MAX_VALUE)
+                .addContainerGap(542, Short.MAX_VALUE)
                 .addComponent(Titulo2)
                 .addGap(386, 386, 386))
         );
@@ -88,7 +88,9 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
         Separador6.setForeground(new java.awt.Color(97, 34, 34));
         Separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
-        jLabel1.setText("jLabel1");
+        ingresarID.setFont(new java.awt.Font("Microsoft YaHei", 0, 18)); // NOI18N
+        ingresarID.setForeground(new java.awt.Color(97, 34, 34));
+        ingresarID.setText("Ingrese el ID de la Orden de Compra que desea consultar:");
 
         jButton1.setText("jButton1");
 
@@ -97,10 +99,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addGap(157, 596, Short.MAX_VALUE)
-                .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
-            .addGroup(inicioLayout.createSequentialGroup()
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
@@ -108,13 +106,18 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(Separador6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(inicioLayout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(280, 280, 280))
+                .addContainerGap(45, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                        .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                        .addComponent(ingresarID)
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton1)
+                        .addGap(280, 280, 280))))
             .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -125,9 +128,9 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
                 .addComponent(Titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Separador6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(ingresarID)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,9 +208,9 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo2;
     private javax.swing.JPanel contenedor;
+    private javax.swing.JLabel ingresarID;
     private javax.swing.JPanel inicio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mesas;
     // End of variables declaration//GEN-END:variables
