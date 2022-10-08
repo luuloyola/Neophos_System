@@ -38,7 +38,7 @@ public class ConexionBD {
                 + "ID_MateriaPrima SERIAL, "
                 + "Nombre TEXT NOT NULL, "
                 + "Descripcion TEXT NOT NULL, "
-                + "Tipo_Mat TEXT NOT NULL, " 
+                + "Tipo_Mat Tipo_Mat NOT NULL, " 
                 + "Precio_Unidad FLOAT8 NOT NULL, "
                 + "PRIMARY KEY (ID_MateriaPrima));"
                 
