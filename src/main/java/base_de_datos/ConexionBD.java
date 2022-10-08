@@ -57,14 +57,6 @@ public class ConexionBD {
                 + "Mail TEXT NOT NULL, "
                 + "PRIMARY KEY (ID_Proveedor));"
                 
-                + "CREATE TABLE IF NOT EXISTS Renglon("
-                + "ID_Renglon SERIAL, "
-                + "Cantidad FLOAT8 NOT NULL, "
-                + "Precio FLOAT8 NOT NULL, "
-                + "ID_Materia_Tiene INTEGER NOT NULL, "
-                + "PRIMARY KEY (ID_Renglon),"
-                + "FOREIGN KEY (ID_Materia_Tiene) REFERENCES MateriaPrima (ID_MateriaPrima));"
-                
                 + "CREATE TABLE IF NOT EXISTS OrdenDeCompra("
                 + "Fecha_Pedido DATE NOT NULL, "
                 + "Precio_Total FLOAT8 NOT NULL, "
@@ -72,6 +64,16 @@ public class ConexionBD {
                 + "ID_OrdenDeCompra SERIAL, "                
                 + "PRIMARY KEY (ID_OrdenDeCompra),"
                 + "FOREIGN KEY (ID_Proveedor_Tiene) REFERENCES Proveedor (ID_Proveedor));"
+                         
+                + "CREATE TABLE IF NOT EXISTS Renglon("
+                + "ID_Renglon SERIAL, "
+                + "Cantidad FLOAT8 NOT NULL, "
+                + "Precio FLOAT8 NOT NULL, "
+                + "ID_Materia_Tiene INTEGER NOT NULL, "
+                + "ID_Orden_Corresponde INTEGER NOT NULL,"
+                + "PRIMARY KEY (ID_Renglon),"
+                + "FOREIGN KEY (ID_Materia_Tiene) REFERENCES MateriaPrima (ID_MateriaPrima)"
+                + "FOREIGN KEY (ID_Orden_Corresponde) REFERENCES OrdenDeCompra (ID_OrdenDeCompra));"
         
                 + "CREATE TABLE IF NOT EXISTS Provee("
                 + "ID_Proveedor_Provee INTEGER NOT NULL, "
