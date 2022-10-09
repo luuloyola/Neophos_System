@@ -2,6 +2,7 @@ package logico;
 
 import base_de_datos.DAOMateriaPrima;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Manager_MateriaPrima {
@@ -31,8 +32,8 @@ public class Manager_MateriaPrima {
     public void eliminarMateriaPrima(MateriaPrima materia) throws Exception{
         //No Support yet
     }
-    public List<MateriaPrima> consultarListaMaterias() throws Exception{
-        return null; //No Support yet
+    public ArrayList<MateriaPrima> consultarListaMaterias_Porproveedor(String proveedor) throws Exception{
+        return daoMatPrima.findAll_proveedor(proveedor);
     }
     
 }

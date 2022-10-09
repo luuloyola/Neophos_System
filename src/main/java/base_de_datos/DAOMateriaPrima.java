@@ -3,8 +3,10 @@ package base_de_datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import logico.MateriaPrima;
+import logico.Proveedor;
 import logico.TipoMat;
 
 public class DAOMateriaPrima implements DAO<MateriaPrima>{
@@ -61,6 +63,41 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     @Override
     public List<MateriaPrima> findAll() throws Exception {
         return null; //No Support yet
+    }
+    
+    public ArrayList<MateriaPrima> findAll_proveedor(String proveedor) throws Exception {
+        ArrayList<MateriaPrima> listaMateriaPrima = null;
+        int id_proveedor = 0;
+        try {
+            conexion.conectar();
+            PreparedStatement st = conexion.getConexion()
+                    .prepareStatement("SELECT ID_Proveedor FROM Proveedor WHERE Nombre = ?");
+            st.setString(1, proveedor);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){ 
+                id_proveedor = rs.getInt(0);
+                st = conexion.getConexion()
+                        .prepareStatement("SELECT * FROM Provee WHERE ID_Proveedor_Provee = ?");
+                st.setInt(1, id_proveedor);
+                listaMateriaPrima = new ArrayList<>();
+                rs = st.executeQuery();
+                while(rs.next()){
+                    MateriaPrima materia = new MateriaPrima();
+                    materia.setNombre(rs.getString(2));
+                    materia.setDescripcion(rs.getString(3));
+                    materia.setTipoMateriaPrima((TipoMat) rs.getObject(4)); //REVISAR
+                    materia.setPrecio_unidad(rs.getDouble(5));
+                    listaMateriaPrima.add(materia);
+                }
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            conexion.cerrar();
+        }
+        return listaMateriaPrima;
     }
 
     @Override
