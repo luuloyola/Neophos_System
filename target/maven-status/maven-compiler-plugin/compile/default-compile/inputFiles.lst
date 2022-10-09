@@ -15,11 +15,13 @@ C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\paneles\ConsultarOrdenDe
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\logico\Manager_MateriaPrima.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\logico\Manager_OrdenCompra.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\logico\Manager_Proveedor.java
+C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\paneles\ConsultarMateriaPrima.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\base_de_datos\DAO_OrdenDeCompra.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\base_de_datos\ConexionBD.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\base_de_datos\DAORenglon.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\logico\Tipo_Empaquetado.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\paneles\Principal.java
+C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\paneles\GenerarOrdenDeCompra.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\base_de_datos\DAOStockMateria.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\logico\Manager_Renglon.java
 C:\Users\Usuario\Documents\GitHub\Neophos\src\main\java\logico\TipoMat.java
