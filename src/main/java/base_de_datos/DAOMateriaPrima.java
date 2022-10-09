@@ -10,18 +10,14 @@ import logico.Proveedor;
 import logico.TipoMat;
 
 public class DAOMateriaPrima implements DAO<MateriaPrima>{
-    ConexionBD conexion;
 
     public DAOMateriaPrima() throws SQLException {
-        conexion = new ConexionBD();
     }
     
     @Override
     public void create(MateriaPrima object) throws Exception {
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,?,?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,?,?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setString(3, object.getTipoMateriaPrima().name());
@@ -31,7 +27,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
     }
 
@@ -39,8 +35,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         MateriaPrima materia = new MateriaPrima();
 
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM MateriaPrima WHERE ID_MateriaPrima = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
@@ -55,7 +50,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return materia;
     }
@@ -69,14 +64,13 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         ArrayList<MateriaPrima> listaMateriaPrima = null;
         int id_proveedor = 0;
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT ID_Proveedor FROM Proveedor WHERE Nombre = ?");
             st.setString(1, proveedor);
             ResultSet rs = st.executeQuery();
             if(rs.next()){ 
-                id_proveedor = rs.getInt(0);
-                st = conexion.getConexion()
+                id_proveedor = rs.getInt(1);
+                st = ConexionBD.getConexion()
                         .prepareStatement("SELECT * FROM Provee WHERE ID_Proveedor_Provee = ?");
                 st.setInt(1, id_proveedor);
                 listaMateriaPrima = new ArrayList<>();
@@ -95,7 +89,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return listaMateriaPrima;
     }

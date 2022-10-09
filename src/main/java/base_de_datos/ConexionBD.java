@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexionBD {
+    private static ConexionBD ConexionBD;
     protected static Connection conexion;
     private static Statement query = null;
     
@@ -74,7 +75,7 @@ public class ConexionBD {
                 + "PRIMARY KEY (ID_Renglon),"
                 + "FOREIGN KEY (ID_Materia_Tiene) REFERENCES MateriaPrima (ID_MateriaPrima),"
                 + "FOREIGN KEY (ID_Orden_Corresponde) REFERENCES OrdenDeCompra (ID_OrdenDeCompra));"
-        
+    
                 + "CREATE TABLE IF NOT EXISTS Provee("
                 + "ID_Proveedor_Provee INTEGER NOT NULL, "
                 + "ID_MateriaPrima_Proveida INTEGER NOT NULL, "                
@@ -107,8 +108,19 @@ public class ConexionBD {
             }
         }
     }
-    public static Connection getConexion(){
+    public static Connection getConexion() throws SQLException{
+        if (ConexionBD == null)
+            ConexionBD = new ConexionBD();
+        
+        conexion = DriverManager.getConnection(DB_URL, DB_USER, DB_PWD);
+
         return conexion;
     }
     
+    public static ConexionBD getInstance() throws SQLException{
+        if (ConexionBD == null)
+            ConexionBD = new ConexionBD();
+
+        return ConexionBD;
+    }
 }

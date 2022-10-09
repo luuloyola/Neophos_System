@@ -10,14 +10,11 @@ import logico.Proveedor;
 
 public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
 
-    ConexionBD conexion;
-
     @Override
     public void create(Orden_Compra object) throws Exception {
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
-                    .prepareStatement("INSERT INTO OrdenDeCompra (Fecha_Pedido, Precio_Total, ID_Proveedor_Tiene, ID_OrdenDeCompra) VALUES (?,?,?,?)");
+            PreparedStatement st = ConexionBD.getConexion()
+                    .prepareStatement("INSERT INTO OrdenDeCompra (Fecha_Pedido, Precio_Total, ID_Proveedor_Tiene) VALUES (?,?,?)");
             st.setDate(1, object.getFechaPedido());
             st.setDouble(2, object.getPrecioTotal());
             st.setInt(3, object.getID_Proveedor());
@@ -25,7 +22,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         
     }
@@ -33,15 +30,14 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     @Override
     public void delete(int id) throws Exception {
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("DELETE FROM OrdenDeCompra where ID_OrdenDeCompra = ?");
             st.setInt(1, id);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         
     }
@@ -49,8 +45,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     @Override
     public void update(Orden_Compra object, int id) throws Exception {
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("UPDATE OrdenDeCompra set Fecha_Pedido = ?, Precio_Total = ?, ID_Proveedor_Tiene = ?, where ID_OrdenDeCompra = ?");
             st.setDate(1, object.getFechaPedido());
             st.setDouble(2, object.getPrecioTotal());
@@ -60,7 +55,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
     }
 
@@ -69,8 +64,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     public List<Orden_Compra> findAll() throws Exception {
         List<Orden_Compra> listaOrdenes = null;
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM OrdenDeCompra");
             listaOrdenes = new ArrayList<>();
             ResultSet rs = st.executeQuery();
@@ -86,7 +80,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return listaOrdenes;
     }
@@ -95,8 +89,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         Orden_Compra orden = null;
         
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM OrdenDeCompra WHERE ID_OrdenDeCompra = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
@@ -110,7 +103,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return orden;
     }
