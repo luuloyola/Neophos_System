@@ -10,6 +10,8 @@ import javax.swing.*;
 
 public class Principal extends javax.swing.JFrame {
     
+    private static Principal neophos;
+    
     public Principal(){
         initComponents();
         
@@ -227,11 +229,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cargar_materiaActionPerformed
 
     private void generar_ordeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generar_ordeActionPerformed
-        //Go_to aqui
+        go_to(new Generar_Orden());
     }//GEN-LAST:event_generar_ordeActionPerformed
 
     private void consultar_matActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_matActionPerformed
-        //Go_to aqui
+        go_to(new Consultar_MateriaPrima(""));
     }//GEN-LAST:event_consultar_matActionPerformed
 
     /**
@@ -266,8 +268,10 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
-                
+                    neophos = new Principal();
+                    neophos.setLocationRelativeTo(null);
+                    neophos.setVisible(true);
+                    neophos.setResizable(false);
                 }
             
             

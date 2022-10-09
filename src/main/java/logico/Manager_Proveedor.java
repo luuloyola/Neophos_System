@@ -21,10 +21,10 @@ public class Manager_Proveedor {
     }
     
     public static Manager_Proveedor getInstance() {
-        if (Manager_Proveedor.manager == null)
-        Manager_Proveedor.manager = new Manager_Proveedor();
+        if (manager == null)
+            manager = new Manager_Proveedor();
 
-        return Manager_Proveedor.manager;
+        return manager;
     }
     
     public void generarProveedor(){

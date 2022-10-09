@@ -15,7 +15,6 @@ public class DAOStockMateria implements DAO<StockMateria>{
     public void create(StockMateria object) throws Exception {
         int id_mat=0;
         try {
-            ConexionBD.conectar();
             PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(id_materiaprima) from materiaprima;");
             ResultSet rs = st.executeQuery();
             if(rs.next()) id_mat = rs.getInt(1);
@@ -31,8 +30,9 @@ public class DAOStockMateria implements DAO<StockMateria>{
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un problema");
-        }finally {ConexionBD.cerrar();
-                  }
+        }finally {
+            ConexionBD.cerrar();
+            }
         
     }
 

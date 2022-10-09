@@ -12,10 +12,6 @@ import logico.Manager_Proveedor;
 import logico.MateriaPrima;
 import logico.Proveedor;
 
-/**
- *
- * @author lucil
- */
 public class Consultar_MateriaPrima extends javax.swing.JPanel {
     
     private Manager_MateriaPrima manager_mat;

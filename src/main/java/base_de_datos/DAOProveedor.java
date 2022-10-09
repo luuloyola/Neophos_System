@@ -9,13 +9,10 @@ import logico.Proveedor;
 
 public class DAOProveedor implements DAO<Proveedor>{
     
-    ConexionBD conexion;
-
     @Override
     public void create(Proveedor object) throws Exception {
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("INSERT INTO Proveedor (ID_Proveedor, Telefono, Nombre, Mail) VALUES (?,?,?,?)");
             st.setInt(2, object.getTelefono());
             st.setString(3, object.getNombre());
@@ -24,30 +21,28 @@ public class DAOProveedor implements DAO<Proveedor>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
     }
     
     @Override
     public void delete(int id) throws Exception {
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("DELETE FROM Proveedor where ID_Proveedor = ?");
             st.setInt(1, id);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
     }
     
     @Override
     public void update(Proveedor object, int id) throws Exception {
          try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("UPDATE Proveedor set Telefono = ?, Nombre = ?, Mail = ?, where ID_Proveedor = ?");
             st.setInt(1, object.getTelefono());
             st.setString(2, object.getNombre());
@@ -57,7 +52,7 @@ public class DAOProveedor implements DAO<Proveedor>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
     }
 
@@ -66,8 +61,7 @@ public class DAOProveedor implements DAO<Proveedor>{
     public ArrayList<Proveedor> findAll() throws Exception {
         ArrayList<Proveedor> listaProveedores = null;
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM Proveedor");
             listaProveedores = new ArrayList<>();
             ResultSet rs = st.executeQuery();
@@ -83,7 +77,7 @@ public class DAOProveedor implements DAO<Proveedor>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return listaProveedores;
     }
@@ -92,8 +86,7 @@ public class DAOProveedor implements DAO<Proveedor>{
         Proveedor proveedor = new Proveedor();
         
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM Proveedor WHERE ID_Proveedor = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
@@ -107,7 +100,7 @@ public class DAOProveedor implements DAO<Proveedor>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return proveedor;
     }

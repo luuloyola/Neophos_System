@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package base_de_datos;
 
 import java.sql.PreparedStatement;
@@ -11,23 +8,16 @@ import java.util.List;
 import logico.MateriaPrima;
 import logico.Renglon;
 
-/**
- *
- * @author Usuario
- */
 public class DAORenglon implements DAO<Renglon>{
-
-    ConexionBD conexion;
 
     @Override
     public void create(Renglon object) throws Exception {
         int id_Orden = 0;
         try {
-            conexion.conectar();
             PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(ID_OrdenDeCompra) from OrdenDeCompra;");
             ResultSet rs = st.executeQuery();
             if(rs.next()) id_Orden = rs.getInt(1);
-            st = conexion.getConexion()
+            st = ConexionBD.getConexion()
                     .prepareStatement("INSERT INTO Renglon (ID_Renglon, Cantidad, Precio, ID_Materia_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
             st.setDouble(2, object.getCantidad());
             st.setDouble(3, object.getPrecio());
@@ -37,7 +27,7 @@ public class DAORenglon implements DAO<Renglon>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         
     }
@@ -45,23 +35,21 @@ public class DAORenglon implements DAO<Renglon>{
     @Override
     public void delete(int id) throws Exception {
          try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("DELETE FROM Renglon where ID_Renglon = ?");
             st.setInt(1, id);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
     }
     
      @Override
     public void update(Renglon object, int id) throws Exception {
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("UPDATE Renglon set Cantidad = ?, Precio = ?, ID_Materia_Tiene = ?, where ID_Renglon = ?");
             st.setDouble(1, object.getCantidad());
             st.setDouble(2, object.getPrecio());
@@ -71,7 +59,7 @@ public class DAORenglon implements DAO<Renglon>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
     }
 
@@ -79,8 +67,7 @@ public class DAORenglon implements DAO<Renglon>{
     public List<Renglon> findAll() throws Exception {
         List<Renglon> listaRenglones = null;
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM Renglon");
             listaRenglones = new ArrayList<>();
             ResultSet rs = st.executeQuery();
@@ -96,7 +83,7 @@ public class DAORenglon implements DAO<Renglon>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return listaRenglones;
     }
@@ -105,8 +92,7 @@ public class DAORenglon implements DAO<Renglon>{
         Renglon renglon = new Renglon();
         
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM Renglon WHERE ID_Renglon = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
@@ -120,7 +106,7 @@ public class DAORenglon implements DAO<Renglon>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return renglon;
     }
@@ -128,8 +114,7 @@ public class DAORenglon implements DAO<Renglon>{
     public List<Renglon> findAllDeOrden(int id) throws Exception {
         List<Renglon> listaRenglones = null;
         try {
-            conexion.conectar();
-            PreparedStatement st = conexion.getConexion()
+            PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM Renglon WHERE ID_Orden_Corresponde = ?");
             listaRenglones = new ArrayList<>();
             ResultSet rs = st.executeQuery();
@@ -145,7 +130,7 @@ public class DAORenglon implements DAO<Renglon>{
         } catch (Exception e) {
             throw e;
         } finally{
-            conexion.cerrar();
+            ConexionBD.cerrar();
         }
         return listaRenglones;
     }
