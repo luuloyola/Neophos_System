@@ -120,8 +120,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
-
         Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
         Titulo.setForeground(new java.awt.Color(97, 34, 34));
         Titulo.setText("CONSULTAR ORDEN DE COMPRA");
@@ -291,8 +289,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 538, Short.MAX_VALUE)))
         );
-
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
 
         contenedor.add(inicio, "card2");
 
