@@ -69,7 +69,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             st.setString(1, proveedor);
             ResultSet rs = st.executeQuery();
             if(rs.next()){ 
-                id_proveedor = rs.getInt(0);
+                id_proveedor = rs.getInt(1);
                 st = ConexionBD.getConexion()
                         .prepareStatement("SELECT * FROM Provee WHERE ID_Proveedor_Provee = ?");
                 st.setInt(1, id_proveedor);
