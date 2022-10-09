@@ -233,23 +233,25 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
             error_precio.setText("Campo obligatorio (*)");
             error_precio.setForeground(Color.red);
             control++;
-        }else if (!esDecimal(fieldPrecio.getText())){
+        }else 
+            if (!esDecimal(fieldPrecio.getText())){
             error_precio.setText("Formato invalido (*)");
             error_precio.setForeground(Color.red);
-            control++;
-        }else {error_precio.setText("(*)");
+            control++;}
+            else {error_precio.setText("(*)");
             error_precio.setForeground(Color.black);
-        }
+            }
         
         if(fieldCantidad.getText().isEmpty()){
             error_cant.setText("Campo obligatorio (*)");
             error_cant.setForeground(Color.red);
             control++;
-        }else if (!esDecimal(fieldCantidad.getText())){
+        }else 
+            if (!esDecimal(fieldCantidad.getText())){
             error_cant.setText("Formato invalido (*)");
             error_cant.setForeground(Color.red);
-            control++;
-        }else {error_cant.setText("(*)");
+            control++;}
+            else {error_cant.setText("(*)");
             error_cant.setForeground(Color.black);}
         
         if(control ==0){
@@ -265,12 +267,12 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
             try {
                 manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
                 JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
+                clean();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Hubo un problema al cargar :(");
             }
         }
-        clean();
-       
+        
     }//GEN-LAST:event_botonCargarActionPerformed
 
     public static boolean esDecimal(String cadena){ // Valida si el campo es un decimal
