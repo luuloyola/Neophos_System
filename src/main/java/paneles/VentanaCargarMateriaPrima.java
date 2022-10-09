@@ -28,6 +28,7 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         fieldNombre.setText("");
         fieldDescripcion.setText("");
         fieldPrecio.setText("");
+        fieldCantidad.setText("");
     }
     
     @SuppressWarnings("unchecked")
