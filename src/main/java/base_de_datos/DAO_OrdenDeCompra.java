@@ -14,7 +14,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     public void create(Orden_Compra object) throws Exception {
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO OrdenDeCompra (Fecha_Pedido, Precio_Total, ID_Proveedor_Tiene, ID_OrdenDeCompra) VALUES (?,?,?,?)");
+                    .prepareStatement("INSERT INTO OrdenDeCompra (Fecha_Pedido, Precio_Total, ID_Proveedor_Tiene) VALUES (?,?,?)");
             st.setDate(1, object.getFechaPedido());
             st.setDouble(2, object.getPrecioTotal());
             st.setInt(3, object.getID_Proveedor());

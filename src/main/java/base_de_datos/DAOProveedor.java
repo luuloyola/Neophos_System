@@ -13,7 +13,7 @@ public class DAOProveedor implements DAO<Proveedor>{
     public void create(Proveedor object) throws Exception {
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO Proveedor (ID_Proveedor, Telefono, Nombre, Mail) VALUES (?,?,?,?)");
+                    .prepareStatement("INSERT INTO Proveedor (Telefono, Nombre, Mail) VALUES (?,?,?)");
             st.setInt(2, object.getTelefono());
             st.setString(3, object.getNombre());
             st.setString(4, object.getMail());
