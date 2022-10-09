@@ -2,11 +2,10 @@ package logico;
 
 public class StockMateria {
     
-    public int id;
-    public int cantidad;
+    public double cantidad;
     public Deposito deposito;
     public MateriaPrima materiaPrima;
-    public StockMateria(Deposito deposito, MateriaPrima materiaPrima, int cantidad){
+    public StockMateria(Deposito deposito, MateriaPrima materiaPrima, double cantidad){
         this.deposito = deposito;
         this.materiaPrima = materiaPrima;
         this.cantidad = cantidad;
@@ -15,11 +14,8 @@ public class StockMateria {
     public StockMateria() {
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
@@ -29,10 +25,6 @@ public class StockMateria {
 
     public MateriaPrima getMateriaPrima() {
         return materiaPrima;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
     
     public void setCantidad(int cantidad) {
