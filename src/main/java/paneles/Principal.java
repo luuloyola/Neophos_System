@@ -1,6 +1,9 @@
 package paneles;
 
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 
@@ -41,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
         mesas = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
         Separador6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -76,8 +80,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
-
         Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
         Titulo.setForeground(new java.awt.Color(97, 34, 34));
         Titulo.setText("MENU PRINCIPAL");
@@ -85,6 +87,17 @@ public class Principal extends javax.swing.JFrame {
         Separador6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Separador6.setForeground(new java.awt.Color(97, 34, 34));
         Separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
+
+        jButton1.setBackground(new java.awt.Color(97, 34, 34));
+        jButton1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(227, 227, 218));
+        jButton1.setText("CARGAR MATERIA PRIMA");
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
@@ -101,7 +114,9 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(Titulo))
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(Separador6)))
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Separador6)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(74, Short.MAX_VALUE))
             .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -113,7 +128,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(Titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Separador6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
             .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +158,16 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            VentanaCargarMateriaPrima cargarMateriaPrima = new VentanaCargarMateriaPrima();
+            cargarMateriaPrima.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +215,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel Titulo2;
     private javax.swing.JPanel contenedor;
     private javax.swing.JPanel inicio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mesas;
     // End of variables declaration//GEN-END:variables

@@ -1,5 +1,6 @@
 package paneles;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -51,10 +52,14 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         error_nom = new javax.swing.JLabel();
         error_precio = new javax.swing.JLabel();
         error_cant = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(227, 227, 218));
+        jPanel1.setMinimumSize(new java.awt.Dimension(522, 462));
 
         fieldDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,31 +80,44 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         });
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(97, 34, 34));
         jLabel1.setText("Nombre");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(97, 34, 34));
         jLabel2.setText("Descripcion");
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(97, 34, 34));
         jLabel3.setText("Tipo");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(97, 34, 34));
         jLabel4.setText("Precio por Unidad");
 
-        botonCargar.setText("Cargar");
+        botonCargar.setBackground(new java.awt.Color(97, 34, 34));
+        botonCargar.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        botonCargar.setForeground(new java.awt.Color(227, 227, 218));
+        botonCargar.setText("CARGAR");
+        botonCargar.setBorder(null);
         botonCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCargarActionPerformed(evt);
             }
         });
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 1, 21)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(97, 34, 34));
         jLabel5.setText("REGISTRAR MATERIA PRIMA");
 
+        JTipo.setBackground(new java.awt.Color(97, 34, 34));
+        JTipo.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        JTipo.setForeground(new java.awt.Color(97, 34, 34));
+        JTipo.setBorder(null);
         JTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTipoActionPerformed(evt);
@@ -107,7 +125,8 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         });
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(97, 34, 34));
         jLabel6.setText("Cantidad");
 
         fieldCantidad.addActionListener(new java.awt.event.ActionListener() {
@@ -117,49 +136,92 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         });
 
         error_nom.setBackground(new java.awt.Color(0, 0, 0));
+        error_nom.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
         error_nom.setForeground(new java.awt.Color(51, 51, 51));
         error_nom.setText("(*)");
 
         error_precio.setBackground(new java.awt.Color(0, 0, 0));
+        error_precio.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
         error_precio.setForeground(new java.awt.Color(51, 51, 51));
         error_precio.setText("(*)");
 
         error_cant.setBackground(new java.awt.Color(0, 0, 0));
+        error_cant.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
         error_cant.setForeground(new java.awt.Color(51, 51, 51));
         error_cant.setText("(*)");
+
+        jPanel2.setBackground(new java.awt.Color(97, 34, 34));
+
+        jLabel7.setBackground(new java.awt.Color(227, 227, 218));
+        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 1, 21)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(227, 227, 218));
+        jLabel7.setText("NEOPHOS");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel7)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        botonCancelar.setBackground(new java.awt.Color(97, 34, 34));
+        botonCancelar.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(227, 227, 218));
+        botonCancelar.setText("CANCELAR");
+        botonCancelar.setBorder(null);
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addContainerGap(200, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(botonCargar, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fieldPrecio, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldCantidad)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(18, 18, 18)))
+                        .addGap(3, 3, 3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldNombre, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(error_precio)
                     .addComponent(error_cant)
                     .addComponent(error_nom))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
@@ -187,9 +249,11 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(error_cant))
-                .addGap(43, 43, 43)
-                .addComponent(botonCargar)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -291,6 +355,13 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldCantidadActionPerformed
 
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        Principal menu = new Principal();
+        menu.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -329,6 +400,7 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JTipo;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonCargar;
     private javax.swing.JLabel error_cant;
     private javax.swing.JLabel error_nom;
@@ -343,6 +415,8 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
