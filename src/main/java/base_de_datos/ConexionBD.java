@@ -72,7 +72,7 @@ public class ConexionBD {
                 + "ID_Materia_Tiene INTEGER NOT NULL, "
                 + "ID_Orden_Corresponde INTEGER NOT NULL,"
                 + "PRIMARY KEY (ID_Renglon),"
-                + "FOREIGN KEY (ID_Materia_Tiene) REFERENCES MateriaPrima (ID_MateriaPrima)"
+                + "FOREIGN KEY (ID_Materia_Tiene) REFERENCES MateriaPrima (ID_MateriaPrima),"
                 + "FOREIGN KEY (ID_Orden_Corresponde) REFERENCES OrdenDeCompra (ID_OrdenDeCompra));"
         
                 + "CREATE TABLE IF NOT EXISTS Provee("
