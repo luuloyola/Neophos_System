@@ -49,6 +49,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
         error_nom = new javax.swing.JLabel();
         error_precio = new javax.swing.JLabel();
         error_cant = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         content_materia.setBackground(new java.awt.Color(227, 227, 218));
         content_materia.setMinimumSize(new java.awt.Dimension(522, 462));
@@ -142,6 +143,19 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
         error_cant.setForeground(new java.awt.Color(51, 51, 51));
         error_cant.setText("(*)");
 
+        jPanel1.setBackground(new java.awt.Color(97, 34, 34));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout content_materiaLayout = new javax.swing.GroupLayout(content_materia);
         content_materia.setLayout(content_materiaLayout);
         content_materiaLayout.setHorizontalGroup(
@@ -163,19 +177,30 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
                         .addGap(3, 3, 3))
                     .addComponent(fieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonCargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(error_precio)
-                    .addComponent(error_cant)
-                    .addComponent(error_nom))
-                .addContainerGap(200, Short.MAX_VALUE))
+                    .addGroup(content_materiaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(error_precio)
+                            .addComponent(error_cant)
+                            .addComponent(error_nom))
+                        .addContainerGap(200, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_materiaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         content_materiaLayout.setVerticalGroup(
             content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(content_materiaLayout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(30, 30, 30)
+                .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(content_materiaLayout.createSequentialGroup()
+                        .addContainerGap(70, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(30, 30, 30))
+                    .addGroup(content_materiaLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -320,5 +345,6 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
