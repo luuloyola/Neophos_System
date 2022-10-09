@@ -9,7 +9,7 @@ public class Manager_StockMateria {
     public Manager_StockMateria() throws SQLException {
         daostockMateria = new DAOStockMateria();
     }
-    public void cargarStockMateria(int cant, Deposito dep, MateriaPrima mat) throws Exception{
+    public void cargarStockMateria(double cant, Deposito dep, MateriaPrima mat) throws Exception{
         StockMateria stock = new StockMateria(dep, mat, cant);
         daostockMateria.create(stock);
     }

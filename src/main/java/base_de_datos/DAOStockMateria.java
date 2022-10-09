@@ -22,7 +22,7 @@ public class DAOStockMateria implements DAO<StockMateria>{
             System.out.println("id es: "+id_mat);
             st = ConexionBD.getConexion()
                     .prepareStatement("INSERT INTO Stock_Materia (Cantidad, ID_MateriaPrima_Proveida, ID_Deposito) VALUES (?,?,?)");
-            st.setInt(1,object.getCantidad());
+            st.setDouble(1,object.getCantidad());
             st.setInt(2,id_mat);
             st.setInt(3,0); // Esto porque el deposito es Unico
             st.executeUpdate();
