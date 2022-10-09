@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import logico.Manager_MateriaPrima;
 
@@ -16,6 +18,7 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
         manager_mat = new Manager_MateriaPrima();
         JTipo.addItem("PRODUCTO_QUIMICO");
         JTipo.addItem("INSUMO");
+        
     }
     
     //Metodos del Formulario
@@ -215,6 +218,7 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldPrecioActionPerformed
 
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
+        
         int control =0;
         //Caso de campos que no cumplen el formato
         
@@ -224,30 +228,40 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
             control++;
         } else {error_nom.setText("(*)");
             error_nom.setForeground(Color.black);}
+        
         if(fieldPrecio.getText().isEmpty()){
             error_precio.setText("Campo obligatorio (*)");
             error_precio.setForeground(Color.red);
             control++;
-        }else {error_nom.setText("(*)");
-            error_nom.setForeground(Color.black);}
+        }else if (!esDecimal(fieldPrecio.getText())){
+            error_precio.setText("Formato invalido (*)");
+            error_precio.setForeground(Color.red);
+            control++;
+        }else {error_precio.setText("(*)");
+            error_precio.setForeground(Color.black);
+        }
+        
         if(fieldCantidad.getText().isEmpty()){
             error_cant.setText("Campo obligatorio (*)");
             error_cant.setForeground(Color.red);
             control++;
-        }else {error_nom.setText("(*)");
-            error_nom.setForeground(Color.black);}
+        }else if (!esDecimal(fieldCantidad.getText())){
+            error_cant.setText("Formato invalido (*)");
+            error_cant.setForeground(Color.red);
+            control++;
+        }else {error_cant.setText("(*)");
+            error_cant.setForeground(Color.black);}
         
         if(control ==0){
             
         //Caso donde todos los campos cumplen el formato
             String nombre,des,tipo;
-            int cant,precio;
+            double cant,precio;
             nombre = fieldNombre.getText();
-            des = fieldDescripcion.getText();
+            if(fieldDescripcion.getText().isEmpty()) des ="-"; else des = fieldDescripcion.getText();
             tipo = (String) JTipo.getSelectedItem();
-            precio = Integer.parseInt(fieldPrecio.getText());
-            System.out.println("Tipo: "+tipo+"\n");
-            cant = Integer.parseInt(fieldCantidad.getText());
+            precio = Double.parseDouble(fieldPrecio.getText());
+            cant = Double.parseDouble(fieldCantidad.getText());
             try {
                 manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
                 JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
@@ -255,9 +269,17 @@ public class VentanaCargarMateriaPrima extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Hubo un problema al cargar :(");
             }
         }
+        clean();
        
     }//GEN-LAST:event_botonCargarActionPerformed
 
+    public static boolean esDecimal(String cadena){ // Valida si el campo es un decimal
+        String patron ="^[0-9]+([.][0-9]+)?$";
+        Pattern pat = Pattern.compile(patron);
+        Matcher mat = pat.matcher(cadena);
+        return mat.matches();
+    }
+    
     private void JTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTipoActionPerformed
