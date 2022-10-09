@@ -217,7 +217,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultar_ordebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_ordebActionPerformed
-        //Go_to aqui
+        //go_to(ConsultarOrdenDeCompra);
     }//GEN-LAST:event_consultar_ordebActionPerformed
 
     private void cargar_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_materiaActionPerformed
