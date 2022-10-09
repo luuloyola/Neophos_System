@@ -73,6 +73,7 @@ public class GenerarOrdenDeCompra extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
 
         Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
         Titulo.setForeground(new java.awt.Color(97, 34, 34));
@@ -150,7 +151,7 @@ public class GenerarOrdenDeCompra extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -159,6 +160,8 @@ public class GenerarOrdenDeCompra extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 539, Short.MAX_VALUE)))
         );
+
+        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
 
         contenedor.add(inicio, "card2");
 

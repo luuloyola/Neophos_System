@@ -1,20 +1,44 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package paneles;
+
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import logico.Manager_MateriaPrima;
+import logico.Manager_Proveedor;
+import logico.MateriaPrima;
+import logico.Proveedor;
 
 /**
  *
  * @author lucil
  */
-public class ConsultarMateriaPrima extends javax.swing.JFrame {
+public class Consultar_MateriaPrima extends javax.swing.JPanel {
+    
+    private Manager_MateriaPrima manager_mat;
+    private Manager_Proveedor manager_proveedor;
 
     /**
-     * Creates new form GenerarOrdenDeCompra
+     * Creates new form Consultar_MateriaPrima
      */
-    public ConsultarMateriaPrima() {
+    public Consultar_MateriaPrima(String proveedor) {
         initComponents();
+        proveedor_lista.addItem("");
+        if (proveedor != ""){
+            proveedor_lista.addItem(proveedor);
+            proveedor_lista.setSelectedIndex(1);
+        }
+        else{
+            ArrayList<Proveedor> proveedores = new ArrayList();
+            Proveedor auxiliar = new Proveedor();
+            for (int i = 0; i<proveedores.size(); i++){
+                auxiliar = proveedores.get(i);
+                proveedor_lista.addItem(auxiliar.getNombre());
+            }
+        }
     }
 
     /**
@@ -36,11 +60,11 @@ public class ConsultarMateriaPrima extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel2 = new javax.swing.JLabel();
+        id_materiaprima = new javax.swing.JTextField();
 
         contenedor.setBackground(new java.awt.Color(204, 204, 204));
         contenedor.setMaximumSize(new java.awt.Dimension(1042, 619));
@@ -73,9 +97,11 @@ public class ConsultarMateriaPrima extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
+
         Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
         Titulo.setForeground(new java.awt.Color(97, 34, 34));
-        Titulo.setText("GENERAR ORDEN DE COMPRAR");
+        Titulo.setText("CONSULTAR MATERIA PRIMA");
 
         Separador6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Separador6.setForeground(new java.awt.Color(97, 34, 34));
@@ -98,7 +124,12 @@ public class ConsultarMateriaPrima extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jButton1.setText("Agregar Renglón");
+        buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Confirmar");
 
@@ -106,6 +137,15 @@ public class ConsultarMateriaPrima extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("ID materia prima:");
+
+        id_materiaprima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                id_materiaprimaActionPerformed(evt);
             }
         });
 
@@ -127,8 +167,12 @@ public class ConsultarMateriaPrima extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addGap(18, 18, 18)
                             .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(76, 76, 76)
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(id_materiaprima, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,14 +189,15 @@ public class ConsultarMateriaPrima extends javax.swing.JFrame {
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(id_materiaprima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(inicioLayout.createSequentialGroup()
@@ -160,10 +205,12 @@ public class ConsultarMateriaPrima extends javax.swing.JFrame {
                     .addGap(0, 539, Short.MAX_VALUE)))
         );
 
+        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
+
         contenedor.add(inicio, "card2");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 1013, Short.MAX_VALUE)
@@ -174,64 +221,72 @@ public class ConsultarMateriaPrima extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void proveedor_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedor_listaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_proveedor_listaActionPerformed
 
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        if(proveedor_lista.getSelectedIndex() == 0 && id_materiaprima.getText()==""){
+            // hace algo gil
+            return;
+        }
+
+        String proveedor = "";
+        int id_Materia = 0;
+        MateriaPrima buscada = new MateriaPrima();
+        ArrayList<MateriaPrima> arreglo = new ArrayList();
+        if (proveedor_lista.getSelectedIndex() != 0){
+            proveedor = proveedor_lista.getSelectedItem().toString();
+            try {
+                arreglo = manager_mat.consultarListaMaterias_Porproveedor(proveedor);
+            } catch (Exception ex) {
+                Logger.getLogger(Consultar_MateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (id_materiaprima.getText()!=""){
+            id_Materia = Integer.parseInt(id_materiaprima.getText());
+            try {
+                buscada = manager_mat.consultarMateriaPrima(id_Materia);
+            } catch (Exception ex) {
+                Logger.getLogger(Consultar_MateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (proveedor_lista.getSelectedIndex() != 0 && id_materiaprima.getText()!=""){
+            if (arreglo.contains(buscada)){
+                //AGREGAR COSAS COMO QUE JUJU JOYA
+            }
+            else{
+                //agregar como que cagaste
+            }
+        }
+        
+
+    }//GEN-LAST:event_buscarActionPerformed
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void id_materiaprimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_materiaprimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_materiaprimaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultarMateriaPrima().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Separador6;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo2;
+    private javax.swing.JButton buscar;
     private javax.swing.JPanel contenedor;
+    private javax.swing.JTextField id_materiaprima;
     private javax.swing.JPanel inicio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
