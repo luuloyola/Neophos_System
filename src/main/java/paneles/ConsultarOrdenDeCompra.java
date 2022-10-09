@@ -129,7 +129,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
 
         Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
         Titulo.setForeground(new java.awt.Color(97, 34, 34));
@@ -301,7 +300,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JFrame {
                     .addGap(0, 549, Short.MAX_VALUE)))
         );
 
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
 
         contenedor.add(inicio, "card2");
 

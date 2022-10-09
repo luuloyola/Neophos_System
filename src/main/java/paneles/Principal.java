@@ -80,8 +80,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
-
         Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
         Titulo.setForeground(new java.awt.Color(97, 34, 34));
         Titulo.setText("MENU PRINCIPAL");
