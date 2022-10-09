@@ -222,7 +222,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_generar_ordeActionPerformed
 
     private void consultar_ordebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_ordebActionPerformed
-        //Go_to aqui
+        go_to(new ConsultarOrdenDeCompra());
     }//GEN-LAST:event_consultar_ordebActionPerformed
 
     private void consultar_matActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_matActionPerformed
