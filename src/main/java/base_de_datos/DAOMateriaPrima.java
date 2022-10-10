@@ -17,10 +17,10 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     @Override
     public void create(MateriaPrima object) throws Exception {
         try {
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,?,?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
-            st.setString(3, object.getTipoMateriaPrima().name());
+            st.setObject(3, object.getTipoMateriaPrima().toString());
             st.setDouble(4, object.getPrecio_unidad());
             st.executeUpdate();
             st.close();
