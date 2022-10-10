@@ -15,14 +15,13 @@ public class DAOStockMateria implements DAO<StockMateria>{
     public void create(StockMateria object) throws Exception {
         int id_mat=0;
         try {
-            ConexionBD.conectar();
             PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(id_materiaprima) from materiaprima;");
             ResultSet rs = st.executeQuery();
             if(rs.next()) id_mat = rs.getInt(1);
             System.out.println("id es: "+id_mat);
             st = ConexionBD.getConexion()
                     .prepareStatement("INSERT INTO Stock_Materia (Cantidad, ID_MateriaPrima_Proveida, ID_Deposito) VALUES (?,?,?)");
-            st.setInt(1,object.getCantidad());
+            st.setDouble(1,object.getCantidad());
             st.setInt(2,id_mat);
             st.setInt(3,0); // Esto porque el deposito es Unico
             st.executeUpdate();
@@ -31,8 +30,9 @@ public class DAOStockMateria implements DAO<StockMateria>{
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un problema");
-        }finally {ConexionBD.cerrar();
-                  }
+        }finally {
+            ConexionBD.cerrar();
+            }
         
     }
 

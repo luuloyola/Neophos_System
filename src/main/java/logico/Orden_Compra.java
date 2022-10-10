@@ -15,6 +15,11 @@ public class Orden_Compra extends Orden {
         this.ID_proveedor = ID_proveedor;
     }
 
+    public Orden_Compra() {
+        super(new java.util.Date(), 0);
+        this.ID_proveedor = 0;
+    }
+
     public void setID_Proveedor(int ID_proveedor){
         this.ID_proveedor = ID_proveedor;
     }
