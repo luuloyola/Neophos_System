@@ -119,7 +119,6 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ID materia prima:");
 
         id_materiaprima.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +127,6 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Proveedor");
 
         cantidad.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +135,6 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             }
         });
 
-        cantidadtext.setForeground(new java.awt.Color(0, 0, 0));
         cantidadtext.setText("Cantidad requerida:");
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
@@ -203,11 +200,12 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cantidadtext)))
+                                    .addComponent(cantidadtext))
+                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addGap(75, 75, 75)
@@ -303,7 +301,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
     }//GEN-LAST:event_cantidadActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        setMateria_consultada(listita.getSelectedValue());
+        //setMateria_consultada(listita.getSelectedValue());
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
