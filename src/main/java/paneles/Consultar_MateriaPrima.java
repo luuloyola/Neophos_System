@@ -303,7 +303,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
     }//GEN-LAST:event_cantidadActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        setMateria_consultada(listita.getSelectedValue());
+        //setMateria_consultada(listita.getSelectedValue());
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
