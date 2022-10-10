@@ -319,10 +319,6 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             control++;}
         else {error_cant.setText("(*)");
         error_cant.setForeground(Color.black);}
-        if (proveedor_lista.getSelectedIndex() != 0){
-            error_proveedor.setText("Debe elegir a un proveedor!");
-            error_proveedor.setForeground(Color.red);
-        }else{error_proveedor.setText("");}
 
         if(control == 0){
 
