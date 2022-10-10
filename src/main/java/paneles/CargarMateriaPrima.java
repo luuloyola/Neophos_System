@@ -309,6 +309,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
                 clean();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Hubo un problema al cargar :(");
+                System.out.println(ex.getMessage());
             }
         }
 

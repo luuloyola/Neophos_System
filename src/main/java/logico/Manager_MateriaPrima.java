@@ -17,6 +17,7 @@ public class Manager_MateriaPrima {
         MateriaPrima materia_nueva = new MateriaPrima(nombre,descripcion,tipo,precio_unidad);
         System.out.println("El Sistema puso los datos en un objeto Materia Prima\n");
         daoMatPrima.create(materia_nueva);
+        daoMatPrima.consulta(61);
         System.out.println("El Sistema puso la materia prima en la BD\n");
         
         

@@ -17,10 +17,10 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     @Override
     public void create(MateriaPrima object) throws Exception {
         try {
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,?,?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
-            st.setString(3, object.getTipoMateriaPrima().name());
+            st.setObject(3, object.getTipoMateriaPrima().toString());
             st.setDouble(4, object.getPrecio_unidad());
             st.executeUpdate();
             st.close();
@@ -34,16 +34,19 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
 
     public MateriaPrima consulta(int id) throws Exception {
         MateriaPrima materia = new MateriaPrima();
-
+        System.out.println("Esta haciendo la consulta");
         try {
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM MateriaPrima WHERE ID_MateriaPrima = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
+            
             while(rs.next()){
                 materia.setNombre(rs.getString(2));
                 materia.setDescripcion(rs.getString(3));
-                materia.setTipoMateriaPrima((TipoMat) rs.getObject(4)); //REVISAR
+                if(rs.getObject(4).toString().equals("PRODUCTO_QUIMICO"))
+                    materia.setTipoMateriaPrima(TipoMat.PRODUCTO_QUIMICO);
+                else materia.setTipoMateriaPrima(TipoMat.INSUMO);
                 materia.setPrecio_unidad(rs.getDouble(5));
             }
             rs.close();
