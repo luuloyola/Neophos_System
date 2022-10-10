@@ -85,7 +85,7 @@
                                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="id_materiaprima" min="-2" pref="153" max="-2" attributes="0"/>
-                                              <EmptySpace pref="217" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -136,12 +136,10 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jButton2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                          <Component id="cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cantidadtext" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantidadtext" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jButton2" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jButton3" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -241,9 +239,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="ID materia prima:"/>
               </Properties>
             </Component>
@@ -254,9 +249,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Proveedor"/>
               </Properties>
             </Component>
@@ -269,9 +261,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="cantidadtext">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Cantidad requerida:"/>
               </Properties>
             </Component>
