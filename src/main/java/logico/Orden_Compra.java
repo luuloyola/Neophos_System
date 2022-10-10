@@ -15,7 +15,7 @@ public class Orden_Compra extends Orden {
         this.ID_proveedor = ID_proveedor;
     }
 
-    public Orden_Compra() {
+    public Orden_Compra(){
         super(new Date(0,0,0), 0);
         this.ID_proveedor = 0;
     }
