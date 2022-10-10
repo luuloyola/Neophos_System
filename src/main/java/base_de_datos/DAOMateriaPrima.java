@@ -34,16 +34,19 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
 
     public MateriaPrima consulta(int id) throws Exception {
         MateriaPrima materia = new MateriaPrima();
-
+        System.out.println("Esta haciendo la consulta");
         try {
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM MateriaPrima WHERE ID_MateriaPrima = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
+            
             while(rs.next()){
                 materia.setNombre(rs.getString(2));
                 materia.setDescripcion(rs.getString(3));
-                materia.setTipoMateriaPrima((TipoMat) rs.getObject(4)); //REVISAR
+                if(rs.getObject(4).toString().equals("PRODUCTO_QUIMICO"))
+                    materia.setTipoMateriaPrima(TipoMat.PRODUCTO_QUIMICO);
+                else materia.setTipoMateriaPrima(TipoMat.INSUMO);
                 materia.setPrecio_unidad(rs.getDouble(5));
             }
             rs.close();
