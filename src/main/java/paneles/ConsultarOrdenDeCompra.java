@@ -20,10 +20,7 @@ import logico.Renglon;
  * @author Usuario
  */
 public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
-
-    /**
-     * Creates new form JPanelConsultar
-     */
+  
     public ConsultarOrdenDeCompra() {
         initComponents();
         inicializarLabels();
@@ -40,7 +37,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         PrecioLabel.setEnabled(false);
         PrecioLabel2.setEnabled(false);
         infoRenglonesLabel.setEnabled(false);
-        tablaRenglones.setEnabled(false);
+        tablaRenglones.setVisible(false);
     }
     
     public void comienzaConsultar(){
@@ -54,7 +51,14 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         PrecioLabel.setEnabled(true);
         PrecioLabel2.setEnabled(true);
         infoRenglonesLabel.setEnabled(true);
-        tablaRenglones.setEnabled(true);
+        tablaRenglones.setVisible(true);
+    }
+    
+    public void limpiarVariables(){
+        FechaPLabel2.setText("");
+        IDLabel2.setText("");
+        IDProveedorLabel2.setText("");
+        PrecioLabel2.setText("");
     }
 
     /**
@@ -153,7 +157,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID Renglon", "Cantidad", "Precio ", "ID Materia"
+                "Cantidad", "Precio ", "ID Materia"
             }
         ));
         tablaRenglones.getTableHeader().setReorderingAllowed(false);
@@ -191,14 +195,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         infoRenglonesLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         infoRenglonesLabel.setForeground(new java.awt.Color(97, 34, 34));
         infoRenglonesLabel.setText("Información de su/s renglon/es:");
-
-        FechaPLabel2.setText("jLabel7");
-
-        PrecioLabel2.setText("jLabel7");
-
-        IDProveedorLabel2.setText("jLabel7");
-
-        IDLabel2.setText("jLabel7");
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
@@ -331,51 +327,48 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
         comienzaConsultar();
-        aceptarButton.setEnabled(false);
-        textIDConsultar.setEnabled(false);
-
+        
         int idOrden = 0;
         Map<Orden_Compra, List<Renglon>> ordenCompleta = new HashMap<>();
-        Orden_Compra infoOrden = null;
+        Orden_Compra infoOrden = new Orden_Compra();
         List<Renglon> infoRenglones = new ArrayList<Renglon>();
         DefaultTableModel modelo = (DefaultTableModel) tablaRenglones.getModel();
 
         try {
-            while((textIDConsultar.getText().isEmpty()) || ("0".equals(textIDConsultar.getText().toString()))){
+            if((textIDConsultar.getText().isEmpty()) || ("0".equals(textIDConsultar.getText().toString()))){
                 JOptionPane.showMessageDialog(null, "ID no puede estar vacio o ser cero.\n");
                 textIDConsultar.setText("");
                 aceptarButton.setEnabled(true);
-            }
-            idOrden = Integer.parseInt(textIDConsultar.getText());
-            ordenCompleta = Manager_OrdenCompra.getInstance().consultarOrdenDeCompra(idOrden);
+            }else{
+                idOrden = Integer.parseInt(textIDConsultar.getText());
+                ordenCompleta = Manager_OrdenCompra.getInstance().consultarOrdenDeCompra(idOrden);
 
-            Set<Orden_Compra> keys = ordenCompleta.keySet();
-            for(Orden_Compra key : keys){
-                infoOrden = key;
-            }
+                Set<Orden_Compra> keys = ordenCompleta.keySet();
+                for(Orden_Compra key : keys){
+                    infoOrden = key;
+                }
 
-            infoRenglones = ordenCompleta.get(infoOrden);
+                if(infoOrden.getPrecioTotal() == 0){
+                    JOptionPane.showMessageDialog(null, "La Orden de Compra consultada no existe.\n");
+                    limpiarVariables();
+                    modelo.setRowCount(0);
+                }else{
+                    infoRenglones = ordenCompleta.get(infoOrden);
 
-            IDLabel2.setText(String.valueOf(idOrden));
-            FechaPLabel2.setText(infoOrden.getFechaPedido().toString());
-            PrecioLabel2.setText(String.valueOf(infoOrden.getPrecioTotal()));
-            IDProveedorLabel2.setText(String.valueOf(infoOrden.getID_Proveedor()));
+                    IDLabel2.setText(String.valueOf(idOrden));
+                    FechaPLabel2.setText(infoOrden.getFechaPedido().toString());
+                    PrecioLabel2.setText(String.valueOf(infoOrden.getPrecioTotal()));
+                    IDProveedorLabel2.setText(String.valueOf(infoOrden.getID_Proveedor()));
 
-            /*
-            modelo.addColumn("ID Renglon");
-            modelo.addColumn("Cantidad");
-            modelo.addColumn("Precio");
-            modelo.addColumn("ID Materia");*/
 
-            for(Renglon info: infoRenglones){
-                //Renglon ren = new Renglon(info.getCantidad(), info.getPrecio(), info.getID_Tiene());
-                System.out.println("creo el objeto renglon y lo esta por añadir a la tabla");
-                modelo.addRow(new Object[] {idOrden, info.getCantidad(), info.getPrecio(), info.getID_Tiene()});
+                    for(Renglon info: infoRenglones){
+                        modelo.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getID_Tiene()});
+                    }
+                }
             }
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "La Orden de Compra consultada no existe.\n");
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Sucedió un error inesperado.\n");
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
 

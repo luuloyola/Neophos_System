@@ -4,26 +4,47 @@
  */
 package paneles;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import logico.Manager_OrdenCompra;
 import logico.Manager_Proveedor;
+import logico.MateriaPrima;
 import logico.Proveedor;
+import logico.Renglon;
 
 
 public class Generar_Orden extends javax.swing.JPanel {
 
     private Manager_Proveedor manager_proveedor;
+    private Manager_OrdenCompra manager_orden;
+    private ArrayList<Renglon> renglon;
+    private ArrayList<MateriaPrima> materia;
+    private Consultar_MateriaPrima consultar;
+    private DefaultTableModel modelo;
+    private double precio_total;
     
     public Generar_Orden() throws Exception {
-        manager_proveedor = new Manager_Proveedor();
+        manager_proveedor = Manager_Proveedor.getInstance();
+
         initComponents();
         
+        precio_total = 0;
+        consultar = null;
+        renglon = new ArrayList<Renglon>();
+        materia = new ArrayList<MateriaPrima>();
+        
+        modelo = (DefaultTableModel) tablaRenglones.getModel();
+        
+        ArrayList<Integer> ids = manager_proveedor.getAll_ID();
         ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
         String auxiliar;
 
         for (int i = 0; i<proveedores.size(); i++){
-            auxiliar = proveedores.get(i).getNombre();
+            auxiliar = ids.get(i) + " - " + proveedores.get(i).getNombre();
             proveedor_lista.addItem(auxiliar);
         }
     }
@@ -41,16 +62,27 @@ public class Generar_Orden extends javax.swing.JPanel {
         Titulo = new javax.swing.JLabel();
         Separador6 = new javax.swing.JLabel();
         proveedor_lista = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        prov = new javax.swing.JLabel();
         agregar_renglon = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        confirmar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaRenglones = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         inicio.setBackground(new java.awt.Color(227, 227, 218));
-        inicio.setMaximumSize(new java.awt.Dimension(1042, 619));
-        inicio.setPreferredSize(new java.awt.Dimension(1042, 619));
+        inicio.setMaximumSize(new java.awt.Dimension(1060, 616));
+        inicio.setPreferredSize(new java.awt.Dimension(1060, 616));
+        inicio.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                inicioAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
         Titulo.setForeground(new java.awt.Color(97, 34, 34));
@@ -60,22 +92,13 @@ public class Generar_Orden extends javax.swing.JPanel {
         Separador6.setForeground(new java.awt.Color(97, 34, 34));
         Separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
-        proveedor_lista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         proveedor_lista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 proveedor_listaActionPerformed(evt);
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Proveedor:");
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        prov.setForeground(new java.awt.Color(0, 0, 0));
 
         agregar_renglon.setText("Agregar Renglón");
         agregar_renglon.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +107,12 @@ public class Generar_Orden extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Confirmar");
+        confirmar.setText("Confirmar");
+        confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cancelar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -93,61 +121,90 @@ public class Generar_Orden extends javax.swing.JPanel {
             }
         });
 
+        tablaRenglones.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        tablaRenglones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Materia Prima", "Nombre", "Cantidad", "Precio "
+            }
+        ));
+        tablaRenglones.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaRenglones);
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Proveedor");
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Fecha:");
+
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Separador6, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(inicioLayout.createSequentialGroup()
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Separador6)
+                            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(prov)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(50, 50, 50)
+                                    .addComponent(jLabel2)
+                                    .addGap(404, 404, 404)
+                                    .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 20, Short.MAX_VALUE))
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98))
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addComponent(Titulo)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(27, 27, 27)
                 .addComponent(Titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Separador6)
                 .addGap(18, 18, 18)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prov)
+                    .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
-        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
+        prov.setFont(new java.awt.Font("DialogInput", 1, 28));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 1060, Short.MAX_VALUE)
+            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 1013, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,23 +218,46 @@ public class Generar_Orden extends javax.swing.JPanel {
 
     private void agregar_renglonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_renglonActionPerformed
         try {
-            paneles.Principal.getNeophos().go_to(new Consultar_MateriaPrima(proveedor_lista.getSelectedItem().toString()));
+            paneles.Principal.getNeophos().go_to(consultar =new Consultar_MateriaPrima(proveedor_lista.getSelectedItem().toString()));
         } catch (Exception ex) {
             Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_agregar_renglonActionPerformed
 
+    private void inicioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_inicioAncestorAdded
+        if (consultar != null){
+                renglon.add(consultar.getRenglon());
+                precio_total = precio_total + consultar.getRenglon().getPrecio();
+                materia.add(consultar.getMateria_Consultada());
+                modelo.addRow(new Object[] {consultar.getRenglon().getID_Tiene(),consultar.getMateria_Consultada().getNombre(), consultar.getRenglon().getCantidad(),consultar.getRenglon().getPrecio()});
+        }
+    }//GEN-LAST:event_inicioAncestorAdded
+
+    private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
+        manager_orden = Manager_OrdenCompra.getInstance();
+        int id_proveedor = Integer.parseInt(proveedor_lista.getSelectedItem().toString().split(" - ")[0]);
+        
+        try {
+            manager_orden.generarOrdenDeCompra(id_proveedor, new Date(1228,1,2), precio_total, renglon);
+            paneles.Principal.getNeophos().PopUp("LISTO AAAAA", "src/files/warning.png", "SII");
+        } catch (Exception ex) {
+            Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_confirmarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Separador6;
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton agregar_renglon;
+    private javax.swing.JButton confirmar;
     private javax.swing.JPanel inicio;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel prov;
     private javax.swing.JComboBox<String> proveedor_lista;
+    private javax.swing.JTable tablaRenglones;
     // End of variables declaration//GEN-END:variables
 }

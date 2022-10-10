@@ -2,12 +2,9 @@ package base_de_datos;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import logico.MateriaPrima;
-import logico.Proveedor;
-import logico.TipoMat;
 
 public class DAOMateriaPrima implements DAO<MateriaPrima>{
 
@@ -17,14 +14,14 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     @Override
     public void create(MateriaPrima object) throws Exception {
         try {
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad, ID_Proveedor_t) VALUES (?,?,CAST(? AS Tipo_Mat),?,?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setObject(3, object.getTipoMateriaPrima().toString());
             st.setDouble(4, object.getPrecio_unidad());
+            st.setInt(5, object.getId_proveedor());
             st.executeUpdate();
             st.close();
-            System.out.println("El Sistema realizo correctamente la consulta query\n");
         } catch (Exception e) {
             throw e;
         } finally{
@@ -34,7 +31,6 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
 
     public MateriaPrima consulta(int id) throws Exception {
         MateriaPrima materia = new MateriaPrima();
-        System.out.println("Esta haciendo la consulta");
         try {
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM MateriaPrima WHERE ID_MateriaPrima = ?");
@@ -44,9 +40,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             while(rs.next()){
                 materia.setNombre(rs.getString(2));
                 materia.setDescripcion(rs.getString(3));
-                if(rs.getObject(4).toString().equals("PRODUCTO_QUIMICO"))
-                    materia.setTipoMateriaPrima(TipoMat.PRODUCTO_QUIMICO);
-                else materia.setTipoMateriaPrima(TipoMat.INSUMO);
+                materia.setTipoMateriaPrima(rs.getString(4));
                 materia.setPrecio_unidad(rs.getDouble(5));
             }
             rs.close();
@@ -64,32 +58,23 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         return null; //No Support yet
     }
     
-    public ArrayList<MateriaPrima> findAll_proveedor(String proveedor) throws Exception {
+    public ArrayList<MateriaPrima> findAll_proveedor(int proveedor) throws Exception {
         ArrayList<MateriaPrima> listaMateriaPrima = null;
-        int id_proveedor = 0;
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("SELECT ID_Proveedor FROM Proveedor WHERE Nombre = ?");
-            st.setString(1, proveedor);
+                        .prepareStatement("SELECT Nombre, Descripcion, tipo_mat, Precio_unidad FROM Provee, MateriaPrima WHERE ID_Proveedor_Provee = ? AND ID_MateriaPrima = ID_MateriaPrima_Proveida");
+            st.setInt(1, proveedor);
+            listaMateriaPrima = new ArrayList<>();
             ResultSet rs = st.executeQuery();
-            if(rs.next()){ 
-                id_proveedor = rs.getInt(1);
-                st = ConexionBD.getConexion()
-                        .prepareStatement("SELECT nombre, descripcion, tipo_mat, precio_unidad FROM Provee, MateriaPrima WHERE ID_Proveedor_Provee = ? AND ID_MateriaPrima = ID_MateriaPrima_Proveida");
-                st.setInt(1, id_proveedor);
-                listaMateriaPrima = new ArrayList<>();
-                rs = st.executeQuery();
-                while(rs.next()){
-                    MateriaPrima materia = new MateriaPrima();
-                    materia.setNombre(rs.getString(1));
-                    materia.setDescripcion(rs.getString(2));
-                    if(rs.getObject(3).toString().equals("PRODUCTO_QUIMICO"))
-                        materia.setTipoMateriaPrima(TipoMat.PRODUCTO_QUIMICO);
-                    else materia.setTipoMateriaPrima(TipoMat.INSUMO);
-                    materia.setPrecio_unidad(rs.getDouble(4));
-                    listaMateriaPrima.add(materia);
-                }
+            while(rs.next()){
+                MateriaPrima materia = new MateriaPrima();
+                materia.setNombre(rs.getString(1));
+                materia.setDescripcion(rs.getString(2));
+                materia.setTipoMateriaPrima(rs.getObject(3).toString());
+                materia.setPrecio_unidad(rs.getDouble(4));
+                listaMateriaPrima.add(materia);
             }
+            
             rs.close();
             st.close();
         } catch (Exception e) {
@@ -100,26 +85,19 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         return listaMateriaPrima;
     }
 
-    public ArrayList<Integer> findAll_conID(String proveedor) throws Exception {
+    public ArrayList<Integer> findAll_conID(int proveedor) throws Exception {
         ArrayList<Integer> listaMateriaPrima = null;
-        int id = 0;
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("SELECT ID_Proveedor FROM Proveedor WHERE Nombre = ?");
-            st.setString(1, proveedor);
-            ResultSet rs = st.executeQuery();
-            if(rs.next()){ 
-                id = rs.getInt(1);
-                st = ConexionBD.getConexion()
                         .prepareStatement("SELECT ID_MateriaPrima_Proveida FROM Provee WHERE ID_Proveedor_Provee = ?");
-                st.setInt(1, id);
-                listaMateriaPrima = new ArrayList<>();
-                rs = st.executeQuery();
-                while(rs.next()){
-                    id = rs.getInt(1);
-                    listaMateriaPrima.add(id);
-                }
+            st.setInt(1, proveedor);
+            listaMateriaPrima = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                proveedor = rs.getInt(1);
+                listaMateriaPrima.add(proveedor);
             }
+            
             rs.close();
             st.close();
         } catch (Exception e) {

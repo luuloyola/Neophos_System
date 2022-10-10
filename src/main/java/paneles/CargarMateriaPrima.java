@@ -1,22 +1,44 @@
 package paneles;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import logico.Manager_MateriaPrima;
+import logico.Manager_Proveedor;
+import logico.Proveedor;
 
 public class CargarMateriaPrima extends javax.swing.JPanel {
 
     Manager_MateriaPrima manager_mat;
+    Manager_Proveedor manager_proveedor;
     
-    public CargarMateriaPrima() throws SQLException {
+    public CargarMateriaPrima(String proveedor) throws SQLException, Exception {
         initComponents();
         manager_mat = new Manager_MateriaPrima();
+        manager_proveedor = new Manager_Proveedor();
+        
         JTipo.addItem("PRODUCTO_QUIMICO");
         JTipo.addItem("INSUMO");
+
+        if (!"".equals(proveedor)){
+            proveedor_lista.addItem(proveedor);
+            proveedor_lista.setSelectedIndex(1);
+        }
+        else{
+            ArrayList<Integer> ids = manager_proveedor.getAll_ID();
+            ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
+            String auxiliar;
+
+            for (int i = 0; i<proveedores.size(); i++){
+                auxiliar = ids.get(i) + " - " + proveedores.get(i).getNombre();
+                proveedor_lista.addItem(auxiliar);
+            }
+        }
+        
+        
     }
 
     //Metodos del Formulario
@@ -49,7 +71,9 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
         error_nom = new javax.swing.JLabel();
         error_precio = new javax.swing.JLabel();
         error_cant = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        proveedor_lista = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        error_proveedor = new javax.swing.JLabel();
 
         content_materia.setBackground(new java.awt.Color(227, 227, 218));
         content_materia.setMinimumSize(new java.awt.Dimension(522, 462));
@@ -143,18 +167,24 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
         error_cant.setForeground(new java.awt.Color(51, 51, 51));
         error_cant.setText("(*)");
 
-        jPanel1.setBackground(new java.awt.Color(97, 34, 34));
+        proveedor_lista.setBackground(new java.awt.Color(97, 34, 34));
+        proveedor_lista.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        proveedor_lista.setForeground(new java.awt.Color(97, 34, 34));
+        proveedor_lista.setBorder(null);
+        proveedor_lista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                proveedor_listaActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(97, 34, 34));
+        jLabel7.setText("Proveedor");
+
+        error_proveedor.setBackground(new java.awt.Color(0, 0, 0));
+        error_proveedor.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        error_proveedor.setForeground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout content_materiaLayout = new javax.swing.GroupLayout(content_materia);
         content_materia.setLayout(content_materiaLayout);
@@ -162,45 +192,39 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(content_materiaLayout.createSequentialGroup()
                 .addContainerGap(200, Short.MAX_VALUE)
-                .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fieldPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldCantidad)
-                    .addGroup(content_materiaLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(3, 3, 3))
-                    .addComponent(fieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonCargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
                     .addGroup(content_materiaLayout.createSequentialGroup()
+                        .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fieldPrecio, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldCantidad)
+                            .addGroup(content_materiaLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(3, 3, 3))
+                            .addComponent(fieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonCargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(proveedor_lista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(error_precio)
-                            .addComponent(error_cant)
-                            .addComponent(error_nom))
-                        .addContainerGap(200, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_materiaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(error_precio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(error_cant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(error_nom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(error_proveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         content_materiaLayout.setVerticalGroup(
             content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(content_materiaLayout.createSequentialGroup()
-                .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(content_materiaLayout.createSequentialGroup()
-                        .addContainerGap(70, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addGap(30, 30, 30))
-                    .addGroup(content_materiaLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -226,9 +250,15 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
                 .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(error_cant))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(error_proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -271,8 +301,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             error_precio.setText("Campo obligatorio (*)");
             error_precio.setForeground(Color.red);
             control++;
-        }else
-        if (!esDecimal(fieldPrecio.getText())){
+        }else if (!esDecimal(fieldPrecio.getText())){
             error_precio.setText("Formato invalido (*)");
             error_precio.setForeground(Color.red);
             control++;}
@@ -280,31 +309,37 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             error_precio.setForeground(Color.black);
         }
 
-        if(fieldCantidad.getText().isEmpty()){
+        if(fieldCantidad.getText().isEmpty()) {
             error_cant.setText("Campo obligatorio (*)");
             error_cant.setForeground(Color.red);
             control++;
-        }else
-        if (!esDecimal(fieldCantidad.getText())){
+        }else if (!esDecimal(fieldCantidad.getText())){
             error_cant.setText("Formato invalido (*)");
             error_cant.setForeground(Color.red);
             control++;}
         else {error_cant.setText("(*)");
-            error_cant.setForeground(Color.black);}
+        error_cant.setForeground(Color.black);}
+        if (proveedor_lista.getSelectedIndex() != 0){
+            error_proveedor.setText("Debe elegir a un proveedor!");
+            error_proveedor.setForeground(Color.red);
+        }else{error_proveedor.setText("");}
 
-        if(control ==0){
+        if(control == 0){
 
             //Caso donde todos los campos cumplen el formato
             String nombre,des,tipo;
             double cant,precio;
+            int proveedor;
             nombre = fieldNombre.getText();
             if(fieldDescripcion.getText().isEmpty()) des ="-"; else des = fieldDescripcion.getText();
+            proveedor = Integer.parseInt(proveedor_lista.getSelectedItem().toString().split(" - ")[0]);
+            
             tipo = (String) JTipo.getSelectedItem();
             precio = Double.parseDouble(fieldPrecio.getText());
             cant = Double.parseDouble(fieldCantidad.getText());
-            System.out.println("Los datos de los campos se estan llevando al manejador\n");
+            
             try {
-                manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
+                manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant, proveedor);
                 JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
                 clean();
             } catch (Exception ex) {
@@ -329,6 +364,10 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldCantidadActionPerformed
 
+    private void proveedor_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedor_listaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proveedor_listaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JTipo;
@@ -337,6 +376,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
     private javax.swing.JLabel error_cant;
     private javax.swing.JLabel error_nom;
     private javax.swing.JLabel error_precio;
+    private javax.swing.JLabel error_proveedor;
     private javax.swing.JTextField fieldCantidad;
     private javax.swing.JTextField fieldDescripcion;
     private javax.swing.JTextField fieldNombre;
@@ -347,6 +387,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JComboBox<String> proveedor_lista;
     // End of variables declaration//GEN-END:variables
 }

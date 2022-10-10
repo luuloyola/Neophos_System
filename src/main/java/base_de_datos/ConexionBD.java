@@ -2,7 +2,6 @@ package base_de_datos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.sql.SQLException;
@@ -37,13 +36,22 @@ public class ConexionBD {
                 + "   WHEN duplicate_object THEN null;"
                 + "END $$;"
                          
+                + "CREATE TABLE IF NOT EXISTS Proveedor("
+                + "ID_Proveedor SERIAL, "
+                + "Telefono INTEGER NOT NULL, "
+                + "Nombre TEXT NOT NULL, "
+                + "Mail TEXT NOT NULL, "
+                + "PRIMARY KEY (ID_Proveedor));"
+                         
                 + "CREATE TABLE IF NOT EXISTS MateriaPrima("
                 + "ID_MateriaPrima SERIAL, "
                 + "Nombre TEXT NOT NULL, "
                 + "Descripcion TEXT NOT NULL, "
                 + "Tipo_Mat Tipo_Mat NOT NULL, " 
-                + "Precio_Unidad FLOAT8 NOT NULL, "
-                + "PRIMARY KEY (ID_MateriaPrima));"
+                + "Precio_Unidad FLOAT8 NOT NULL,"
+                + "ID_Proveedor_t INTEGER NOT NULL,"
+                + "PRIMARY KEY (ID_MateriaPrima),"
+                + "FOREIGN KEY (ID_Proveedor_t) REFERENCES Proveedor (ID_Proveedor));"
                 
                 + "CREATE TABLE IF NOT EXISTS ProductoFinal("
                 + "ID_Producto SERIAL, "
@@ -52,13 +60,6 @@ public class ConexionBD {
                 + "Empaquetado Tipo_Empaquetado NOT NULL, "
                 + "Precio FLOAT8 NOT NULL, "
                 + "PRIMARY KEY (ID_Producto));"
-                
-                + "CREATE TABLE IF NOT EXISTS Proveedor("
-                + "ID_Proveedor SERIAL, "
-                + "Telefono INTEGER NOT NULL, "
-                + "Nombre TEXT NOT NULL, "
-                + "Mail TEXT NOT NULL, "
-                + "PRIMARY KEY (ID_Proveedor));"
                 
                 + "CREATE TABLE IF NOT EXISTS OrdenDeCompra("
                 + "Fecha_Pedido DATE NOT NULL, "

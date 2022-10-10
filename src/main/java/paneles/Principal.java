@@ -11,9 +11,11 @@ import javax.swing.*;
 public class Principal extends javax.swing.JFrame {
     
     private static Principal neophos;
+    private static Generar_Orden generar_orden;
     
     public Principal(){
         initComponents();
+        System.out.println("Entro\n");
         
     }
     public static Principal getNeophos(){
@@ -28,6 +30,12 @@ public class Principal extends javax.swing.JFrame {
         inicio.repaint();
         inicio.revalidate();
     }
+    
+    
+    public static JPanel getGenerar_Orden(){
+        return generar_orden;
+    }
+
 
     // PopUp es una funcion que mostrara por pantalla mensajes necesarios para comunicar al usuario
     // por parametro toma Imprimir (string que dira la informacion importante), 
@@ -219,7 +227,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void generar_ordeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generar_ordeActionPerformed
         try {
-            go_to(new Generar_Orden());
+            go_to(generar_orden = new Generar_Orden());
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -239,8 +247,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void cargar_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_materiaActionPerformed
         try {
-            go_to(new CargarMateriaPrima());
+            go_to(new CargarMateriaPrima(""));
         } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cargar_materiaActionPerformed
