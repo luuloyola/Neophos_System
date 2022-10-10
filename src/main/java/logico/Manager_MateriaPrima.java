@@ -42,4 +42,8 @@ public class Manager_MateriaPrima {
         return daoMatPrima.findAll_proveedor(proveedor);
     }
     
+    public ArrayList<Integer> consultarListaMaterias_IDS(String proveedor) throws Exception{
+        return daoMatPrima.findAll_conID(proveedor);
+    }
+    
 }

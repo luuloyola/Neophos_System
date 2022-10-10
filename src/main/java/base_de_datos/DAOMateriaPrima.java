@@ -75,16 +75,18 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             if(rs.next()){ 
                 id_proveedor = rs.getInt(1);
                 st = ConexionBD.getConexion()
-                        .prepareStatement("SELECT * FROM Provee WHERE ID_Proveedor_Provee = ?");
+                        .prepareStatement("SELECT nombre, descripcion, tipo_mat, precio_unidad FROM Provee, MateriaPrima WHERE ID_Proveedor_Provee = ? AND ID_MateriaPrima = ID_MateriaPrima_Proveida");
                 st.setInt(1, id_proveedor);
                 listaMateriaPrima = new ArrayList<>();
                 rs = st.executeQuery();
                 while(rs.next()){
                     MateriaPrima materia = new MateriaPrima();
-                    materia.setNombre(rs.getString(2));
-                    materia.setDescripcion(rs.getString(3));
-                    materia.setTipoMateriaPrima((TipoMat) rs.getObject(4)); //REVISAR
-                    materia.setPrecio_unidad(rs.getDouble(5));
+                    materia.setNombre(rs.getString(1));
+                    materia.setDescripcion(rs.getString(2));
+                    if(rs.getObject(3).toString().equals("PRODUCTO_QUIMICO"))
+                        materia.setTipoMateriaPrima(TipoMat.PRODUCTO_QUIMICO);
+                    else materia.setTipoMateriaPrima(TipoMat.INSUMO);
+                    materia.setPrecio_unidad(rs.getDouble(4));
                     listaMateriaPrima.add(materia);
                 }
             }
@@ -98,6 +100,36 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         return listaMateriaPrima;
     }
 
+    public ArrayList<Integer> findAll_conID(String proveedor) throws Exception {
+        ArrayList<Integer> listaMateriaPrima = null;
+        int id = 0;
+        try {
+            PreparedStatement st = ConexionBD.getConexion()
+                    .prepareStatement("SELECT ID_Proveedor FROM Proveedor WHERE Nombre = ?");
+            st.setString(1, proveedor);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){ 
+                id = rs.getInt(1);
+                st = ConexionBD.getConexion()
+                        .prepareStatement("SELECT ID_MateriaPrima_Proveida FROM Provee WHERE ID_Proveedor_Provee = ?");
+                st.setInt(1, id);
+                listaMateriaPrima = new ArrayList<>();
+                rs = st.executeQuery();
+                while(rs.next()){
+                    id = rs.getInt(1);
+                    listaMateriaPrima.add(id);
+                }
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionBD.cerrar();
+        }
+        return listaMateriaPrima;
+    }
+    
     @Override
     public Object read(int id) throws Exception {
         return null; //No Support yet
