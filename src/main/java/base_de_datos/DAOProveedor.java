@@ -110,10 +110,11 @@ public class DAOProveedor implements DAO<Proveedor>{
         try {
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT ID_Proveedor FROM Proveedor");
+            System.out.println("Entro a la consulta");
             ResultSet rs = st.executeQuery();
             while(rs.next()){ 
                 listaProv.add(rs.getInt(1));
-            }
+            } 
             rs.close();
             st.close();
         } catch (Exception e) {
