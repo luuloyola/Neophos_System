@@ -24,6 +24,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
             st.setDouble(4, object.getPrecio_unidad());
             st.executeUpdate();
             st.close();
+            System.out.println("El Sistema realizo correctamente la consulta query\n");
         } catch (Exception e) {
             throw e;
         } finally{
