@@ -117,7 +117,6 @@ public class DAORenglon implements DAO<Renglon>{
             System.out.println("esta por hacer el select id orden corresponde en el dao renglon");
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM Renglon WHERE ID_Orden_Corresponde = ?");
-            st.setInt(1, id);
             listaRenglones = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             System.out.println("ya hizo el select id corresponde en dao renglon");
