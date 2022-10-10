@@ -9,24 +9,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 import logico.Manager_MateriaPrima;
 import logico.Manager_Proveedor;
 import logico.MateriaPrima;
 import logico.Proveedor;
+import logico.Renglon;
 
 public class Consultar_MateriaPrima extends javax.swing.JPanel {
     
     private Manager_MateriaPrima manager_mat;
     private Manager_Proveedor manager_proveedor;
-    private DefaultListModel modelo_lista;
-    private static MateriaPrima materia_consultada;
-
+    private MateriaPrima materia_consultada;
+    private Renglon renglon;
+    private DefaultTableModel modelo;
     public Consultar_MateriaPrima(String proveedor) throws Exception {
-        modelo_lista = new DefaultListModel();
+        modelo = (DefaultTableModel) materia.getModel();
         
         initComponents();
         manager_mat = new Manager_MateriaPrima();
         manager_proveedor = new Manager_Proveedor();
+        
+        MateriaPrima materia_consultada = new MateriaPrima();
         
         proveedor_lista.addItem("");
         
@@ -35,8 +39,8 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             proveedor_lista.setSelectedIndex(1);
         }
         else{
-            cantidad.setVisible(false);
-            cantidadtext.setVisible(false);
+            //cantidad.setVisible(false);
+            //cantidadtext.setVisible(false);
             ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
             String auxiliar;
      
@@ -61,8 +65,6 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         Titulo = new javax.swing.JLabel();
         Separador6 = new javax.swing.JLabel();
         proveedor_lista = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listita = new javax.swing.JList<>(modelo_lista);
         buscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -72,6 +74,8 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cantidad = new javax.swing.JTextField();
         cantidadtext = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        materia = new javax.swing.JTable();
 
         contenedor.setBackground(new java.awt.Color(204, 204, 204));
         contenedor.setMaximumSize(new java.awt.Dimension(1042, 619));
@@ -94,9 +98,6 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                 proveedor_listaActionPerformed(evt);
             }
         });
-
-        listita.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(listita);
 
         buscar.setText("Buscar");
         buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,23 +138,44 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
 
         cantidadtext.setText("Cantidad requerida:");
 
+        materia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID Materia Prima", "Nombre", "Tipo De Materia Prima", "Precio de Unidad"
+            }
+        ));
+        jScrollPane1.setViewportView(materia);
+
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(Titulo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(Separador6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(42, 42, 42)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Separador6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
+                                .addGap(433, 433, 433)
+                                .addComponent(cantidadtext)
+                                .addGap(30, 30, 30)
+                                .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(inicioLayout.createSequentialGroup()
                                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(inicioLayout.createSequentialGroup()
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(inicioLayout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -162,23 +184,14 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)
                                         .addComponent(id_materiaprima, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel1)
-                                        .addGap(65, 65, 65)))
-                                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cantidadtext)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(49, 49, 49)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(47, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(38, 38, 38)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 918, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,6 +199,9 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(Titulo)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel1))
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Separador6)
@@ -196,21 +212,15 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                             .addComponent(jLabel2)
                             .addComponent(id_materiaprima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cantidadtext))
-                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel1)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cantidadtext)
+                            .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -221,7 +231,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 1060, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,9 +241,31 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void proveedor_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedor_listaActionPerformed
+    private void cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_proveedor_listaActionPerformed
+    }//GEN-LAST:event_cantidadActionPerformed
+
+    private void id_materiaprimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_materiaprimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_materiaprimaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        materia_consultada.setNombre(materia.getValueAt(materia.getSelectedRow() , 1).toString());
+        materia_consultada.setDescripcion(materia.getValueAt(materia.getSelectedRow() , 2).toString());
+        materia_consultada.setTipoMateriaPrima(materia.getValueAt(materia.getSelectedRow() , 3).toString());
+
+        renglon = new Renglon();
+        renglon.setID_Tiene(Integer.parseInt(materia.getValueAt(materia.getSelectedRow() , 0).toString()));
+        renglon.setCantidad(Integer.parseInt(cantidad.getText()));
+        renglon.setPrecio(getRenglon().getCantidad()*(double)materia.getValueAt(materia.getSelectedRow() , 4));
+
+        paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         if(proveedor_lista.getSelectedIndex() == 0 && id_materiaprima.getText()==""){
@@ -241,14 +273,16 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             return;
         }
 
-        String proveedor = "";
+        int proveedor = 0;
         int id_Materia = 0;
-        MateriaPrima buscada = new MateriaPrima();
+
+        ArrayList<Integer> ids= new ArrayList();
         ArrayList<MateriaPrima> arreglo = new ArrayList();
         if (proveedor_lista.getSelectedIndex() != 0){
-            proveedor = proveedor_lista.getSelectedItem().toString();
+            proveedor = Integer.parseInt(proveedor_lista.getSelectedItem().toString().split(" - ")[0]);;
             try {
                 arreglo = manager_mat.consultarListaMaterias_Porproveedor(proveedor);
+                ids = manager_mat.consultarListaMaterias_IDS(proveedor);
             } catch (Exception ex) {
                 Logger.getLogger(Consultar_MateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -256,15 +290,17 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         if (!id_materiaprima.getText().isBlank()){
             id_Materia = Integer.parseInt(id_materiaprima.getText());
             try {
-                buscada = manager_mat.consultarMateriaPrima(id_Materia);
+                materia_consultada = manager_mat.consultarMateriaPrima(id_Materia);
+                System.out.println("entre");
             } catch (Exception ex) {
                 Logger.getLogger(Consultar_MateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-        if (proveedor_lista.getSelectedIndex() != 0 && !id_materiaprima.getText().isBlank()){
-            if (arreglo.contains(buscada)){
-                modelo_lista.addElement(buscada);
+        if (proveedor_lista.getSelectedIndex() != 0 && (!id_materiaprima.getText().isBlank())){
+            if (ids.contains(id_Materia)){
+                System.out.println("entre");
+                modelo.addRow(new Object[] {id_Materia,materia_consultada.getNombre(), materia_consultada.getDescripcion(), materia_consultada.getTipoMateriaPrima(),materia_consultada.getPrecio_unidad()});
             }
             else{
                 //agregar como que cagaste con el popup
@@ -273,8 +309,8 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         else if(proveedor_lista.getSelectedIndex() != 0 && id_materiaprima.getText().isBlank()){
             if (arreglo.size()!=0){
                 for (int i = 0; i<arreglo.size(); i++){
-                    proveedor = arreglo.get(i).getNombre();
-                    modelo_lista.addElement(proveedor);
+                    materia_consultada = arreglo.get(i);
+                    modelo.addRow(new Object[] {(ids.get(i)),materia_consultada.getNombre(), materia_consultada.getDescripcion(), materia_consultada.getTipoMateriaPrima(),materia_consultada.getPrecio_unidad()});
                 }
             }
             else{
@@ -282,28 +318,21 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             }
         }
         else if(proveedor_lista.getSelectedIndex() == 0 && !id_materiaprima.getText().isBlank()){
-            
+            modelo.addRow(new Object[] {id_Materia,materia_consultada.getNombre(), materia_consultada.getDescripcion(), materia_consultada.getTipoMateriaPrima(),materia_consultada.getPrecio_unidad()});
         }
-        
-
     }//GEN-LAST:event_buscarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void proveedor_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedor_listaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_proveedor_listaActionPerformed
 
-    private void id_materiaprimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_materiaprimaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_materiaprimaActionPerformed
-
-    private void cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cantidadActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //setMateria_consultada(listita.getSelectedValue());
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+    public MateriaPrima getMateria_Consultada(){
+        return this.materia_consultada;
+    }
+    
+    public Renglon getRenglon(){
+        return this.renglon;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Separador6;
@@ -320,15 +349,8 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listita;
+    private javax.swing.JTable materia;
     private javax.swing.JComboBox<String> proveedor_lista;
     // End of variables declaration//GEN-END:variables
 
-    public static MateriaPrima getMateria_consultada() {
-        return materia_consultada;
-    }
-
-    public static void setMateria_consultada(MateriaPrima aMateria_consultada) {
-        materia_consultada = aMateria_consultada;
-    }
 }

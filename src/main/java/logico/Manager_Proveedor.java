@@ -38,4 +38,8 @@ public class Manager_Proveedor {
     public ArrayList<Proveedor> getAllProveedores() throws Exception{
         return dao.findAll();
     }
+    
+    public ArrayList<Integer> getAll_ID() throws Exception{
+        return dao.findAll_conID();
+    }
 }

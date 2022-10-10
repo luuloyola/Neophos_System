@@ -38,8 +38,12 @@ public class Manager_MateriaPrima {
     public void eliminarMateriaPrima(MateriaPrima materia) throws Exception{
         //No Support yet
     }
-    public ArrayList<MateriaPrima> consultarListaMaterias_Porproveedor(String proveedor) throws Exception{
+    public ArrayList<MateriaPrima> consultarListaMaterias_Porproveedor(int proveedor) throws Exception{
         return daoMatPrima.findAll_proveedor(proveedor);
+    }
+    
+    public ArrayList<Integer> consultarListaMaterias_IDS(int proveedor) throws Exception{
+        return daoMatPrima.findAll_conID(proveedor);
     }
     
 }

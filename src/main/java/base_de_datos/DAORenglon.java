@@ -18,11 +18,11 @@ public class DAORenglon implements DAO<Renglon>{
             ResultSet rs = st.executeQuery();
             if(rs.next()) id_Orden = rs.getInt(1);
             st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO Renglon (ID_Renglon, Cantidad, Precio, ID_Materia_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
-            st.setDouble(2, object.getCantidad());
-            st.setDouble(3, object.getPrecio());
-            st.setObject(4, object.getID_Tiene());
-            st.setInt(5, id_Orden);
+                    .prepareStatement("INSERT INTO Renglon (Cantidad, Precio, ID_Materia_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
+            st.setDouble(1, object.getCantidad());
+            st.setDouble(2, object.getPrecio());
+            st.setObject(3, object.getID_Tiene());
+            st.setInt(4, id_Orden);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;

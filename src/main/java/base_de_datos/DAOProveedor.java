@@ -82,6 +82,25 @@ public class DAOProveedor implements DAO<Proveedor>{
         return listaProveedores;
     }
     
+    public ArrayList<Integer> findAll_conID() throws Exception {
+        ArrayList<Integer> listaProv = new ArrayList<Integer>();
+        try {
+            PreparedStatement st = ConexionBD.getConexion()
+                    .prepareStatement("SELECT ID_Proveedor FROM Proveedor");
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){ 
+                listaProv.add(rs.getInt(1));
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionBD.cerrar();
+        }
+        return listaProv;
+    }
+    
     public Proveedor consulta(int id) throws Exception {
         Proveedor proveedor = new Proveedor();
         

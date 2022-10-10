@@ -37,13 +37,14 @@ public class Manager_OrdenCompra {
     por ejemplo: el primer renglon ingresado tendra su informacion guardada de la siguiente forma
     cantidades.get(0), precios.get(0), ID_MateriasPrimas.get(0)
     */
-    public void generarOrdenDeCompra(int ID_proveedor, Date fecha_pedido, double precio_total, ArrayList<Double> cantidades, ArrayList<Double> precios, ArrayList<Integer> ID_MateriasPrimas) throws Exception{
+    public void generarOrdenDeCompra(int ID_proveedor, Date fecha_pedido, double precio_total, ArrayList<Renglon> renglones) throws Exception{
         
         Orden_Compra nueva_Orden = new Orden_Compra(fecha_pedido, precio_total, ID_proveedor);
         dao.create(nueva_Orden);
         
-        for (int i = 0; i <= cantidades.size(); i++) {
-            Manager_Renglon.generarRenglon(cantidades.get(i), precios.get(i), ID_MateriasPrimas.get(i));
+        for (int i = 0; i < renglones.size(); i++) {
+            Renglon auxiliar = renglones.get(i);
+            Manager_Renglon.getInstance().generarRenglon(auxiliar.getCantidad(), auxiliar.getPrecio(), auxiliar.getID_Tiene());
         }
     }
 
