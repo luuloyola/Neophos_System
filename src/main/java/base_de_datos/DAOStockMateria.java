@@ -54,5 +54,10 @@ public class DAOStockMateria implements DAO<StockMateria>{
     public Object read(int id) throws Exception {
         return null; //No Support yet
     }
+
+    @Override
+    public Object consulta(int id) throws Exception {
+        return null; //No Support yet
+    }
     
 }
