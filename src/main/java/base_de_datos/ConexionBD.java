@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import java.sql.SQLException;
+
 public class ConexionBD {
     private static ConexionBD ConexionBD;
     protected static Connection conexion;
