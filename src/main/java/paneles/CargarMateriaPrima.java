@@ -302,6 +302,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             tipo = (String) JTipo.getSelectedItem();
             precio = Double.parseDouble(fieldPrecio.getText());
             cant = Double.parseDouble(fieldCantidad.getText());
+            System.out.println("Los datos de los campos se estan llevando al manejador\n");
             try {
                 manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
                 JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
