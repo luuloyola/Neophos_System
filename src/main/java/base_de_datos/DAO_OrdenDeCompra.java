@@ -86,7 +86,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     }
     
     public Orden_Compra consulta(int id) throws Exception {
-        Orden_Compra orden = null;
+        Orden_Compra orden = new Orden_Compra();
         
         try {
             System.out.println("esta por hacer el select orden de compra");
