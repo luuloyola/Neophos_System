@@ -2,12 +2,9 @@ package base_de_datos;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import logico.MateriaPrima;
-import logico.Proveedor;
-import logico.TipoMat;
 
 public class DAOMateriaPrima implements DAO<MateriaPrima>{
 
@@ -17,14 +14,14 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     @Override
     public void create(MateriaPrima object) throws Exception {
         try {
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad, ID_Proveedor_t) VALUES (?,?,CAST(? AS Tipo_Mat),?,?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setObject(3, object.getTipoMateriaPrima().toString());
             st.setDouble(4, object.getPrecio_unidad());
+            st.setInt(5, object.getId_proveedor());
             st.executeUpdate();
             st.close();
-            System.out.println("El Sistema realizo correctamente la consulta query\n");
         } catch (Exception e) {
             throw e;
         } finally{
@@ -34,7 +31,6 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
 
     public MateriaPrima consulta(int id) throws Exception {
         MateriaPrima materia = new MateriaPrima();
-        System.out.println("Esta haciendo la consulta");
         try {
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM MateriaPrima WHERE ID_MateriaPrima = ?");
