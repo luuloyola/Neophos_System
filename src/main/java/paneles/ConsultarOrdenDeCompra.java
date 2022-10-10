@@ -362,7 +362,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "La Orden de Compra consultada no existe.\n");
-            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
