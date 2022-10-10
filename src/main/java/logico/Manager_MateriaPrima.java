@@ -12,8 +12,8 @@ public class Manager_MateriaPrima {
     }
     
     public void cargarMateriaPrima(String nombre, String descripcion, String tipo, double precio_unidad, double cant, int id) throws Exception{
-        MateriaPrima materia_nueva = new MateriaPrima(nombre,descripcion,tipo,precio_unidad,id);
-        daoMatPrima.create(materia_nueva);
+        MateriaPrima materia_nueva = new MateriaPrima(nombre,descripcion,tipo,precio_unidad);
+        daoMatPrima.create_con_id(materia_nueva, id);
         
         Manager_StockMateria stock = new Manager_StockMateria();
         stock.cargarStockMateria(cant,Deposito.getSinglentonInstance(0), materia_nueva);
