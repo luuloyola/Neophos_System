@@ -15,10 +15,15 @@ public class Manager_MateriaPrima {
     
     public void cargarMateriaPrima(String nombre, String descripcion, String tipo, double precio_unidad, double cant) throws Exception{
         MateriaPrima materia_nueva = new MateriaPrima(nombre,descripcion,tipo,precio_unidad);
+        System.out.println("El Sistema puso los datos en un objeto Materia Prima\n");
         daoMatPrima.create(materia_nueva);
+        System.out.println("El Sistema puso la materia prima en la BD\n");
+        
         
         Manager_StockMateria stock = new Manager_StockMateria();
+        System.out.println("El Sistema puso los datos en un objeto stock\n");
         stock.cargarStockMateria(cant,Deposito.getSinglentonInstance(0), materia_nueva);
+        System.out.println("El Sistema puso el stock en la BD\n");
     }
     
     public MateriaPrima consultarMateriaPrima(int id) throws Exception{
