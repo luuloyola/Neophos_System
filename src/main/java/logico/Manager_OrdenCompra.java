@@ -17,6 +17,7 @@ public class Manager_OrdenCompra {
     private static Manager_OrdenCompra manager;
     public DAO_OrdenDeCompra dao;
     
+    
     public Manager_OrdenCompra(){
         dao = new DAO_OrdenDeCompra();
     }
@@ -48,13 +49,17 @@ public class Manager_OrdenCompra {
     }
 
     public Map<Orden_Compra, List<Renglon>> consultarOrdenDeCompra(int id) throws Exception{
-       Orden_Compra orden = null;
+       Orden_Compra orden = new Orden_Compra();
        List<Renglon> renglones = new ArrayList<>();
        Map<Orden_Compra, List<Renglon>> ordenCompleta = new HashMap<>();
        
+       System.out.println("esta por entrar a consulta del manager");
        orden = dao.consulta(id);
+       System.out.println("esta por salir del consulta del manager");
        
-       renglones = Manager_Renglon.consultarRenglonConIDOrden(id);
+       System.out.println("esta por entrar a consultar renglon con id de orden");
+       renglones = Manager_Renglon.getInstance().consultarRenglonConIDOrden(id);
+       System.out.println("esta por salir de consultar renglon con id de orden");
        
        ordenCompleta.put(orden, renglones);
        
