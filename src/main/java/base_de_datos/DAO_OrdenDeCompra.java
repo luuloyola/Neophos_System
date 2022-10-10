@@ -89,10 +89,12 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         Orden_Compra orden = null;
         
         try {
+            System.out.println("esta por hacer el select orden de compra");
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM OrdenDeCompra WHERE ID_OrdenDeCompra = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
+            System.out.println("termino de hacer el select compra");
             while(rs.next()){
                 orden.setFechaPedido(rs.getDate(1));
                 orden.setPrecioTotal(rs.getDouble(2));

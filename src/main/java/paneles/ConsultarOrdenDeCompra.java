@@ -355,7 +355,8 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
             modelo.addColumn("ID Materia");*/
 
             for(Renglon info: infoRenglones){
-                Renglon ren = new Renglon(info.getCantidad(), info.getPrecio(), info.getID_Tiene());
+                //Renglon ren = new Renglon(info.getCantidad(), info.getPrecio(), info.getID_Tiene());
+                System.out.println("creo el objeto renglon y lo esta por añadir a la tabla");
                 modelo.addRow(new Object[] {idOrden, info.getCantidad(), info.getPrecio(), info.getID_Tiene()});
             }
 
@@ -369,7 +370,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_textIDConsultarActionPerformed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
-        //go_To(Principal);
+        //
     }//GEN-LAST:event_volverButtonActionPerformed
 
 
