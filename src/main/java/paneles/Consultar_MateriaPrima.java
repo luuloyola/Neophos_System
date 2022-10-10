@@ -64,7 +64,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         Separador6 = new javax.swing.JLabel();
         proveedor_lista = new javax.swing.JComboBox<>();
         buscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        confirmar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         id_materiaprima = new javax.swing.JTextField();
@@ -104,10 +104,10 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Confirmar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        confirmar.setText("Confirmar");
+        confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                confirmarActionPerformed(evt);
             }
         });
 
@@ -163,7 +163,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                                 .addGap(30, 30, 30)
                                 .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(inicioLayout.createSequentialGroup()
                                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(inicioLayout.createSequentialGroup()
@@ -214,7 +214,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cantidadtext)
                             .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
@@ -248,8 +248,13 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
 
+        if (materia.getSelectedRow()==-1)
+        {
+            paneles.Principal.getNeophos().PopUp("Elegi un renglon", "src/files/warning.png", "Ups");
+            return;
+        }
         materia_consultada.setNombre(materia.getValueAt(materia.getSelectedRow() , 1).toString());
         materia_consultada.setDescripcion(materia.getValueAt(materia.getSelectedRow() , 2).toString());
         materia_consultada.setTipoMateriaPrima(materia.getValueAt(materia.getSelectedRow() , 3).toString());
@@ -260,7 +265,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         renglon.setPrecio(getRenglon().getCantidad()*(double)materia.getValueAt(materia.getSelectedRow() , 4));
 
         paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_confirmarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         if(proveedor_lista.getSelectedIndex() == 0 && id_materiaprima.getText()==""){
@@ -335,10 +340,10 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
     private javax.swing.JButton buscar;
     private javax.swing.JTextField cantidad;
     private javax.swing.JLabel cantidadtext;
+    private javax.swing.JButton confirmar;
     private javax.swing.JPanel contenedor;
     private javax.swing.JTextField id_materiaprima;
     private javax.swing.JPanel inicio;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
