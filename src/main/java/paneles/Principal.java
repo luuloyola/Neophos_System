@@ -218,7 +218,11 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void generar_ordeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generar_ordeActionPerformed
-        go_to(new Generar_Orden());
+        try {
+            go_to(new Generar_Orden());
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_generar_ordeActionPerformed
 
     private void consultar_ordebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_ordebActionPerformed
