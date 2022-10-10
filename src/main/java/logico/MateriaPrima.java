@@ -43,8 +43,9 @@ public class MateriaPrima {
         this.precio_unidad = precio_unidad;
     }
 
-    public void setTipoMateriaPrima(TipoMat tipoMateriaPrima) {
-        this.tipoMateriaPrima = tipoMateriaPrima;
+    public void setTipoMateriaPrima(String tipoMateriaPrima) {
+        if(tipoMateriaPrima.equals("PRODUCTO_QUIMICO"))
+            this.tipoMateriaPrima = TipoMat.PRODUCTO_QUIMICO;
+        else this.tipoMateriaPrima = TipoMat.INSUMO;
     }
-    
 }
