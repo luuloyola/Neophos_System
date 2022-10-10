@@ -19,6 +19,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
     private Manager_MateriaPrima manager_mat;
     private Manager_Proveedor manager_proveedor;
     private DefaultListModel modelo_lista;
+    private static MateriaPrima materia_consultada;
 
     public Consultar_MateriaPrima(String proveedor) throws Exception {
         modelo_lista = new DefaultListModel();
@@ -34,6 +35,8 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             proveedor_lista.setSelectedIndex(1);
         }
         else{
+            cantidad.setVisible(false);
+            cantidadtext.setVisible(false);
             ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
             String auxiliar;
      
@@ -67,6 +70,8 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         id_materiaprima = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        cantidad = new javax.swing.JTextField();
+        cantidadtext = new javax.swing.JLabel();
 
         contenedor.setBackground(new java.awt.Color(204, 204, 204));
         contenedor.setMaximumSize(new java.awt.Dimension(1042, 619));
@@ -101,6 +106,11 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         });
 
         jButton2.setText("Confirmar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cancelar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +130,15 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Proveedor");
+
+        cantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cantidadActionPerformed(evt);
+            }
+        });
+
+        cantidadtext.setForeground(new java.awt.Color(0, 0, 0));
+        cantidadtext.setText("Cantidad requerida:");
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
@@ -156,6 +175,10 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cantidadtext)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(49, 49, 49)
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(47, Short.MAX_VALUE))
@@ -180,7 +203,11 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cantidadtext)))
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addGap(75, 75, 75)
@@ -271,11 +298,21 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_id_materiaprimaActionPerformed
 
+    private void cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cantidadActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setMateria_consultada(listita.getSelectedValue());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Separador6;
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton buscar;
+    private javax.swing.JTextField cantidad;
+    private javax.swing.JLabel cantidadtext;
     private javax.swing.JPanel contenedor;
     private javax.swing.JTextField id_materiaprima;
     private javax.swing.JPanel inicio;
@@ -288,4 +325,12 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
     private javax.swing.JList<String> listita;
     private javax.swing.JComboBox<String> proveedor_lista;
     // End of variables declaration//GEN-END:variables
+
+    public static MateriaPrima getMateria_consultada() {
+        return materia_consultada;
+    }
+
+    public static void setMateria_consultada(MateriaPrima aMateria_consultada) {
+        materia_consultada = aMateria_consultada;
+    }
 }

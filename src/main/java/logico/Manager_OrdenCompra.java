@@ -18,6 +18,7 @@ public class Manager_OrdenCompra {
     public DAO_OrdenDeCompra dao;
     
     public Manager_OrdenCompra(){
+        dao = new DAO_OrdenDeCompra();
     }
     
     public static Manager_OrdenCompra getInstance() {

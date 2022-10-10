@@ -17,7 +17,7 @@ public class Manager_Renglon {
     public static DAORenglon dao;
     
     public Manager_Renglon(){
-        DAORenglon dao = new DAORenglon();
+        dao = new DAORenglon();
     }
     
     public static Manager_Renglon getInstance() {
