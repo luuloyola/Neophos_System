@@ -54,7 +54,7 @@ public class Manager_OrdenCompra {
        
        orden = dao.consulta(id);
        
-       renglones = Manager_Renglon.consultarRenglonConIDOrden(id);
+       renglones = Manager_Renglon.getInstance().consultarRenglonConIDOrden(id);
        
        ordenCompleta.put(orden, renglones);
        
