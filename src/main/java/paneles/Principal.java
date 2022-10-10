@@ -15,6 +15,7 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal(){
         initComponents();
+        System.out.println("Entro\n");
         
     }
     public static Principal getNeophos(){
@@ -246,8 +247,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void cargar_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_materiaActionPerformed
         try {
-            go_to(new CargarMateriaPrima());
+            go_to(new CargarMateriaPrima(""));
         } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cargar_materiaActionPerformed
