@@ -11,7 +11,7 @@ import logico.TipoMat;
 
 public class DAOMateriaPrima implements DAO<MateriaPrima>{
 
-    public DAOMateriaPrima() throws SQLException {
+    public DAOMateriaPrima(){
     }
     
     @Override

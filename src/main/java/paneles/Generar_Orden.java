@@ -4,17 +4,28 @@
  */
 package paneles;
 
-/**
- *
- * @author lucil
- */
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import logico.Manager_Proveedor;
+import logico.Proveedor;
+
+
 public class Generar_Orden extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Generar_Orden
-     */
-    public Generar_Orden() {
+    private Manager_Proveedor manager_proveedor;
+    
+    public Generar_Orden() throws Exception {
+        manager_proveedor = new Manager_Proveedor();
         initComponents();
+        
+        ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
+        String auxiliar;
+
+        for (int i = 0; i<proveedores.size(); i++){
+            auxiliar = proveedores.get(i).getNombre();
+            proveedor_lista.addItem(auxiliar);
+        }
     }
 
     /**
@@ -33,7 +44,7 @@ public class Generar_Orden extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        agregar_renglon = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -66,7 +77,12 @@ public class Generar_Orden extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jButton1.setText("Agregar Renglón");
+        agregar_renglon.setText("Agregar Renglón");
+        agregar_renglon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_renglonActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Confirmar");
 
@@ -96,7 +112,7 @@ public class Generar_Orden extends javax.swing.JPanel {
                             .addGap(18, 18, 18)
                             .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -111,7 +127,7 @@ public class Generar_Orden extends javax.swing.JPanel {
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
@@ -143,12 +159,20 @@ public class Generar_Orden extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void agregar_renglonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_renglonActionPerformed
+        try {
+            paneles.Principal.getNeophos().go_to(new Consultar_MateriaPrima(proveedor_lista.getSelectedItem().toString()));
+        } catch (Exception ex) {
+            Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_agregar_renglonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Separador6;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JButton agregar_renglon;
     private javax.swing.JPanel inicio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

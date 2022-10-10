@@ -9,7 +9,7 @@ public class Manager_MateriaPrima {
     
     public DAOMateriaPrima daoMatPrima;
 
-    public Manager_MateriaPrima() throws SQLException {
+    public Manager_MateriaPrima(){
         daoMatPrima = new DAOMateriaPrima();
     }
     

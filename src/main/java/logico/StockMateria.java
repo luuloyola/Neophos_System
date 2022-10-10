@@ -5,15 +5,15 @@ public class StockMateria {
     public double cantidad;
     public Deposito deposito;
     public MateriaPrima materiaPrima;
-    public StockMateria(Deposito deposito, MateriaPrima materiaPrima, double cantidad){
+    
+    public StockMateria(Deposito deposito, MateriaPrima materiaPrima, double cant){
         this.deposito = deposito;
         this.materiaPrima = materiaPrima;
-        this.cantidad = cantidad;
+        this.cantidad = cant;
     }
 
     public StockMateria() {
     }
-
 
     public double getCantidad() {
         return cantidad;
