@@ -346,9 +346,10 @@ public class Generar_Orden extends javax.swing.JPanel {
         }
         Date fecha;
         
-        int año1 = Integer.parseInt(año.getText()) -1900;
-        int mes1 = Integer.parseInt(mes.getText()) - 1;
+        
         if (verificar_fecha()){
+            int año1 = Integer.parseInt(año.getText()) -1900;
+            int mes1 = Integer.parseInt(mes.getText()) - 1;
             fecha = new Date(año1, mes1, Integer.parseInt(dia.getText()));
         }
         else return;
@@ -404,27 +405,26 @@ public class Generar_Orden extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarActionPerformed
 
     public boolean verificar_fecha(){
-        if (año.getText().isBlank() || año.getText().contains("yyyy") || mes.getText().isBlank() || mes.getText().contains("mm") || dia.getText().isBlank() || dia.getText().contains("dd")){
+        try{
+            if (1990>Integer.parseInt(año.getText())){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un año valido","", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+            if (!(0<Integer.parseInt(mes.getText()) &&Integer.parseInt(mes.getText()) <12)){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un mes valido","", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+            if (!(0<Integer.parseInt(dia.getText()) &&Integer.parseInt(dia.getText()) <31)){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un dia valido","", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+
+            return true;
+        }catch(Exception ex){
             JOptionPane.showMessageDialog(this,"Debe cambiar los valores de la fecha del pedido","", JOptionPane.WARNING_MESSAGE);
             req.setForeground(Color.red);
             return false;
         }
-        
-        
-        if (1990>Integer.parseInt(año.getText())){
-            JOptionPane.showMessageDialog(this,"Debe ingresar un año valido","", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-        if (!(0<Integer.parseInt(mes.getText()) &&Integer.parseInt(mes.getText()) <12)){
-            JOptionPane.showMessageDialog(this,"Debe ingresar un mes valido","", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-        if (!(0<Integer.parseInt(dia.getText()) &&Integer.parseInt(dia.getText()) <31)){
-            JOptionPane.showMessageDialog(this,"Debe ingresar un dia valido","", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-        
-        return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Separador6;
