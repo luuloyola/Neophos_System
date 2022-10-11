@@ -275,16 +275,18 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             return;
         }
         
-        if (cantidad_ingresar.getText().isBlank()){
-            JOptionPane.showMessageDialog(this,"Debe ingresar la cantidad requerida","", JOptionPane.WARNING_MESSAGE);
-            requerida.setForeground(Color.red);
-            return;
+        try{
+            if (Integer.parseInt(cantidad_ingresar.getText())<=0){
+                JOptionPane.showMessageDialog(this,"Debe ingresar una cantidad valida, mayor a 0","", JOptionPane.WARNING_MESSAGE);
+                requerida.setForeground(Color.red);
+                return;
+            }
+        }catch(Exception ex){
+                JOptionPane.showMessageDialog(this,"Debe ingresar valores validos de cantidad","", JOptionPane.WARNING_MESSAGE);
+                requerida.setForeground(Color.red);
+                return;
         }
-        if (Integer.parseInt(cantidad_ingresar.getText())<=0){
-            JOptionPane.showMessageDialog(this,"Debe ingresar una cantidad valida","", JOptionPane.WARNING_MESSAGE);
-            requerida.setForeground(Color.red);
-            return;
-        }
+        
         materia_consultada.setNombre(materia.getValueAt(materia.getSelectedRow() , 1).toString());
         materia_consultada.setDescripcion(materia.getValueAt(materia.getSelectedRow() , 2).toString());
         materia_consultada.setTipoMateriaPrima(materia.getValueAt(materia.getSelectedRow() , 3).toString());
@@ -321,11 +323,18 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             }
         }
         if (!id_materiaprima.getText().isBlank()){
-            if (Integer.parseInt(id_materiaprima.getText())<=0){
+            try{
+                if (Integer.parseInt(id_materiaprima.getText())<=0){
                 JOptionPane.showMessageDialog(this,"Debe ingresar un id valido","", JOptionPane.WARNING_MESSAGE);
             
                 return;
-            }
+                }
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this,"Debe ingresar valores validos de id","", JOptionPane.WARNING_MESSAGE);
+                
+                return;
+            }    
+            
             id_Materia = Integer.parseInt(id_materiaprima.getText());
             try {
                 materia_consultada = manager_mat.consultarMateriaPrima(id_Materia);
