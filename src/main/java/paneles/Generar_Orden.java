@@ -4,6 +4,7 @@
  */
 package paneles;
 
+import java.awt.Color;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -32,6 +33,8 @@ public class Generar_Orden extends javax.swing.JPanel {
 
         initComponents();
         
+        eliminar.setVisible(false);
+        
         renglon = new ArrayList<Renglon>();
         materia = new ArrayList<MateriaPrima>();
         
@@ -40,7 +43,7 @@ public class Generar_Orden extends javax.swing.JPanel {
         ArrayList<Integer> ids = manager_proveedor.getAll_ID();
         ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
         String auxiliar;
-        proveedor_lista.addItem("");
+        proveedor_lista.addItem("ID Proveedor - Nombre");
         
         restablecer_valores();
 
@@ -53,7 +56,7 @@ public class Generar_Orden extends javax.swing.JPanel {
 
     public void restablecer_valores(){
         año.setText("yyyy");
-        año.setSize(64, 22);
+        año.setSize(64, 24);
         mes.setText("mm");
         dia.setText("dd");
         proveedor_lista.setSelectedIndex(0);
@@ -90,7 +93,8 @@ public class Generar_Orden extends javax.swing.JPanel {
         dia = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        req = new javax.swing.JLabel();
+        eliminar = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -154,6 +158,11 @@ public class Generar_Orden extends javax.swing.JPanel {
             }
         ));
         tablaRenglones.getTableHeader().setReorderingAllowed(false);
+        tablaRenglones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaRenglonesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaRenglones);
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -194,62 +203,61 @@ public class Generar_Orden extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("/");
 
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("(*)");
+        req.setForeground(new java.awt.Color(51, 51, 51));
+        req.setText("(*)");
+
+        eliminar.setText("Eliminar Renglon");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(39, 39, 39)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Separador6)
+                    .addComponent(Titulo)
                     .addGroup(inicioLayout.createSequentialGroup()
-                        .addComponent(Separador6)
-                        .addGap(0, 20, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(prov)
+                        .addGap(18, 18, 18)
+                        .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(año, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(req)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(inicioLayout.createSequentialGroup()
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(inicioLayout.createSequentialGroup()
-                                .addComponent(Titulo)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(inicioLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
-                                            .addComponent(jLabel1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(prov)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(50, 50, 50)
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(año, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(8, 8, 8)
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabel5)
-                                            .addGap(77, 77, 77)
-                                            .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(inicioLayout.createSequentialGroup()
-                                        .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(20, 20, 20)))))
-                        .addContainerGap())))
+                        .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
                 .addComponent(Titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Separador6)
@@ -265,14 +273,16 @@ public class Generar_Orden extends javax.swing.JPanel {
                     .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(req))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
+                .addGap(18, 18, 18)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         prov.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -281,7 +291,7 @@ public class Generar_Orden extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 1013, Short.MAX_VALUE)
+            .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,7 +304,7 @@ public class Generar_Orden extends javax.swing.JPanel {
     }//GEN-LAST:event_proveedor_listaActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        int input = JOptionPane.showConfirmDialog(null,"Seguro desea cancelar la orden en proceso?", "",JOptionPane.YES_NO_CANCEL_OPTION);
+        int input = JOptionPane.showConfirmDialog(this,"Seguro desea cancelar la orden en proceso?", "¡Cuidado!",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
         if (input == 0){
             restablecer_valores();
             return;
@@ -303,7 +313,7 @@ public class Generar_Orden extends javax.swing.JPanel {
 
     private void agregar_renglonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_renglonActionPerformed
         if (proveedor_lista.getSelectedIndex()==0){
-            paneles.Principal.getNeophos().PopUp("Debe seleccionar un proveedor", "src/files/warning.png", "SII");
+            JOptionPane.showMessageDialog(this,"Debe seleccionar un proveedor","", JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
@@ -315,16 +325,24 @@ public class Generar_Orden extends javax.swing.JPanel {
 
     private void inicioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_inicioAncestorAdded
         if (consultar != null){
+            if(consultar.getRenglon()!=null){
+                if (proveedor_lista.isEnabled()) proveedor_lista.setEnabled(false);
+                for(int i=0; i< renglon.size(); i++){
+                    if (renglon.get(i).getID_Tiene()==consultar.getRenglon().getID_Tiene()){
+                        JOptionPane.showMessageDialog(this,"La materia seleccionada ya se encontraba en el listado","", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                }
                 renglon.add(consultar.getRenglon());
                 precio_total = precio_total + consultar.getRenglon().getPrecio();
                 materia.add(consultar.getMateria_Consultada());
                 modelo.addRow(new Object[] {consultar.getRenglon().getID_Tiene(),consultar.getMateria_Consultada().getNombre(), consultar.getRenglon().getCantidad(),consultar.getRenglon().getPrecio()});
-        }
+        }}
     }//GEN-LAST:event_inicioAncestorAdded
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
         if (modelo.getRowCount()<=0){
-            paneles.Principal.getNeophos().PopUp("Debe ingresar renglones", "src/files/warning.png", "SII");
+            JOptionPane.showMessageDialog(this,"Debe ingresar renglones","", JOptionPane.WARNING_MESSAGE);
             return;
         }
         Date fecha;
@@ -334,14 +352,15 @@ public class Generar_Orden extends javax.swing.JPanel {
         }
         else return;
         
-        int input = JOptionPane.showConfirmDialog(null,"Seguro desea confirmar la orden en proceso?", "",JOptionPane.YES_NO_CANCEL_OPTION);
+        int input = JOptionPane.showConfirmDialog(this,"Seguro desea confirmar la orden en proceso?", "",JOptionPane.YES_NO_CANCEL_OPTION);
+        
         if (input == 0){
             manager_orden = Manager_OrdenCompra.getInstance();
             int id_proveedor = Integer.parseInt(proveedor_lista.getSelectedItem().toString().split(" - ")[0]);
 
             try {
                 manager_orden.generarOrdenDeCompra(id_proveedor, fecha, precio_total, renglon);
-                paneles.Principal.getNeophos().PopUp("LISTO AAAAA", "src/files/warning.png", "SII");
+                JOptionPane.showMessageDialog(this, "Orden de compra cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
                 Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
@@ -366,23 +385,41 @@ public class Generar_Orden extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_añoActionPerformed
 
+    private void tablaRenglonesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaRenglonesMouseClicked
+        if (tablaRenglones.getSelectedRow()!=-1){
+            eliminar.setVisible(true);
+        }
+    }//GEN-LAST:event_tablaRenglonesMouseClicked
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        int input = JOptionPane.showConfirmDialog(this,"Seguro desea eliminar el renglon seleccionado?", "¡Cuidado!",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (input == 0){
+            int i = tablaRenglones.getSelectedRow();
+            renglon.remove(i);
+            modelo.removeRow(i);
+            eliminar.setVisible(false);
+            return;
+        }
+    }//GEN-LAST:event_eliminarActionPerformed
+
     public boolean verificar_fecha(){
         if (año.getText().isBlank() || año.getText().contains("yyyy") || mes.getText().isBlank() || mes.getText().contains("mm") || dia.getText().isBlank() || dia.getText().contains("dd")){
-            paneles.Principal.getNeophos().PopUp("cambia las fechas", "src/files/warning.png", "SII");
+            JOptionPane.showMessageDialog(this,"Debe cambiar los valores de la fecha del pedido","", JOptionPane.WARNING_MESSAGE);
+            req.setForeground(Color.red);
             return false;
         }
         
         
         if (1990>Integer.parseInt(año.getText())){
-            paneles.Principal.getNeophos().PopUp("cambia las fechas", "src/files/warning.png", "SII");
+            JOptionPane.showMessageDialog(this,"Debe ingresar un año valido","", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (!(0<Integer.parseInt(mes.getText()) &&Integer.parseInt(mes.getText()) <12)){
-            paneles.Principal.getNeophos().PopUp("cambia las fechas", "src/files/warning.png", "SII");
+            JOptionPane.showMessageDialog(this,"Debe ingresar un mes valido","", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (!(0<Integer.parseInt(dia.getText()) &&Integer.parseInt(dia.getText()) <31)){
-            paneles.Principal.getNeophos().PopUp("cambia las fechas", "src/files/warning.png", "SII");
+            JOptionPane.showMessageDialog(this,"Debe ingresar un dia valido","", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         
@@ -396,17 +433,18 @@ public class Generar_Orden extends javax.swing.JPanel {
     private javax.swing.JButton cancelar;
     private javax.swing.JButton confirmar;
     private javax.swing.JTextField dia;
+    private javax.swing.JButton eliminar;
     private javax.swing.JPanel inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField mes;
     private javax.swing.JLabel prov;
     private javax.swing.JComboBox<String> proveedor_lista;
+    private javax.swing.JLabel req;
     private javax.swing.JTable tablaRenglones;
     // End of variables declaration//GEN-END:variables
 }
