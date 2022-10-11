@@ -15,7 +15,6 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal(){
         initComponents();
-        System.out.println("Entro\n");
         
     }
     public static Principal getNeophos(){
