@@ -280,6 +280,11 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             requerida.setForeground(Color.red);
             return;
         }
+        if (Integer.parseInt(cantidad_ingresar.getText())<=0){
+            JOptionPane.showMessageDialog(this,"Debe ingresar una cantidad valida","", JOptionPane.WARNING_MESSAGE);
+            requerida.setForeground(Color.red);
+            return;
+        }
         materia_consultada.setNombre(materia.getValueAt(materia.getSelectedRow() , 1).toString());
         materia_consultada.setDescripcion(materia.getValueAt(materia.getSelectedRow() , 2).toString());
         materia_consultada.setTipoMateriaPrima(materia.getValueAt(materia.getSelectedRow() , 3).toString());

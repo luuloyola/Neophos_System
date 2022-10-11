@@ -56,7 +56,6 @@ public class Generar_Orden extends javax.swing.JPanel {
 
     public void restablecer_valores(){
         año.setText("yyyy");
-        año.setSize(64, 24);
         mes.setText("mm");
         dia.setText("dd");
         proveedor_lista.setSelectedIndex(0);
