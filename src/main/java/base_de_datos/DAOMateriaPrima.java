@@ -12,14 +12,24 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     }
     
     public void create_con_id (MateriaPrima object, int id_proveedor) throws Exception{
+        int id_materia = 0;
         try {
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad, ID_Proveedor_t) VALUES (?,?,CAST(? AS Tipo_Mat),?,?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setObject(3, object.getTipoMateriaPrima().toString());
             st.setDouble(4, object.getPrecio_unidad());
-            st.setInt(5, id_proveedor);
+            
             st.executeUpdate();
+            
+            st = ConexionBD.getConexion().prepareStatement("SELECT max(ID_MateriaPrima) from MateriaPrima;");
+            ResultSet rs = st.executeQuery();
+            if(rs.next()) id_materia = rs.getInt(1);
+            st = ConexionBD.getConexion().prepareStatement("INSERT INTO Provee (id_proveedor_provee, id_materiaprima_proveida) VALUES (?,?)");
+            st.setInt(1, id_proveedor);
+            st.setInt(2, id_materia);
+            st.executeUpdate();
+            
             st.close();
         } catch (Exception e) {
             throw e;

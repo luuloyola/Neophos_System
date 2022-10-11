@@ -49,9 +49,7 @@ public class ConexionBD {
                 + "Descripcion TEXT NOT NULL, "
                 + "Tipo_Mat Tipo_Mat NOT NULL, " 
                 + "Precio_Unidad FLOAT8 NOT NULL,"
-                + "ID_Proveedor_t INTEGER NOT NULL,"
-                + "PRIMARY KEY (ID_MateriaPrima),"
-                + "FOREIGN KEY (ID_Proveedor_t) REFERENCES Proveedor (ID_Proveedor));"
+                + "PRIMARY KEY (ID_MateriaPrima));"
                 
                 + "CREATE TABLE IF NOT EXISTS ProductoFinal("
                 + "ID_Producto SERIAL, "
