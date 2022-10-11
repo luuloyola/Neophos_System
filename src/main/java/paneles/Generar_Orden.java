@@ -347,8 +347,10 @@ public class Generar_Orden extends javax.swing.JPanel {
         }
         Date fecha;
         
+        int año1 = Integer.parseInt(año.getText()) -1900;
+        int mes1 = Integer.parseInt(mes.getText()) - 1;
         if (verificar_fecha()){
-            fecha = new Date(Integer.parseInt(año.getText()), Integer.parseInt(mes.getText()), Integer.parseInt(dia.getText()));
+            fecha = new Date(año1, mes1, Integer.parseInt(dia.getText()));
         }
         else return;
         
