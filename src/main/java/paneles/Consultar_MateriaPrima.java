@@ -26,7 +26,7 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
     public Consultar_MateriaPrima(String proveedor) throws Exception {
         initComponents();
         manager_mat = new Manager_MateriaPrima();
-        manager_proveedor = new Manager_Proveedor();
+        manager_proveedor = Manager_Proveedor.getInstance();
         modelo = (DefaultTableModel) materia.getModel();
         
         MateriaPrima materia_consultada = new MateriaPrima();
