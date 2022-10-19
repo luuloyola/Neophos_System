@@ -34,21 +34,21 @@ public class Generar_Orden extends javax.swing.JPanel {
         initComponents();
         
         eliminar.setVisible(false);
+        proveedor_lista.setEnabled(true);
         
         renglon = new ArrayList<Renglon>();
         materia = new ArrayList<MateriaPrima>();
         
         modelo = (DefaultTableModel) tablaRenglones.getModel();
         
-        ArrayList<Integer> ids = manager_proveedor.getAll_ID();
         ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
         String auxiliar;
-        proveedor_lista.addItem("ID Proveedor - Nombre");
+        proveedor_lista.addItem("Nombre Proveedor");
         
         restablecer_valores();
 
         for (int i = 0; i<proveedores.size(); i++){
-            auxiliar = ids.get(i) + " - " + proveedores.get(i).getNombre();
+            auxiliar = proveedores.get(i).getNombre();
             proveedor_lista.addItem(auxiliar);
         }
         
@@ -358,10 +358,9 @@ public class Generar_Orden extends javax.swing.JPanel {
         
         if (input == 0){
             manager_orden = Manager_OrdenCompra.getInstance();
-            int id_proveedor = Integer.parseInt(proveedor_lista.getSelectedItem().toString().split(" - ")[0]);
 
             try {
-                manager_orden.generarOrdenDeCompra(id_proveedor, fecha, precio_total, renglon);
+                manager_orden.generarOrdenDeCompra(proveedor_lista.getSelectedItem().toString(), fecha, precio_total, renglon);
                 JOptionPane.showMessageDialog(this, "Orden de compra cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
