@@ -73,7 +73,6 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
         error_cant = new javax.swing.JLabel();
         proveedor_lista = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        error_proveedor = new javax.swing.JLabel();
 
         content_materia.setBackground(new java.awt.Color(227, 227, 218));
         content_materia.setMinimumSize(new java.awt.Dimension(522, 462));
@@ -182,10 +181,6 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(97, 34, 34));
         jLabel7.setText("Proveedor");
 
-        error_proveedor.setBackground(new java.awt.Color(0, 0, 0));
-        error_proveedor.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
-        error_proveedor.setForeground(new java.awt.Color(51, 51, 51));
-
         javax.swing.GroupLayout content_materiaLayout = new javax.swing.GroupLayout(content_materia);
         content_materia.setLayout(content_materiaLayout);
         content_materiaLayout.setHorizontalGroup(
@@ -215,8 +210,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
                         .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(error_precio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(error_cant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(error_nom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(error_proveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(error_nom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(200, Short.MAX_VALUE))
         );
         content_materiaLayout.setVerticalGroup(
@@ -253,9 +247,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(content_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(error_proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -372,7 +364,6 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
     private javax.swing.JLabel error_cant;
     private javax.swing.JLabel error_nom;
     private javax.swing.JLabel error_precio;
-    private javax.swing.JLabel error_proveedor;
     private javax.swing.JTextField fieldCantidad;
     private javax.swing.JTextField fieldDescripcion;
     private javax.swing.JTextField fieldNombre;
