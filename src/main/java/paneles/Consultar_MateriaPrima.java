@@ -45,14 +45,17 @@ public class Consultar_MateriaPrima extends javax.swing.JPanel {
             seleccionar.setVisible(false);
             cantidadtext.setVisible(false);
             confirmar.setVisible(false);
-            ArrayList<Integer> ids = manager_proveedor.getAll_ID();
+
             ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
             String auxiliar;
+            proveedor_lista.addItem("Nombre Proveedor");
+
 
             for (int i = 0; i<proveedores.size(); i++){
-                auxiliar = ids.get(i) + " - " + proveedores.get(i).getNombre();
+                auxiliar = proveedores.get(i).getNombre();
                 proveedor_lista.addItem(auxiliar);
             }
+
         }
     }
 

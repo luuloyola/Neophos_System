@@ -25,12 +25,11 @@ public class DAOProveedor implements DAO<Proveedor>{
         }
     }
     
-    @Override
-    public void delete(int id) throws Exception {
+    public void delete(String nombre) throws Exception {
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("DELETE FROM Proveedor where ID_Proveedor = ?");
-            st.setInt(1, id);
+                    .prepareStatement("DELETE FROM Proveedor where Nombre_Proveedor = ?");
+            st.setString(1, nombre);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -39,15 +38,14 @@ public class DAOProveedor implements DAO<Proveedor>{
         }
     }
     
-    @Override
-    public void update(Proveedor object, int id) throws Exception {
+    public void update(Proveedor object, String nombre) throws Exception {
          try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("UPDATE Proveedor set Telefono = ?, Nombre = ?, Mail = ?, where ID_Proveedor = ?");
+                    .prepareStatement("UPDATE Proveedor set Telefono = ?, Nombre = ?, Mail = ?, where Nombre_Proveedor = ?");
             st.setInt(1, object.getTelefono());
             st.setString(2, object.getNombre());
             st.setString(3, object.getMail());
-            st.setInt(4, id);
+            st.setString(4, nombre);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -67,9 +65,9 @@ public class DAOProveedor implements DAO<Proveedor>{
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 Proveedor proveedor = new Proveedor();
+                proveedor.setNombre(rs.getString(1));
                 proveedor.setTelefono(rs.getInt(2));
-                proveedor.setNombre(rs.getString(3));
-                proveedor.setMail(rs.getString(4));
+                proveedor.setMail(rs.getString(3));
                 listaProveedores.add(proveedor);
             }
             rs.close();
@@ -82,18 +80,18 @@ public class DAOProveedor implements DAO<Proveedor>{
         return listaProveedores;
     }
     
-    public Proveedor consulta(int id) throws Exception {
+    public Proveedor consulta(String nombre) throws Exception {
         Proveedor proveedor = new Proveedor();
         
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("SELECT * FROM Proveedor WHERE ID_Proveedor = ?");
-            st.setInt(1, id);
+                    .prepareStatement("SELECT * FROM Proveedor WHERE Nombre_Proveedor = ?");
+            st.setString(1, nombre);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
+                proveedor.setNombre(rs.getString(1));
                 proveedor.setTelefono(rs.getInt(2));
-                proveedor.setNombre(rs.getString(3));
-                proveedor.setMail(rs.getString(4));
+                proveedor.setMail(rs.getString(3));
             }
             rs.close();
             st.close();
@@ -105,28 +103,26 @@ public class DAOProveedor implements DAO<Proveedor>{
         return proveedor;
     }
     
-    public ArrayList<Integer> findAll_conID() throws Exception {
-        ArrayList<Integer> listaProv = new ArrayList<Integer>();
-        try {
-            PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("SELECT ID_Proveedor FROM Proveedor");
-            System.out.println("Entro a la consulta");
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){ 
-                listaProv.add(rs.getInt(1));
-            } 
-            rs.close();
-            st.close();
-        } catch (Exception e) {
-            throw e;
-        } finally{
-            ConexionBD.cerrar();
-        }
-        return listaProv;
-    }
-    
     @Override
     public Object read(int id) throws Exception {
+        return null;
+    }
+
+    @Override
+    public void update(Proveedor object, int id) throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void delete(int id) throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public Object consulta(int id) throws Exception {
+        // TODO Auto-generated method stub
         return null;
     }
 
