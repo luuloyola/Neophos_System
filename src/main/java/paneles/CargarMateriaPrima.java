@@ -327,7 +327,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             cant = Double.parseDouble(fieldCantidad.getText());
             
             try {
-                manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant, proveedor);
+                manager_mat.cargarMateriaPrima(nombre, des, tipo ,precio, cant);
                 JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
                 clean();
             } catch (Exception ex) {

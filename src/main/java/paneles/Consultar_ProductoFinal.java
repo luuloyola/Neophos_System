@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logico.Manager_ProductoFinal;
 import logico.ProductoFinal;
+import logico.Renglon;
 
 public class Consultar_ProductoFinal extends javax.swing.JPanel {
     
@@ -288,13 +289,12 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
 
     public void no_hay_valores(){
         JOptionPane.showMessageDialog(this,"No hay resultados disponibles para la busqueda realizada","", JOptionPane.WARNING_MESSAGE);
-        nombre_materiaprima.setText("");
-        if (proveedor_lista.isEnabled()) proveedor_lista.setSelectedIndex(0);
-        return;
+        //nombre_materiaprima.setText("");
+        //if (proveedor_lista.isEnabled()) proveedor_lista.setSelectedIndex(0);
     }
     
     public Renglon getRenglon(){
-        return this.renglon;
+        return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
