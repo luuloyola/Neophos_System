@@ -14,7 +14,8 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     
     private Manager_ProductoFinal manager_pFinal;
     private DefaultTableModel modelo;
-    ProductoFinal productoFinal = new ProductoFinal();
+    private ProductoFinal productoFinal = new ProductoFinal();
+    private ArrayList<ProductoFinal> arreglo;
     
     public Consultar_ProductoFinal() throws Exception {
         initComponents();
@@ -22,7 +23,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         modelo = (DefaultTableModel) productos.getModel();
         
         
-        ArrayList<ProductoFinal> arreglo = manager_pFinal.buscar_todos();
+        arreglo = manager_pFinal.buscar_todos();
         
         for (int i = 0; i<arreglo.size(); i++){
                     productoFinal = arreglo.get(i);
@@ -47,7 +48,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         infoOrdenLabel = new javax.swing.JLabel();
         volverButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tablaRenglones = new javax.swing.JTable();
+        materias = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -103,17 +104,17 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             }
         });
 
-        tablaRenglones.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
-        tablaRenglones.setModel(new javax.swing.table.DefaultTableModel(
+        materias.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        materias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre de la Materia Prima", "Precio ", "ID Materia"
+                "Nombre de la Materia Prima"
             }
         ));
-        tablaRenglones.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tablaRenglones);
+        materias.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(materias);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre:");
@@ -254,11 +255,8 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             return;
         }
 
-        try {
-            productoFinal = manager_pFinal.consultar(productos.getValueAt(productos.getSelectedRow() , 0).toString());
-        } catch (Exception ex) {
-            Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        productoFinal = arreglo.get(productos.getSelectedRow());
+        
         
         productos.setVisible(false);
         seleccionar.setVisible(false);
@@ -268,6 +266,17 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         descripcion.setText(productoFinal.getDescripcion());
         tipo.setText(productoFinal.getEmpaquetado().toString());
         precio.setText(Double.toString(productoFinal.getPrecio()));
+        
+        ArrayList<String> materias = new ArrayList();
+        try {
+            materias = manager_pFinal.compuesto_por(productoFinal.getNombre_Producto());
+        } catch (Exception ex) {
+            Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (int i = 0; i<materias.size(); i++){
+                    modelo.addRow(new Object[] {materias.get(i)});
+        }
     }//GEN-LAST:event_confirmarActionPerformed
 
     private void volverButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButton2ActionPerformed
@@ -303,14 +312,12 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable materias;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField precio;
     private javax.swing.JTable productos;
     private javax.swing.JLabel seleccionar;
-    private javax.swing.JTable tablaRenglones;
     private javax.swing.JTextField tipo;
-    private javax.swing.JButton volverButton;
-    private javax.swing.JButton volverButton1;
     private javax.swing.JButton volverButton2;
     // End of variables declaration//GEN-END:variables
 
