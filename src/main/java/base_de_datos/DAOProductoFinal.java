@@ -48,9 +48,10 @@ public class DAOProductoFinal implements DAO<ProductoFinal>{
             PreparedStatement st = ConexionBD.getConexion()
                         .prepareStatement("SELECT * FROM ProductoFinal");
             listaProductoFinal = new ArrayList<>();
-            ProductoFinal producto = new ProductoFinal();
+            
             ResultSet rs = st.executeQuery();
             while(rs.next()){
+                ProductoFinal producto = new ProductoFinal();
                 producto.setNombre_Producto(rs.getString(1));
                 producto.setDescripcion(rs.getString(2));
                 producto.setEmpaquetado(rs.getObject(3).toString());

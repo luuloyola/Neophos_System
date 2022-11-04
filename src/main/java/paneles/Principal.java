@@ -12,6 +12,7 @@ public class Principal extends javax.swing.JFrame {
     
     private static Principal neophos;
     private static Generar_Orden generar_orden;
+    private static Consultar_ProductoFinal consultar_PF;
     
     public Principal(){
         initComponents();
@@ -33,6 +34,10 @@ public class Principal extends javax.swing.JFrame {
     
     public static JPanel getGenerar_Orden(){
         return generar_orden;
+    }
+    
+    public static JPanel getConsultar_PFinal(){
+        return consultar_PF;
     }
 
 
@@ -238,7 +243,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void consultar_matActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_matActionPerformed
         try {
-            go_to(new Consultar_ProductoFinal());
+            go_to(consultar_PF = new Consultar_ProductoFinal());
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }

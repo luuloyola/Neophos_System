@@ -11,14 +11,14 @@ import javax.swing.table.DefaultTableModel;
 import logico.Manager_OrdenCompra;
 import logico.Manager_Proveedor;
 import logico.Proveedor;
-import logico.Renglon;
+import logico.Renglon_Compra;
 
 
 public class Generar_Orden extends javax.swing.JPanel {
 
     private Manager_Proveedor manager_proveedor;
     private Manager_OrdenCompra manager_orden;
-    private ArrayList<Renglon> renglon;
+    private ArrayList<Renglon_Compra> renglon;
     private Agregar_Producto consultar;
     private DefaultTableModel modelo;
     private double precio_total;
@@ -31,7 +31,7 @@ public class Generar_Orden extends javax.swing.JPanel {
         eliminar.setVisible(false);
         proveedor_lista.setEnabled(true);
         
-        renglon = new ArrayList<Renglon>();
+        renglon = new ArrayList<Renglon_Compra>();
         
         modelo = (DefaultTableModel) tablaRenglones.getModel();
         
@@ -53,6 +53,7 @@ public class Generar_Orden extends javax.swing.JPanel {
         mes.setText("mm");
         dia.setText("dd");
         proveedor_lista.setSelectedIndex(0);
+        proveedor_lista.setEnabled(true);
         renglon.clear();
         precio_total = 0;
         consultar = null;
@@ -334,7 +335,8 @@ public class Generar_Orden extends javax.swing.JPanel {
             if(consultar.getRenglon()!=null){
                 if (proveedor_lista.isEnabled()) proveedor_lista.setEnabled(false);
                 for(int i=0; i< renglon.size(); i++){
-                    if (renglon.get(i).getNombre_Tiene()==consultar.getRenglon().getNombre_Tiene()){
+                    
+                    if (renglon.get(i).getNombre_Tiene().equals(consultar.getRenglon().getNombre_Tiene())){
                         JOptionPane.showMessageDialog(this,"La materia seleccionada ya se encontraba en el listado","", JOptionPane.WARNING_MESSAGE);
                         return;
                     }

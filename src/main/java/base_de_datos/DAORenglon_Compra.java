@@ -6,19 +6,19 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import logico.MateriaPrima;
-import logico.Renglon;
+import logico.Renglon_Compra;
 
-public class DAORenglon implements DAO<Renglon>{
+public class DAORenglon_Compra implements DAO<Renglon_Compra>{
 
     @Override
-    public void create(Renglon object) throws Exception {
+    public void create(Renglon_Compra object) throws Exception {
         int id_Orden = 0;
         try {
             PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(ID_OrdenDeCompra) from OrdenDeCompra;");
             ResultSet rs = st.executeQuery();
             if(rs.next()) id_Orden = rs.getInt(1);
             st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO Renglon (Cantidad, Precio, Nombre_Materia_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
+                    .prepareStatement("INSERT INTO Renglon_Compra (Cantidad, Precio, Nombre_Materia_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
             st.setDouble(1, object.getCantidad());
             st.setDouble(2, object.getPrecio());
             st.setObject(3, object.getNombre_Tiene());
@@ -37,7 +37,7 @@ public class DAORenglon implements DAO<Renglon>{
     public void delete(int id) throws Exception {
          try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("DELETE FROM Renglon where ID_Renglon = ?");
+                    .prepareStatement("DELETE FROM Renglon_Compra where ID_Renglon = ?");
             st.setInt(1, id);
             st.executeUpdate();
         } catch (Exception e) {
@@ -48,10 +48,10 @@ public class DAORenglon implements DAO<Renglon>{
     }
     
      @Override
-    public void update(Renglon object, int id) throws Exception {
+    public void update(Renglon_Compra object, int id) throws Exception {
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("UPDATE Renglon set Cantidad = ?, Precio = ?, Nombre_Materia_Tiene = ?, where ID_Renglon = ?");
+                    .prepareStatement("UPDATE Renglon_Compra set Cantidad = ?, Precio = ?, Nombre_Materia_Tiene = ?, where ID_Renglon = ?");
             st.setDouble(1, object.getCantidad());
             st.setDouble(2, object.getPrecio());
             st.setObject(3, object.getNombre_Tiene());
@@ -65,15 +65,15 @@ public class DAORenglon implements DAO<Renglon>{
     }
 
     @Override
-    public List<Renglon> findAll() throws Exception {
-        List<Renglon> listaRenglones = null;
+    public List<Renglon_Compra> findAll() throws Exception {
+        List<Renglon_Compra> listaRenglones = null;
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("SELECT * FROM Renglon");
+                    .prepareStatement("SELECT * FROM Renglon_Compra");
             listaRenglones = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                Renglon renglon = new Renglon();
+                Renglon_Compra renglon = new Renglon_Compra();
                 renglon.setCantidad(rs.getDouble(2));
                 renglon.setPrecio(rs.getDouble(3));
                 renglon.setNombre_Tiene(rs.getString(4));
@@ -89,12 +89,12 @@ public class DAORenglon implements DAO<Renglon>{
         return listaRenglones;
     }
     
-    public Renglon consulta(int id) throws Exception {
-        Renglon renglon = new Renglon();
+    public Renglon_Compra consulta(int id) throws Exception {
+        Renglon_Compra renglon = new Renglon_Compra();
         
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("SELECT * FROM Renglon WHERE ID_Renglon = ?");
+                    .prepareStatement("SELECT * FROM Renglon_Compra WHERE ID_Renglon = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
@@ -112,18 +112,18 @@ public class DAORenglon implements DAO<Renglon>{
         return renglon;
     }
     
-    public List<Renglon> findAllDeOrden(int id) throws Exception {
-        List<Renglon> listaRenglones = null;
+    public List<Renglon_Compra> findAllDeOrden(int id) throws Exception {
+        List<Renglon_Compra> listaRenglones = null;
         try {
             System.out.println("esta por hacer el select id orden corresponde en el dao renglon");
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("SELECT * FROM Renglon WHERE ID_Orden_Corresponde = ?");
+                    .prepareStatement("SELECT * FROM Renglon_Compra WHERE ID_Orden_Corresponde = ?");
             st.setInt(1, id);
             listaRenglones = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             System.out.println("ya hizo el select id corresponde en dao renglon");
             while(rs.next()){
-                Renglon renglon = new Renglon();
+                Renglon_Compra renglon = new Renglon_Compra();
                 renglon.setCantidad(rs.getDouble(2));
                 renglon.setPrecio(rs.getDouble(3));
                 renglon.setNombre_Tiene(rs.getString(4));

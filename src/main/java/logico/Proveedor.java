@@ -7,16 +7,16 @@ public class Proveedor {
     private String nombre;
     private String mail;
     
-    public Proveedor(int telefono, String nombre, String mail){
-        this.telefono = telefono;
-        this.nombre = nombre;
-        this.mail = mail;
-    }
-
     public Proveedor(){
         this.telefono = 0;
         this.nombre = "";
         this.mail = "";
+    }
+    
+    public Proveedor(int telefono, String nombre, String mail){
+        this.telefono = telefono;
+        this.nombre = nombre;
+        this.mail = mail;
     }
     
     public void setTelefono(int telefono){
