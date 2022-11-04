@@ -238,7 +238,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void consultar_matActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_matActionPerformed
         try {
-            go_to(new Agregar_Producto(""));
+            go_to(new Consultar_ProductoFinal());
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
