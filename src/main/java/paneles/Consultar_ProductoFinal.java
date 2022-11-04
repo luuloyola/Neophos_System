@@ -29,7 +29,14 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         modelo1 = (DefaultTableModel) materias1.getModel();
         
         
-        inicializar();
+        arreglo = manager_pFinal.buscar_todos();
+        
+        for (int i = 0; i<arreglo.size(); i++){
+                    productoFinal = arreglo.get(i);
+                    System.out.println(productoFinal.getNombre_Producto());
+                    modelo.addRow(new Object[] {productoFinal.getNombre_Producto(), productoFinal.getEmpaquetado().toString(), productoFinal.getPrecio()});
+                    System.out.println("Lo deberia haber hecho");
+        }
     }
 
     
@@ -327,25 +334,12 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         contenedor.revalidate();
     }
     
-    public void inicializar() throws Exception{
-        arreglo = manager_pFinal.buscar_todos();
-        
-        for (int i = 0; i<arreglo.size(); i++){
-                    productoFinal = arreglo.get(i);
-                    System.out.println(productoFinal.getNombre_Producto());
-                    modelo.addRow(new Object[] {productoFinal.getNombre_Producto(), productoFinal.getEmpaquetado().toString(), productoFinal.getPrecio()});
-                    System.out.println("Lo deberia haber hecho");
-        }
-    }
     private void volverButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButton3ActionPerformed
         try {
-            
-            inicializar();
-            borrar_panel(inicio);
+            Principal.getNeophos().go_to(new Consultar_ProductoFinal());
         } catch (Exception ex) {
             Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }//GEN-LAST:event_volverButton3ActionPerformed
 
     public void no_hay_valores(){
