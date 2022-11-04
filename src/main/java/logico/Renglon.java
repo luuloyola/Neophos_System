@@ -7,19 +7,18 @@ package logico;
 public class Renglon {
     private double cantidad;
     private double precio;
-    private int ID; // No deberia ser materia porque sino no es muy reutilizable, 
-    // hay que hacer una clase padre entre mat prima y producto final -> Esto yo diria que lo podemos hacer dsp de ultima, no se (firma agus ahre)
-
-    public Renglon(double cantidad, double precio, int ID){
+    private String nombre; 
+    
+    public Renglon(double cantidad, double precio, String nombre){
         this.cantidad = cantidad;
         this.precio = precio;
-        this.ID = ID;
+        this.nombre = nombre;
     }
-
-    public Renglon() {
+    
+    public Renglon(){
         this.cantidad = 0;
         this.precio = 0;
-        this.ID = 0;
+        this.nombre = "";
     }
 
     public void setCantidad(double cantidad){
@@ -38,12 +37,12 @@ public class Renglon {
         return precio;
     }
 
-    public void setID_Tiene(int ID){
-        this.ID = ID;
+    public void setNombre_Tiene(String nombre){
+        this.nombre = nombre;
     }
 
-    public int getID_Tiene(){
-        return ID;
+    public String getNombre_Tiene(){
+        return nombre;
     }
 
     

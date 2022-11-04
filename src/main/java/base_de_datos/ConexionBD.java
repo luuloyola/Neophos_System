@@ -48,6 +48,10 @@ public class ConexionBD {
                 + "Tipo_Mat Tipo_Mat NOT NULL, " 
                 + "Precio_Unidad FLOAT8 NOT NULL,"
                 + "PRIMARY KEY (Nombre_MateriaPrima));"
+                         
+                + "CREATE TABLE IF NOT EXISTS Producto("
+                + "Nombre_Producto TEXT NOT NULL, " 
+                + "PRIMARY KEY (Nombre_Producto));"
                 
                 + "CREATE TABLE IF NOT EXISTS ProductoFinal("
                 + "Nombre_Producto TEXT NOT NULL, "
@@ -64,20 +68,22 @@ public class ConexionBD {
                 + "PRIMARY KEY (ID_OrdenDeCompra),"
                 + "FOREIGN KEY (Nombre_Proveedor_Tiene) REFERENCES Proveedor (Nombre_Proveedor));"
                          
-                + "CREATE TABLE IF NOT EXISTS Renglon("
+                + "CREATE TABLE IF NOT EXISTS Renglon_Compra("
                 + "ID_Renglon SERIAL, "
                 + "Cantidad FLOAT8 NOT NULL, "
                 + "Precio FLOAT8 NOT NULL, "
                 + "Nombre_Materia_Tiene TEXT NOT NULL, "
                 + "ID_Orden_Corresponde INTEGER NOT NULL,"
                 + "PRIMARY KEY (ID_Renglon),"
-                + "FOREIGN KEY (Nombre_Materia_Tiene) REFERENCES MateriaPrima (Nombre_MateriaPrima),"
+                + "FOREIGN KEY (Nombre_Materia_Tiene) REFERENCES Producto (Nombre_Producto),"
                 + "FOREIGN KEY (ID_Orden_Corresponde) REFERENCES OrdenDeCompra (ID_OrdenDeCompra));"
-    
+                         
                 + "CREATE TABLE IF NOT EXISTS Provee("
                 + "Nombre_Proveedor_Provee TEXT NOT NULL, "
-                + "Nombre_MateriaPrima_Proveida TEXT NOT NULL, "                
+                + "Nombre_MateriaPrima_Proveida TEXT NOT NULL, " 
+                + "Precio FLOAT8 NOT NULL,"
                 + "PRIMARY KEY (Nombre_Proveedor_Provee, Nombre_MateriaPrima_Proveida),"
+                + "FOREIGN KEY (Nombre_MateriaPrima_Proveida) REFERENCES Producto (Nombre_Producto),"
                 + "FOREIGN KEY (Nombre_Proveedor_Provee) REFERENCES Proveedor (Nombre_Proveedor));"
                 
                 + "CREATE TABLE IF NOT EXISTS Compuesto_Por("
@@ -92,7 +98,10 @@ public class ConexionBD {
                 + "Nombre_MateriaPrima_Proveida TEXT NOT NULL, "
                 + "Cantidad FLOAT8 NOT NULL,"
                 + "PRIMARY KEY (ID_Deposito, Nombre_MateriaPrima_Proveida),"
-                + "FOREIGN KEY (Nombre_MateriaPrima_Proveida) REFERENCES MateriaPrima (Nombre_MateriaPrima));");
+                + "FOREIGN KEY (Nombre_MateriaPrima_Proveida) REFERENCES MateriaPrima (Nombre_MateriaPrima));"
+        
+                
+    );
     }
     
     public static void conectar() throws Exception{

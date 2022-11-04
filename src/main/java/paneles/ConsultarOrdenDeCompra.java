@@ -330,11 +330,11 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                     IDLabel2.setText(String.valueOf(idOrden));
                     FechaPLabel2.setText(infoOrden.getFechaPedido().toString());
                     PrecioLabel2.setText(String.valueOf(infoOrden.getPrecioTotal()));
-                    IDProveedorLabel2.setText(String.valueOf(infoOrden.getID_Proveedor()));
+                    IDProveedorLabel2.setText(infoOrden.getProveedor().toString());
 
 
                     for(Renglon info: infoRenglones){
-                        modelo.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getID_Tiene()});
+                        modelo.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getNombre_Tiene()});
                     }
                 }
             }

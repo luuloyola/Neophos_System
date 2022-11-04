@@ -24,14 +24,13 @@ public class Manager_Renglon {
         return Manager_Renglon.manager;
     }
     
-    public void generarRenglon(double cantidad, double precio, int ID_materiaPrima) throws Exception{
-        Renglon renglon = new Renglon(cantidad, precio, ID_materiaPrima);
+    public void generarRenglon(double cantidad, double precio, String nombre_materiaPrima) throws Exception{
+        Renglon renglon = new Renglon(cantidad, precio, nombre_materiaPrima);
         dao.create(renglon);
     }
     
     public Renglon consultarRenglon(int id) throws Exception{
-        Renglon renglon = new Renglon();
-        renglon = dao.consulta(id);
+        Renglon renglon = dao.consulta(id);
         return renglon;
     }
     

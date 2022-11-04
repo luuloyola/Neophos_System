@@ -40,7 +40,7 @@ public class Manager_OrdenCompra {
         
         for (int i = 0; i < renglones.size(); i++) {
             Renglon auxiliar = renglones.get(i);
-            Manager_Renglon.getInstance().generarRenglon(auxiliar.getCantidad(), auxiliar.getPrecio(), auxiliar.getID_Tiene());
+            Manager_Renglon.getInstance().generarRenglon(auxiliar.getCantidad(), auxiliar.getPrecio(), auxiliar.getNombre_Tiene());
         }
     }
 

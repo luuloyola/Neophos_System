@@ -31,4 +31,5 @@ public class Manager_Proveedor {
         return dao.findAll();
     }
     
+    
 }

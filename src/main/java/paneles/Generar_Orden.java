@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package paneles;
 
 import java.awt.Color;
@@ -13,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logico.Manager_OrdenCompra;
 import logico.Manager_Proveedor;
-import logico.MateriaPrima;
 import logico.Proveedor;
 import logico.Renglon;
 
@@ -23,8 +19,7 @@ public class Generar_Orden extends javax.swing.JPanel {
     private Manager_Proveedor manager_proveedor;
     private Manager_OrdenCompra manager_orden;
     private ArrayList<Renglon> renglon;
-    private ArrayList<MateriaPrima> materia;
-    private Consultar_MateriaPrima consultar;
+    private Agregar_Producto consultar;
     private DefaultTableModel modelo;
     private double precio_total;
     
@@ -37,7 +32,6 @@ public class Generar_Orden extends javax.swing.JPanel {
         proveedor_lista.setEnabled(true);
         
         renglon = new ArrayList<Renglon>();
-        materia = new ArrayList<MateriaPrima>();
         
         modelo = (DefaultTableModel) tablaRenglones.getModel();
         
@@ -60,7 +54,6 @@ public class Generar_Orden extends javax.swing.JPanel {
         dia.setText("dd");
         proveedor_lista.setSelectedIndex(0);
         renglon.clear();
-        materia.clear();
         precio_total = 0;
         consultar = null;
         modelo.setRowCount(0);
@@ -94,6 +87,8 @@ public class Generar_Orden extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         req = new javax.swing.JLabel();
         eliminar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        precio_total_field = new javax.swing.JTextField();
 
         jMenu1.setText("jMenu1");
 
@@ -153,7 +148,7 @@ public class Generar_Orden extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID Materia Prima", "Nombre", "Cantidad", "Precio "
+                "Nombre", "Cantidad", "Precio "
             }
         ));
         tablaRenglones.getTableHeader().setReorderingAllowed(false);
@@ -212,6 +207,9 @@ public class Generar_Orden extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Precio total:");
+
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
@@ -249,9 +247,13 @@ public class Generar_Orden extends javax.swing.JPanel {
                         .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(232, 232, 232)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(precio_total_field, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,12 +278,17 @@ public class Generar_Orden extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(precio_total_field)
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(96, 96, 96))
         );
 
         prov.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -316,7 +323,7 @@ public class Generar_Orden extends javax.swing.JPanel {
             return;
         }
         try {
-            paneles.Principal.getNeophos().go_to(consultar =new Consultar_MateriaPrima(proveedor_lista.getSelectedItem().toString()));
+            paneles.Principal.getNeophos().go_to(consultar =new Agregar_Producto(proveedor_lista.getSelectedItem().toString()));
         } catch (Exception ex) {
             Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -327,15 +334,15 @@ public class Generar_Orden extends javax.swing.JPanel {
             if(consultar.getRenglon()!=null){
                 if (proveedor_lista.isEnabled()) proveedor_lista.setEnabled(false);
                 for(int i=0; i< renglon.size(); i++){
-                    if (renglon.get(i).getID_Tiene()==consultar.getRenglon().getID_Tiene()){
+                    if (renglon.get(i).getNombre_Tiene()==consultar.getRenglon().getNombre_Tiene()){
                         JOptionPane.showMessageDialog(this,"La materia seleccionada ya se encontraba en el listado","", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
                 }
                 renglon.add(consultar.getRenglon());
                 precio_total = precio_total + consultar.getRenglon().getPrecio();
-                materia.add(consultar.getMateria_Consultada());
-                modelo.addRow(new Object[] {consultar.getRenglon().getID_Tiene(),consultar.getMateria_Consultada().getNombre(), consultar.getRenglon().getCantidad(),consultar.getRenglon().getPrecio()});
+                precio_total_field.setText(Double.toString(precio_total));
+                modelo.addRow(new Object[] {consultar.getRenglon().getNombre_Tiene(), consultar.getRenglon().getCantidad(),consultar.getRenglon().getPrecio()});
         }}
     }//GEN-LAST:event_inicioAncestorAdded
 
@@ -439,9 +446,11 @@ public class Generar_Orden extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField mes;
+    private javax.swing.JTextField precio_total_field;
     private javax.swing.JLabel prov;
     private javax.swing.JComboBox<String> proveedor_lista;
     private javax.swing.JLabel req;

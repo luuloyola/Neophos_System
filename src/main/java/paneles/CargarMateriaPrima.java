@@ -28,12 +28,12 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             proveedor_lista.setSelectedIndex(1);
         }
         else{
-            ArrayList<Integer> ids = manager_proveedor.getAll_ID();
+            
             ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
             String auxiliar;
 
             for (int i = 0; i<proveedores.size(); i++){
-                auxiliar = ids.get(i) + " - " + proveedores.get(i).getNombre();
+                auxiliar = proveedores.get(i).getNombre();
                 proveedor_lista.addItem(auxiliar);
             }
         }
@@ -317,10 +317,10 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             //Caso donde todos los campos cumplen el formato
             String nombre,des,tipo;
             double cant,precio;
-            int proveedor;
+            String proveedor;
             nombre = fieldNombre.getText();
             if(fieldDescripcion.getText().isEmpty()) des ="-"; else des = fieldDescripcion.getText();
-            proveedor = Integer.parseInt(proveedor_lista.getSelectedItem().toString().split(" - ")[0]);
+            proveedor = proveedor_lista.getSelectedItem().toString();
             
             tipo = (String) JTipo.getSelectedItem();
             precio = Double.parseDouble(fieldPrecio.getText());
