@@ -18,10 +18,10 @@ public class DAORenglon implements DAO<Renglon>{
             ResultSet rs = st.executeQuery();
             if(rs.next()) id_Orden = rs.getInt(1);
             st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO Renglon (Cantidad, Precio, ID_Materia_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
+                    .prepareStatement("INSERT INTO Renglon (Cantidad, Precio, Nombre_Materia_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
             st.setDouble(1, object.getCantidad());
             st.setDouble(2, object.getPrecio());
-            st.setObject(3, object.getID_Tiene());
+            st.setObject(3, object.getNombre_Tiene());
             st.setInt(4, id_Orden);
             System.out.println(id_Orden);
             st.executeUpdate();
@@ -51,10 +51,10 @@ public class DAORenglon implements DAO<Renglon>{
     public void update(Renglon object, int id) throws Exception {
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("UPDATE Renglon set Cantidad = ?, Precio = ?, ID_Materia_Tiene = ?, where ID_Renglon = ?");
+                    .prepareStatement("UPDATE Renglon set Cantidad = ?, Precio = ?, Nombre_Materia_Tiene = ?, where ID_Renglon = ?");
             st.setDouble(1, object.getCantidad());
             st.setDouble(2, object.getPrecio());
-            st.setObject(3, object.getID_Tiene());
+            st.setObject(3, object.getNombre_Tiene());
             st.setInt(5, id);
             st.executeUpdate();
         } catch (Exception e) {
@@ -76,7 +76,7 @@ public class DAORenglon implements DAO<Renglon>{
                 Renglon renglon = new Renglon();
                 renglon.setCantidad(rs.getDouble(2));
                 renglon.setPrecio(rs.getDouble(3));
-                renglon.setID_Tiene(rs.getInt(4));
+                renglon.setNombre_Tiene(rs.getString(4));
                 listaRenglones.add(renglon);
             }
             rs.close();
@@ -100,7 +100,7 @@ public class DAORenglon implements DAO<Renglon>{
             while(rs.next()){
                 renglon.setCantidad(rs.getDouble(2));
                 renglon.setPrecio(rs.getDouble(3));
-                renglon.setID_Tiene(rs.getInt(4));
+                renglon.setNombre_Tiene(rs.getString(4));
             }
             rs.close();
             st.close();
@@ -126,7 +126,7 @@ public class DAORenglon implements DAO<Renglon>{
                 Renglon renglon = new Renglon();
                 renglon.setCantidad(rs.getDouble(2));
                 renglon.setPrecio(rs.getDouble(3));
-                renglon.setID_Tiene(rs.getInt(4));
+                renglon.setNombre_Tiene(rs.getString(4));
                 listaRenglones.add(renglon);
             }
             rs.close();

@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package logico;
 
 import base_de_datos.DAOProveedor;
 import java.util.ArrayList;
 
-/**
- *
- * @author lucil
- */
 public class Manager_Proveedor {
 
     private static Manager_Proveedor manager;
@@ -28,18 +20,16 @@ public class Manager_Proveedor {
     }
     
     public void generarProveedor(){
-        //si queremos hacer esta funcion primero hay q eliminar ID de proveedor
+        
     }
     
-    public Proveedor consultarProveedor(int id) throws Exception{
-        return dao.consulta(id);
+    public Proveedor consultarProveedor(String nombre) throws Exception{
+        return dao.consulta(nombre);
     }
     
     public ArrayList<Proveedor> getAllProveedores() throws Exception{
         return dao.findAll();
     }
     
-    public ArrayList<Integer> getAll_ID() throws Exception{
-        return dao.findAll_conID();
-    }
+    
 }

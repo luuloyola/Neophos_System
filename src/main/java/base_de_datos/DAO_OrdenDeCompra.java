@@ -14,10 +14,10 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     public void create(Orden_Compra object) throws Exception {
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO OrdenDeCompra (Fecha_Pedido, Precio_Total, ID_Proveedor_Tiene) VALUES (?,?,?)");
+                    .prepareStatement("INSERT INTO OrdenDeCompra (Fecha_Pedido, Precio_Total, Nombre_Proveedor_Tiene) VALUES (?,?,?)");
             st.setDate(1, object.getFechaPedido());
             st.setDouble(2, object.getPrecioTotal());
-            st.setInt(3, object.getID_Proveedor());
+            st.setString(3, object.getProveedor());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -46,10 +46,10 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     public void update(Orden_Compra object, int id) throws Exception {
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("UPDATE OrdenDeCompra set Fecha_Pedido = ?, Precio_Total = ?, ID_Proveedor_Tiene = ?, where ID_OrdenDeCompra = ?");
+                    .prepareStatement("UPDATE OrdenDeCompra set Fecha_Pedido = ?, Precio_Total = ?, Nombre_Proveedor_Tiene = ?, where ID_OrdenDeCompra = ?");
             st.setDate(1, object.getFechaPedido());
             st.setDouble(2, object.getPrecioTotal());
-            st.setObject(3, object.getID_Proveedor());
+            st.setObject(3, object.getProveedor());
             st.setInt(4, id);
             st.executeUpdate();
         } catch (Exception e) {
@@ -63,16 +63,16 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     @Override
     public List<Orden_Compra> findAll() throws Exception {
         List<Orden_Compra> listaOrdenes = null;
+        Orden_Compra orden = new Orden_Compra();
         try {
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM OrdenDeCompra");
             listaOrdenes = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                Orden_Compra orden = null;
                 orden.setFechaPedido(rs.getDate(1));
                 orden.setPrecioTotal(rs.getDouble(2));
-                orden.setID_Proveedor(rs.getInt(3));
+                orden.setProveedor(rs.getString(3));
                 listaOrdenes.add(orden);
             }
             rs.close();
@@ -98,7 +98,7 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
             while(rs.next()){
                 orden.setFechaPedido(rs.getDate(1));
                 orden.setPrecioTotal(rs.getDouble(2));
-                orden.setID_Proveedor(rs.getInt(3));
+                orden.setProveedor(rs.getString(3));
             }
             rs.close();
             st.close();
