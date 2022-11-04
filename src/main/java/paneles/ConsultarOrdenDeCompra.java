@@ -72,8 +72,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
 
         contenedor = new javax.swing.JPanel();
         inicio = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        Titulo2 = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
         Separador6 = new javax.swing.JLabel();
         ingresarID = new javax.swing.JLabel();
@@ -93,6 +91,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         IDProveedorLabel2 = new javax.swing.JLabel();
         IDLabel2 = new javax.swing.JLabel();
         mesas = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         contenedor.setBackground(new java.awt.Color(204, 204, 204));
         contenedor.setMaximumSize(new java.awt.Dimension(1042, 619));
@@ -100,32 +99,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
 
         inicio.setBackground(new java.awt.Color(227, 227, 218));
         inicio.setMaximumSize(new java.awt.Dimension(1042, 619));
-        inicio.setPreferredSize(new java.awt.Dimension(1042, 619));
-
-        jPanel1.setBackground(new java.awt.Color(97, 34, 34));
-
-        Titulo2.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
-        Titulo2.setForeground(new java.awt.Color(227, 227, 218));
-        Titulo2.setText("NEOPHOS");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(532, Short.MAX_VALUE)
-                .addComponent(Titulo2)
-                .addGap(386, 386, 386))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Titulo2, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
+        inicio.setPreferredSize(new java.awt.Dimension(1065, 619));
 
         Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
         Titulo.setForeground(new java.awt.Color(97, 34, 34));
@@ -163,9 +137,8 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         tablaRenglones.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaRenglones);
 
-        volverButton.setBackground(new java.awt.Color(97, 34, 34));
-        volverButton.setFont(new java.awt.Font("Microsoft YaHei", 1, 11)); // NOI18N
-        volverButton.setText("Volver al Menú Principal");
+        volverButton.setFont(new java.awt.Font("Microsoft YaHei", 0, 11)); // NOI18N
+        volverButton.setText("Cancelar");
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButtonActionPerformed(evt);
@@ -196,6 +169,8 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         infoRenglonesLabel.setForeground(new java.awt.Color(97, 34, 34));
         infoRenglonesLabel.setText("Información de su/s renglon/es:");
 
+        jLabel1.setText("(*)");
+
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
@@ -203,59 +178,57 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
             .addGroup(inicioLayout.createSequentialGroup()
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
+                        .addGap(29, 29, 29)
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(inicioLayout.createSequentialGroup()
-                                .addComponent(ingresarID)
-                                .addGap(46, 46, 46)
-                                .addComponent(textIDConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(128, 128, 128)
-                                .addComponent(aceptarButton))
-                            .addGroup(inicioLayout.createSequentialGroup()
-                                .addComponent(infoOrdenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(135, 135, 135)
-                                .addComponent(mesas))
-                            .addGroup(inicioLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                                .addGap(98, 98, 98)
                                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(inicioLayout.createSequentialGroup()
-                                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(FechaPLabel)
-                                            .addComponent(PrecioLabel)
-                                            .addComponent(IDProveedorLabel))
-                                        .addGap(35, 35, 35)
-                                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(IDProveedorLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(PrecioLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(FechaPLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(ingresarID)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(textIDConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jLabel1)
+                                        .addGap(66, 66, 66)
+                                        .addComponent(aceptarButton))
                                     .addGroup(inicioLayout.createSequentialGroup()
-                                        .addComponent(IDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(IDLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(44, 44, 44)
-                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(infoRenglonesLabel)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(infoOrdenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(135, 135, 135)
+                                        .addComponent(mesas))
+                                    .addGroup(inicioLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(inicioLayout.createSequentialGroup()
+                                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(FechaPLabel)
+                                                    .addComponent(PrecioLabel)
+                                                    .addComponent(IDProveedorLabel))
+                                                .addGap(35, 35, 35)
+                                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(IDProveedorLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(PrecioLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(FechaPLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(inicioLayout.createSequentialGroup()
+                                                .addComponent(IDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(31, 31, 31)
+                                                .addComponent(IDLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(44, 44, 44)
+                                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(infoRenglonesLabel)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(inicioLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(Titulo))
+                            .addComponent(Separador6)))
                     .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(413, 413, 413)
-                        .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(inicioLayout.createSequentialGroup()
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(Titulo))
-                    .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(Separador6)))
-                .addGap(0, 36, Short.MAX_VALUE))
-            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(410, 410, 410)
+                        .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
+                .addGap(19, 19, 19)
                 .addComponent(Titulo)
                 .addGap(1, 1, 1)
                 .addComponent(Separador6)
@@ -263,7 +236,8 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textIDConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aceptarButton)
-                    .addComponent(ingresarID))
+                    .addComponent(ingresarID)
+                    .addComponent(jLabel1))
                 .addGap(30, 30, 30)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(inicioLayout.createSequentialGroup()
@@ -288,15 +262,13 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(IDProveedorLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(IDProveedorLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
-            .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(inicioLayout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 538, Short.MAX_VALUE)))
+                            .addComponent(IDProveedorLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52))
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(volverButton)
+                .addGap(116, 116, 116))
         );
 
         mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -307,7 +279,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1042, Short.MAX_VALUE)
+            .addGap(0, 1065, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -358,11 +330,11 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                     IDLabel2.setText(String.valueOf(idOrden));
                     FechaPLabel2.setText(infoOrden.getFechaPedido().toString());
                     PrecioLabel2.setText(String.valueOf(infoOrden.getPrecioTotal()));
-                    IDProveedorLabel2.setText(String.valueOf(infoOrden.getID_Proveedor()));
+                    IDProveedorLabel2.setText(infoOrden.getProveedor().toString());
 
 
                     for(Renglon info: infoRenglones){
-                        modelo.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getID_Tiene()});
+                        modelo.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getNombre_Tiene()});
                     }
                 }
             }
@@ -377,7 +349,10 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_textIDConsultarActionPerformed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
-        //go_To(Principal);
+        int eleccion= JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar la operación?", "Confirmar", JOptionPane.CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(eleccion==0){
+            System.exit(0);
+        }
     }//GEN-LAST:event_volverButtonActionPerformed
 
 
@@ -392,14 +367,13 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
     private javax.swing.JLabel PrecioLabel2;
     private javax.swing.JLabel Separador6;
     private javax.swing.JLabel Titulo;
-    private javax.swing.JLabel Titulo2;
     private javax.swing.JButton aceptarButton;
     private javax.swing.JPanel contenedor;
     private javax.swing.JLabel infoOrdenLabel;
     private javax.swing.JLabel infoRenglonesLabel;
     private javax.swing.JLabel ingresarID;
     private javax.swing.JPanel inicio;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel mesas;
     private javax.swing.JTable tablaRenglones;

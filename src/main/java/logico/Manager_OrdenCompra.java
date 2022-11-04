@@ -30,21 +30,17 @@ public class Manager_OrdenCompra {
 
     /*
     La funcion generarOrdenDeCompra se encarga de cargar las ordenes de compra al sistema, este toma como 
-    parametro el ID del proveedor con el decidio realizar la orden de compra, la fecha que se realizo el pedido,
-    el precio total que tendra la orden de compra (atributo que es la suma de los precios de los renglones),
-    luego, toma tres arreglos de listas que cada uno guardara la informacion del renglon
-    es decir, en la posicion i de todos los arreglos se encuentra la informacion asociado a este renglon i
-    por ejemplo: el primer renglon ingresado tendra su informacion guardada de la siguiente forma
-    cantidades.get(0), precios.get(0), ID_MateriasPrimas.get(0)
+    parametro el nombre del proveedor con el que decidio realizar la orden de compra, la fecha que se realizo el pedido,
+    el precio total que tendra la orden de compra 
     */
-    public void generarOrdenDeCompra(int ID_proveedor, Date fecha_pedido, double precio_total, ArrayList<Renglon> renglones) throws Exception{
+    public void generarOrdenDeCompra(String proveedor, Date fecha_pedido, double precio_total, ArrayList<Renglon> renglones) throws Exception{
         
-        Orden_Compra nueva_Orden = new Orden_Compra(fecha_pedido, precio_total, ID_proveedor);
+        Orden_Compra nueva_Orden = new Orden_Compra(fecha_pedido, precio_total, proveedor);
         dao.create(nueva_Orden);
         
         for (int i = 0; i < renglones.size(); i++) {
             Renglon auxiliar = renglones.get(i);
-            Manager_Renglon.getInstance().generarRenglon(auxiliar.getCantidad(), auxiliar.getPrecio(), auxiliar.getID_Tiene());
+            Manager_Renglon.getInstance().generarRenglon(auxiliar.getCantidad(), auxiliar.getPrecio(), auxiliar.getNombre_Tiene());
         }
     }
 
