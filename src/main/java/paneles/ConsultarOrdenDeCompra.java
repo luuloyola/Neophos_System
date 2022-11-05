@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logico.Manager_OrdenCompra;
 import logico.Orden_Compra;
-import logico.Renglon;
+import logico.Renglon_Compra;
 
 /**
  *
@@ -301,9 +301,9 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         comienzaConsultar();
         
         int idOrden = 0;
-        Map<Orden_Compra, List<Renglon>> ordenCompleta = new HashMap<>();
+        Map<Orden_Compra, List<Renglon_Compra>> ordenCompleta = new HashMap<>();
         Orden_Compra infoOrden = new Orden_Compra();
-        List<Renglon> infoRenglones = new ArrayList<Renglon>();
+        List<Renglon_Compra> infoRenglones = new ArrayList<Renglon_Compra>();
         DefaultTableModel modelo = (DefaultTableModel) tablaRenglones.getModel();
 
         try {
@@ -333,7 +333,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                     IDProveedorLabel2.setText(infoOrden.getProveedor().toString());
 
 
-                    for(Renglon info: infoRenglones){
+                    for(Renglon_Compra info: infoRenglones){
                         modelo.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getNombre_Tiene()});
                     }
                 }

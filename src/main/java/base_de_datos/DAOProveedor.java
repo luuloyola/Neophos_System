@@ -3,8 +3,6 @@ package base_de_datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import logico.Provee;
-
 import logico.Proveedor;
 
 public class DAOProveedor implements DAO<Proveedor>{

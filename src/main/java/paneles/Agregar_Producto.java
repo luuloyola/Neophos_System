@@ -11,12 +11,12 @@ import logico.Manager_Provee;
 import logico.Manager_Proveedor;
 import logico.Provee;
 import logico.Proveedor;
-import logico.Renglon;
+import logico.Renglon_Compra;
 
 public class Agregar_Producto extends javax.swing.JPanel {
     
     private Manager_Provee manager_provee;
-    private Renglon renglon;
+    private Renglon_Compra renglon;
     private DefaultTableModel modelo;
     public Agregar_Producto(String proveedor) throws Exception {
         initComponents();
@@ -283,7 +283,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
         }
         
 
-        renglon = new Renglon();
+        renglon = new Renglon_Compra();
         renglon.setNombre_Tiene((materia.getValueAt(materia.getSelectedRow() , 1).toString()));
         renglon.setCantidad(Integer.parseInt(cantidad_ingresar.getText()));
         renglon.setPrecio(getRenglon().getCantidad()*(double)materia.getValueAt(materia.getSelectedRow() , 2));
@@ -372,7 +372,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_volverActionPerformed
 
-    public Renglon getRenglon(){
+    public Renglon_Compra getRenglon(){
         return this.renglon;
     }
 

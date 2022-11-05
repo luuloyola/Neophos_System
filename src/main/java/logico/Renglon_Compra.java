@@ -4,18 +4,18 @@
  */
 package logico;
 
-public class Renglon {
+public class Renglon_Compra {
     private double cantidad;
     private double precio;
     private String nombre; 
     
-    public Renglon(double cantidad, double precio, String nombre){
+    public Renglon_Compra(double cantidad, double precio, String nombre){
         this.cantidad = cantidad;
         this.precio = precio;
         this.nombre = nombre;
     }
     
-    public Renglon(){
+    public Renglon_Compra(){
         this.cantidad = 0;
         this.precio = 0;
         this.nombre = "";
