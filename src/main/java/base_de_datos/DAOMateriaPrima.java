@@ -40,7 +40,19 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     
     @Override
     public void create(MateriaPrima object) throws Exception {
-        // No Support yet
+        try {
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
+            st.setString(1, object.getNombre());
+            st.setString(2, object.getDescripcion());
+            st.setObject(3, object.getTipoMateriaPrima().toString());
+            st.setDouble(4, object.getPrecio_unidad());
+            
+            st.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionBD.cerrar();
+        }
     }
 
     @Override

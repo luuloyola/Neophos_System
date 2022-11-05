@@ -15,6 +15,7 @@ public class MateriaPrima {
         else tipoMateriaPrima = TipoMat.INSUMO;
         this.precio_unidad = precio_unidad;
     }
+    
     public MateriaPrima(){}
 
     public String getNombre(){
