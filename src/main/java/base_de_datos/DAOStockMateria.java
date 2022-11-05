@@ -18,7 +18,6 @@ public class DAOStockMateria implements DAO<StockMateria>{
             PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(id_materiaprima) from materiaprima;");
             ResultSet rs = st.executeQuery();
             if(rs.next()) id_mat = rs.getInt(1);
-            System.out.println("id es: "+id_mat);
             st = ConexionBD.getConexion()
                     .prepareStatement("INSERT INTO Stock_Materia (Cantidad, ID_MateriaPrima_Proveida, ID_Deposito) VALUES (?,?,?)");
             st.setDouble(1,object.getCantidad());

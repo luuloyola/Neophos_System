@@ -2,13 +2,14 @@ package paneles;
 
 import java.awt.Color;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import logico.Manager_MateriaPrima;
+import logico.Manager_Producto;
 import logico.Manager_Proveedor;
-import logico.Proveedor;
+import logico.Producto;
 
 public class CargarMateriaPrima extends javax.swing.JPanel {
 
@@ -22,6 +23,17 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
         
         JTipo.addItem("PRODUCTO_QUIMICO");
         JTipo.addItem("INSUMO");
+        
+        List<Producto> productos = Manager_Producto.getInstance().getAllProductos();
+        String auxiliar;
+        JMat.addItem("Seleccionar Materia Prima");
+        
+        JMat.setSelectedIndex(0);
+
+        for (int i = 0; i<productos.size(); i++){
+            auxiliar = productos.get(i).getNombre();
+            JMat.addItem(auxiliar);
+        }
     }
 
     //Metodos del Formulario
@@ -267,8 +279,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             //Caso donde todos los campos cumplen el formato
             String nombre,des,tipo;
             double cant,precio;
-            String proveedor;
-            nombre = "";
+            nombre = JMat.getSelectedItem().toString();
             if(fieldDescripcion.getText().isEmpty()) des ="-"; else des = fieldDescripcion.getText();
             
             tipo = (String) JTipo.getSelectedItem();
@@ -276,7 +287,7 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             cant = Double.parseDouble(fieldCantidad.getText());
             
             try {
-                manager_mat.cargarMateriaPrima("", des, tipo ,precio, cant);
+                manager_mat.cargarMateriaPrima(nombre, des, tipo, precio, cant);
                 JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
                 clean();
             } catch (Exception ex) {
