@@ -33,6 +33,7 @@ public class Generar_Orden extends javax.swing.JPanel {
         
         renglon = new ArrayList<Renglon_Compra>();
         
+        
         modelo = (DefaultTableModel) tablaRenglones.getModel();
         
         ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
@@ -331,6 +332,7 @@ public class Generar_Orden extends javax.swing.JPanel {
     }//GEN-LAST:event_agregar_renglonActionPerformed
 
     private void inicioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_inicioAncestorAdded
+        System.out.println("Hace el ancestor");
         if (consultar != null){
             if(consultar.getRenglon()!=null){
                 if (proveedor_lista.isEnabled()) proveedor_lista.setEnabled(false);

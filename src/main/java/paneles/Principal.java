@@ -11,6 +11,7 @@ public class Principal extends javax.swing.JFrame {
     
     private static Principal neophos;
     private static Generar_Orden generar_orden;
+    private static GenerarOrdenProduccion orden;
     
     public Principal(){
         initComponents();
@@ -22,16 +23,21 @@ public class Principal extends javax.swing.JFrame {
 
     // go_to es una funcion que nos ayuda a cambiar entre los paneles del sistema
     public void go_to(JPanel panel) {
+        System.out.println("Empieza go_to");
         inicio.setLayout(new java.awt.BorderLayout());
         inicio.removeAll();
         inicio.add(panel,BorderLayout.CENTER);
         inicio.repaint();
         inicio.revalidate();
+        System.out.println("Termina go_to");
     }
     
     
     public static JPanel getGenerar_Orden(){
         return generar_orden;
+    }
+    public static JPanel getGenerar_Orden_Produccion(){
+        return orden;
     }
    
 
@@ -267,7 +273,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jtestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtestActionPerformed
         try {
-            go_to(new GenerarOrdenProduccion());
+            go_to(orden = new GenerarOrdenProduccion());
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import logico.Manager_ProductoFinal;
 import logico.ProductoFinal;
+import logico.RenglonProduccion;
 import logico.Renglon_Compra;
 
 public class Consultar_ProductoFinal extends javax.swing.JPanel {
@@ -19,17 +20,19 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     private DefaultTableModel modeloProducto;
     private DefaultTableModel modeloMateria;
     private ProductoFinal productoFinal = new ProductoFinal();
+    private RenglonProduccion renglon;
     private ArrayList<ProductoFinal> arreglo;
+    private int context;
     
     public Consultar_ProductoFinal(int context) throws Exception{
         initComponents();
         if(context == 0){
             asteric.setVisible(false);
             textCant.setVisible(false);
-            fieldCant.setVisible(false);
+            cantidad_ingresar.setVisible(false);
             volver.setVisible(false);
         }
-        
+        this.context = context;
         muestra.setVisible(false);
         manager_pFinal = Manager_ProductoFinal.getInstance();
         modeloProducto = (DefaultTableModel) productos.getModel();
@@ -64,7 +67,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         confirmar_1 = new javax.swing.JButton();
         textCant = new javax.swing.JLabel();
-        fieldCant = new javax.swing.JTextField();
+        cantidad_ingresar = new javax.swing.JTextField();
         asteric = new javax.swing.JLabel();
         muestra = new javax.swing.JPanel();
         Titulo1 = new javax.swing.JLabel();
@@ -184,7 +187,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                                         .addGap(24, 24, 24)
                                         .addComponent(textCant)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fieldCant, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cantidad_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(asteric)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -210,17 +213,18 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                         .addComponent(Titulo)))
                 .addComponent(Separador6)
                 .addGap(20, 20, 20)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(seleccionar)
                 .addGap(12, 12, 12)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantidad_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textCant)
                     .addComponent(asteric)
                     .addComponent(confirmar_1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,37 +393,67 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     }//GEN-LAST:event_filtrarActionPerformed
 
     private void confirmar_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_1ActionPerformed
-        if (productos.getSelectedRow()==-1)
-        {
-            JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
-            seleccionar.setForeground(Color.RED);
-            return;
-        }
+       
+        if(context == 0){
+                if (productos.getSelectedRow()==-1)
+            {
+                JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
+                seleccionar.setForeground(Color.RED);
+                return;
+            }
 
-        productoFinal = arreglo.get(productos.getSelectedRow());
-        
-        
-        productos.setVisible(false);
-        seleccionar.setVisible(false);
-        volver.setVisible(false);
-        
-        nombre1.setText(productoFinal.getNombre_Producto());
-        descripcion1.setText(productoFinal.getDescripcion());
-        tipo1.setText(productoFinal.getEmpaquetado().toString());
-        precio1.setText(Double.toString(productoFinal.getPrecio()));
-        
-        ArrayList<String> materias = new ArrayList();
-        try {
-            materias = manager_pFinal.compuesto_por(productoFinal.getNombre_Producto());
-            System.out.println(materias.get(0));
-        } catch (Exception ex) {
-            Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
+            productoFinal = arreglo.get(productos.getSelectedRow());
+
+
+            productos.setVisible(false);
+            seleccionar.setVisible(false);
+            volver.setVisible(false);
+
+            nombre1.setText(productoFinal.getNombre_Producto());
+            descripcion1.setText(productoFinal.getDescripcion());
+            tipo1.setText(productoFinal.getEmpaquetado().toString());
+            precio1.setText(Double.toString(productoFinal.getPrecio()));
+
+            ArrayList<String> materias = new ArrayList();
+            try {
+                materias = manager_pFinal.compuesto_por(productoFinal.getNombre_Producto());
+                System.out.println(materias.get(0));
+            } catch (Exception ex) {
+                Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            for (int i = 0; i<materias.size(); i++){
+                        modeloMateria.addRow(new Object[] {materias.get(i)});
+            }
+            borrar_panel(muestra);
+        } else {
+            if (productos.getSelectedRow()==-1)
+            {
+                JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
+                seleccionar.setForeground(Color.RED);
+                return;
+            }
+
+            try{
+                if (Integer.parseInt(cantidad_ingresar.getText())<=0){
+                    JOptionPane.showMessageDialog(this,"Debe ingresar una cantidad valida, mayor a 0","", JOptionPane.WARNING_MESSAGE);
+                    seleccionar.setForeground(Color.red);
+                    return;
+                }
+            }catch(Exception ex){
+                    JOptionPane.showMessageDialog(this,"Debe ingresar valores validos de cantidad","", JOptionPane.WARNING_MESSAGE);
+                    seleccionar.setForeground(Color.red);
+                    return;
+            }
+
+            renglon = new RenglonProduccion();
+            renglon.setNombre_Tiene((productos.getValueAt(productos.getSelectedRow() , 0).toString()));
+            renglon.setCantidad(Integer.parseInt(cantidad_ingresar.getText()));
+            renglon.setPrecio(getRenglon().getCantidad()*(double)productos.getValueAt(productos.getSelectedRow() , 2));
+
+            paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Produccion());
         }
         
-        for (int i = 0; i<materias.size(); i++){
-                    modeloMateria.addRow(new Object[] {materias.get(i)});
-        }
-        borrar_panel(muestra);
     }//GEN-LAST:event_confirmar_1ActionPerformed
 
     private void volverButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButton3ActionPerformed
@@ -436,8 +470,8 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         //if (proveedor_lista.isEnabled()) proveedor_lista.setSelectedIndex(0);
     }
     
-    public Renglon_Compra getRenglon(){
-        return null;
+    public RenglonProduccion getRenglon(){
+        return this.renglon;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -446,10 +480,10 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo1;
     private javax.swing.JLabel asteric;
+    private javax.swing.JTextField cantidad_ingresar;
     private javax.swing.JButton confirmar_1;
     private javax.swing.JPanel contenedor;
     private javax.swing.JTextField descripcion1;
-    private javax.swing.JTextField fieldCant;
     private javax.swing.JButton filtrar;
     private javax.swing.JLabel infoOrdenLabel1;
     private javax.swing.JPanel inicio;
