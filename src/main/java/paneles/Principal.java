@@ -2,7 +2,6 @@ package paneles;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -64,6 +63,7 @@ public class Principal extends javax.swing.JFrame {
         consultar_mat = new javax.swing.JButton();
         consultar_ordeb = new javax.swing.JButton();
         generar_orde = new javax.swing.JButton();
+        jtest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -162,6 +162,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jtest.setText("TEST");
+        jtest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout franja_rojaLayout = new javax.swing.GroupLayout(franja_roja);
         franja_roja.setLayout(franja_rojaLayout);
         franja_rojaLayout.setHorizontalGroup(
@@ -175,7 +182,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(consultar_ordeb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(generar_orde, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
+                .addGap(12, 12, 12)
+                .addComponent(jtest, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Titulo2)
                 .addGap(14, 14, 14))
         );
@@ -188,7 +197,8 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(consultar_mat, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(consultar_ordeb, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(generar_orde, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtest, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -255,6 +265,14 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_consultar_matActionPerformed
 
+    private void jtestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtestActionPerformed
+        try {
+            go_to(new GenerarOrdenProduccion());
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jtestActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -310,6 +328,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel franja_roja;
     private javax.swing.JButton generar_orde;
     private javax.swing.JPanel inicio;
+    private javax.swing.JButton jtest;
     private javax.swing.JLabel mesas;
     // End of variables declaration//GEN-END:variables
 }
