@@ -16,8 +16,8 @@ import logico.Renglon_Compra;
 public class Consultar_ProductoFinal extends javax.swing.JPanel {
     
     private Manager_ProductoFinal manager_pFinal;
-    private DefaultTableModel modelo;
-    private DefaultTableModel modelo1;
+    private DefaultTableModel modeloProducto;
+    private DefaultTableModel modeloMateria;
     private ProductoFinal productoFinal = new ProductoFinal();
     private ArrayList<ProductoFinal> arreglo;
     
@@ -29,18 +29,18 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             fieldCant.setVisible(false);
             volver.setVisible(false);
         }
+        
         muestra.setVisible(false);
         manager_pFinal = Manager_ProductoFinal.getInstance();
-        modelo = (DefaultTableModel) productos.getModel();
-        modelo1 = (DefaultTableModel) materias1.getModel();
-        
+        modeloProducto = (DefaultTableModel) productos.getModel();
+        modeloMateria = (DefaultTableModel) materias1.getModel();
         
         arreglo = manager_pFinal.buscar_todos();
         
         for (int i = 0; i<arreglo.size(); i++){
                     productoFinal = arreglo.get(i);
                     System.out.println(productoFinal.getNombre_Producto());
-                    modelo.addRow(new Object[] {productoFinal.getNombre_Producto(), productoFinal.getEmpaquetado().toString(), productoFinal.getPrecio()});
+                    modeloProducto.addRow(new Object[] {productoFinal.getNombre_Producto(), productoFinal.getEmpaquetado().toString(), productoFinal.getPrecio()});
                     System.out.println("Lo deberia haber hecho");
         }
     }
@@ -62,7 +62,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         filtrar = new javax.swing.JButton();
         nombreProducto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        confirmar = new javax.swing.JButton();
+        confirmar_1 = new javax.swing.JButton();
         textCant = new javax.swing.JLabel();
         fieldCant = new javax.swing.JTextField();
         asteric = new javax.swing.JLabel();
@@ -138,14 +138,14 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(97, 34, 34));
         jLabel2.setText("Nombre Producto:");
 
-        confirmar.setBackground(new java.awt.Color(117, 49, 49));
-        confirmar.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
-        confirmar.setForeground(new java.awt.Color(227, 227, 218));
-        confirmar.setText("CONFIRMAR");
-        confirmar.setBorder(null);
-        confirmar.addActionListener(new java.awt.event.ActionListener() {
+        confirmar_1.setBackground(new java.awt.Color(117, 49, 49));
+        confirmar_1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        confirmar_1.setForeground(new java.awt.Color(227, 227, 218));
+        confirmar_1.setText("CONFIRMAR");
+        confirmar_1.setBorder(null);
+        confirmar_1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarActionPerformed(evt);
+                confirmar_1ActionPerformed(evt);
             }
         });
 
@@ -188,13 +188,13 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(asteric)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(confirmar_1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1)))
                         .addGap(40, 40, 40))
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(Separador6, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+                        .addComponent(Separador6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         inicioLayout.setVerticalGroup(
@@ -216,16 +216,16 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                     .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(seleccionar)
                 .addGap(12, 12, 12)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textCant)
                     .addComponent(asteric)
-                    .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmar_1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -287,7 +287,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             .addGroup(muestraLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Separador7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 961, Short.MAX_VALUE)
+                    .addComponent(Separador7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, muestraLayout.createSequentialGroup()
                         .addComponent(Titulo1)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -315,7 +315,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                                         .addComponent(tipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
             .addGroup(muestraLayout.createSequentialGroup()
                 .addGap(418, 418, 418)
                 .addComponent(volverButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -353,7 +353,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                             .addComponent(jLabel10))))
                 .addGap(26, 26, 26)
                 .addComponent(volverButton3)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -388,7 +388,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_filtrarActionPerformed
 
-    private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
+    private void confirmar_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_1ActionPerformed
         if (productos.getSelectedRow()==-1)
         {
             JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
@@ -417,10 +417,10 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         }
         
         for (int i = 0; i<materias.size(); i++){
-                    modelo1.addRow(new Object[] {materias.get(i)});
+                    modeloMateria.addRow(new Object[] {materias.get(i)});
         }
         borrar_panel(muestra);
-    }//GEN-LAST:event_confirmarActionPerformed
+    }//GEN-LAST:event_confirmar_1ActionPerformed
 
     private void volverButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButton3ActionPerformed
         try {
@@ -446,7 +446,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo1;
     private javax.swing.JLabel asteric;
-    private javax.swing.JButton confirmar;
+    private javax.swing.JButton confirmar_1;
     private javax.swing.JPanel contenedor;
     private javax.swing.JTextField descripcion1;
     private javax.swing.JTextField fieldCant;
