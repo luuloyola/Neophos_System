@@ -13,8 +13,7 @@ import logico.RenglonProduccion;
 
 public class GenerarOrdenProduccion extends javax.swing.JPanel {
     private ManagerOrdenProduccion manager_orden;
-    private ArrayList<RenglonProduccion> renglon;
-    private AgregarProductosFinales consultar;
+    private final ArrayList<RenglonProduccion> renglon;
     private DefaultTableModel modelo;
     private double precio_total;
 
@@ -23,6 +22,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         renglon = new ArrayList<RenglonProduccion>();
         //modelo = (DefaultTableModel) Tabla_productos.getModel();
         initComponents();
+        fechaAuto.setText("Fecha Pedido:  "+LocalDate.now().getYear()+" / "+LocalDate.now().getMonthValue()+" / "+LocalDate.now().getDayOfMonth());
         
     }
     @SuppressWarnings("unchecked")
@@ -31,7 +31,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
 
         inicio = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        fechaAuto = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         año_lim = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -45,6 +45,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         btn_calcular = new javax.swing.JButton();
         btn_confirma = new javax.swing.JButton();
         JCalculo = new javax.swing.JLabel();
+        Separador6 = new javax.swing.JLabel();
 
         inicio.setBackground(new java.awt.Color(227, 227, 218));
         inicio.setPreferredSize(new java.awt.Dimension(800, 517));
@@ -53,11 +54,11 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(97, 34, 34));
         jLabel1.setText("GENERAR ORDEN DE PRODUCCION");
 
-        jLabel2.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(97, 34, 34));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Fecha Pedido:");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        fechaAuto.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
+        fechaAuto.setForeground(new java.awt.Color(97, 34, 34));
+        fechaAuto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fechaAuto.setText("Fecha Pedido:");
+        fechaAuto.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(97, 34, 34));
@@ -162,21 +163,25 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         JCalculo.setForeground(new java.awt.Color(97, 34, 34));
         JCalculo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        Separador6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Separador6.setForeground(new java.awt.Color(97, 34, 34));
+        Separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
+
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(inicioLayout.createSequentialGroup()
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
                         .addComponent(btn_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(JCalculo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_confirma, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inicioLayout.createSequentialGroup()
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(inicioLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -193,19 +198,22 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(req))
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
+                            .addComponent(fechaAuto)))
+                    .addComponent(Separador6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(fechaAuto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Separador6, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -218,7 +226,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                     .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_confirma, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,11 +238,11 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -243,7 +251,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Debe ingresar renglones","", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         Date fecha;
 
         if (verificar_fecha()){
@@ -258,7 +266,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
 
             try {
                 manager_orden.generarOrdenDeProduccion(fecha, precio_total, renglon);
-                JOptionPane.showMessageDialog(this, "Orden de compra cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Orden de produccion cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
                 Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
@@ -267,24 +275,13 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_confirmaActionPerformed
 
-    public void restablecer_valores(){
-        año_lim.setText("yyyy");
-        mes_lim.setText("mm");
-        dia_lim.setText("dd");
-        renglon.clear();
-        precio_total = 0;
-        consultar = null;
-        modelo.setRowCount(0);
-    }
-    
     private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_calcularActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         try {
-            ConsultarOrdenDeCompra consulta;
-            paneles.Principal.getNeophos().go_to(consulta = new ConsultarOrdenDeCompra());
+            paneles.Principal.getNeophos().go_to(new Consultar_ProductoFinal(1));
         } catch (Exception ex) {
             Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -314,6 +311,15 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         año_lim.setText("");
     }//GEN-LAST:event_año_limMouseClicked
 
+    public void restablecer_valores(){
+        año_lim.setText("yyyy");
+        mes_lim.setText("mm");
+        dia_lim.setText("dd");
+        renglon.clear();
+        precio_total = 0;
+        modelo.setRowCount(0);
+    }
+    
     public boolean verificar_fecha(){
         try{
             LocalDate fecha = LocalDate.now();
@@ -340,15 +346,16 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JCalculo;
+    private javax.swing.JLabel Separador6;
     private javax.swing.JTable Tabla_productos;
     private javax.swing.JTextField año_lim;
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_calcular;
     private javax.swing.JButton btn_confirma;
     private javax.swing.JTextField dia_lim;
+    private javax.swing.JLabel fechaAuto;
     private javax.swing.JPanel inicio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
