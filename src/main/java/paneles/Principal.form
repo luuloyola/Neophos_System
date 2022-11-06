@@ -95,7 +95,7 @@
                           <Component id="Titulo" min="-2" max="-2" attributes="0"/>
                           <Component id="Separador6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="78" max="32767" attributes="0"/>
+                      <EmptySpace pref="117" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -162,7 +162,9 @@
                       <Component id="consultar_ordeb" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="generar_orde" min="-2" pref="208" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="jtest" min="-2" pref="57" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Titulo2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
@@ -178,6 +180,7 @@
                           <Component id="consultar_ordeb" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="generar_orde" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                           <Component id="Titulo2" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="jtest" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
@@ -277,6 +280,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generar_ordeActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jtest">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="TEST"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtestActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

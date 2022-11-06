@@ -1,51 +1,61 @@
 package logico;
 
 public class ProductoFinal {
-    private String Nombre_Producto;
-    private String Descripcion;
-    private Tipo_Empaquetado Empaquetado;
-    private double Precio;
+    private String nombre_Producto;
+    private String descripcion;
+    private Tipo_Empaquetado empaquetado;
+    private double precio;
     
-    public ProductoFinal(){
-        
+    public ProductoFinal(String nombre, String descripcion, Tipo_Empaquetado tipo, double precio){
+        nombre_Producto = nombre;
+        this.descripcion = descripcion;
+        empaquetado = switch (tipo) {
+            case TIRAS -> Tipo_Empaquetado.TIRAS;
+            case PASTILLAS -> Tipo_Empaquetado.PASTILLAS;
+            default -> Tipo_Empaquetado.SOBRES;
+        };
+        this.precio = precio;
+    }
+
+    public ProductoFinal() {
     }
 
     public String getNombre_Producto() {
-        return Nombre_Producto;
+        return nombre_Producto;
     }
 
     public void setNombre_Producto(String Nombre_Producto) {
-        this.Nombre_Producto = Nombre_Producto;
+        this.nombre_Producto = Nombre_Producto;
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
     public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+        this.descripcion = Descripcion;
     }
 
     public Tipo_Empaquetado getEmpaquetado() {
-        return Empaquetado;
+        return empaquetado;
     }
 
     public void setEmpaquetado(String Empaquetado) {
          if(Empaquetado.equals("TIRAS"))
-            this.Empaquetado = Tipo_Empaquetado.TIRAS;
+            this.empaquetado = Tipo_Empaquetado.TIRAS;
          else if(Empaquetado.equals("SOBRES")){
-             this.Empaquetado = Tipo_Empaquetado.SOBRES;
+             this.empaquetado = Tipo_Empaquetado.SOBRES;
          }
-         else this.Empaquetado = Tipo_Empaquetado.PASTILLAS;
+         else this.empaquetado = Tipo_Empaquetado.PASTILLAS;
 
     }
 
     public double getPrecio() {
-        return Precio;
+        return precio;
     }
 
     public void setPrecio(double Precio) {
-        this.Precio = Precio;
+        this.precio = Precio;
     }
     
 }
