@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import logico.Manager_ProductoFinal;
 import logico.ProductoFinal;
 import logico.RenglonProduccion;
-import logico.Renglon_Compra;
 
 public class Consultar_ProductoFinal extends javax.swing.JPanel {
     

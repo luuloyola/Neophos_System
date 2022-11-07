@@ -212,6 +212,12 @@ public class Generar_Orden extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Precio total:");
 
+        precio_total_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precio_total_fieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
@@ -413,6 +419,10 @@ public class Generar_Orden extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void precio_total_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precio_total_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precio_total_fieldActionPerformed
 
     public boolean verificar_fecha(){
         try{
