@@ -26,10 +26,10 @@ public class DAOProductoFinal implements DAO<ProductoFinal>{
             ResultSet rs = st.executeQuery();
             
             while(rs.next()){
-                producto.setNombre_Producto(rs.getString(2));
-                producto.setDescripcion(rs.getString(3));
-                producto.setEmpaquetado(rs.getString(4));
-                producto.setPrecio(rs.getDouble(5));
+                producto.setNombre_Producto(rs.getString(1));
+                producto.setDescripcion(rs.getString(2));
+                producto.setEmpaquetado(rs.getString(3));
+                producto.setPrecio(rs.getDouble(4));
             }
             rs.close();
             st.close();

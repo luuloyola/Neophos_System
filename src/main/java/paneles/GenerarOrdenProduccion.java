@@ -48,6 +48,9 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         tablaRenglones = new javax.swing.JTable();
         precio_total_field = new javax.swing.JLabel();
         eliminar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        receta = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         inicio.setBackground(new java.awt.Color(227, 227, 218));
         inicio.setPreferredSize(new java.awt.Dimension(800, 517));
@@ -188,23 +191,50 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
             }
         });
 
+        receta.setColumns(20);
+        receta.setRows(5);
+        jScrollPane2.setViewportView(receta);
+
+        jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(97, 34, 34));
+        jLabel4.setText("AGREGAR RECETA");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inicioLayout.createSequentialGroup()
-                        .addComponent(precio_total_field)
-                        .addGap(79, 79, 79)
-                        .addComponent(JCalculo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_confirma, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Separador6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(40, 40, 40))
                     .addGroup(inicioLayout.createSequentialGroup()
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(inicioLayout.createSequentialGroup()
+                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(inicioLayout.createSequentialGroup()
+                                        .addComponent(JCalculo)
+                                        .addGap(380, 380, 380))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioLayout.createSequentialGroup()
+                                        .addComponent(precio_total_field)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(inicioLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_confirma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(52, 52, 52))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(inicioLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -221,12 +251,9 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(req))
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaAuto)))
-                    .addComponent(Separador6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(40, 40, 40))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fechaAuto)
+                        .addGap(86, 86, 86))))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,18 +264,25 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                     .addComponent(fechaAuto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Separador6, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(año_lim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(mes_lim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(dia_lim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(req)
-                    .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(año_lim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(mes_lim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(dia_lim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(req)
+                            .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_confirma, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,6 +311,8 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         }
 
         Date fecha_lim, fecha_now;
+        String recetas = " - ";
+        if(!receta.getText().equals(""))recetas = receta.getText();
 
         if (verificar_fecha()){
             fecha_lim = new Date((Integer.parseInt(año_lim.getText())-1900),Integer.parseInt(mes_lim.getText()),Integer.parseInt(dia_lim.getText()));
@@ -290,7 +326,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
             manager_orden = ManagerOrdenProduccion.getInstance();
 
             try {
-                manager_orden.generarOrdenDeProduccion(fecha_now, precio_total, fecha_lim," - ",renglon);
+                manager_orden.generarOrdenDeProduccion(fecha_now, precio_total, fecha_lim,recetas,renglon);
                 JOptionPane.showMessageDialog(this, "Orden de produccion cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
@@ -372,6 +408,8 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         dia_lim.setText("dd");
         renglon.clear();
         precio_total = 0;
+        precio_total_field.setText("COSTO TOTAL: ");
+        receta.setText("");
         modelo.setRowCount(0);
     }
     
@@ -411,11 +449,14 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
     private javax.swing.JPanel inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField mes_lim;
     private javax.swing.JLabel precio_total_field;
+    private javax.swing.JTextArea receta;
     private javax.swing.JLabel req;
     private javax.swing.JTable tablaRenglones;
     // End of variables declaration//GEN-END:variables

@@ -30,12 +30,15 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             textCant.setVisible(false);
             cantidad_ingresar.setVisible(false);
             volver.setVisible(false);
-        }
+            seleccionar.setText("Seleccione el producto que desea consultar");
+            
+        } else {seleccionar.setText("Seleccione el producto que desea ordenar");}
         this.context = context;
         muestra.setVisible(false);
         manager_pFinal = Manager_ProductoFinal.getInstance();
         modeloProducto = (DefaultTableModel) productos.getModel();
         modeloMateria = (DefaultTableModel) materias1.getModel();
+        
         
         arreglo = manager_pFinal.buscar_todos();
         
@@ -375,7 +378,11 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
 
-        
+        int input = JOptionPane.showConfirmDialog(this,"Seguro desea volver a la pantalla orden de Produccion?", "¡Cuidado!",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (input == 0){
+            renglon = null;
+            paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Produccion());
+        }
     }//GEN-LAST:event_volverActionPerformed
 
     public void borrar_panel(JPanel panel){
@@ -386,7 +393,23 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     }
     
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
-        // TODO add your handling code here:
+        if(!nombreProducto.getText().isBlank()){
+            try {
+                ProductoFinal producto_consultado = manager_pFinal.consultar(nombreProducto.getText());
+                if (producto_consultado.getNombre_Producto() == null){
+                    no_hay_valores();
+                } else {
+                    modeloProducto.setRowCount(0);
+                    modeloProducto.addRow(new Object[] {producto_consultado.getNombre_Producto(), producto_consultado.getEmpaquetado(), producto_consultado.getPrecio()});
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(Agregar_Producto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Se requiere el nombre del producto","", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_filtrarActionPerformed
 
     private void confirmar_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_1ActionPerformed
