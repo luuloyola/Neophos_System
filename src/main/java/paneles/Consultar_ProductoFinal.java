@@ -42,9 +42,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         
         for (int i = 0; i<arreglo.size(); i++){
                     productoFinal = arreglo.get(i);
-                    System.out.println(productoFinal.getNombre_Producto());
                     modeloProducto.addRow(new Object[] {productoFinal.getNombre_Producto(), productoFinal.getEmpaquetado().toString(), productoFinal.getPrecio()});
-                    System.out.println("Lo deberia haber hecho");
         }
     }
 
@@ -229,7 +227,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                     .addComponent(asteric)
                     .addComponent(confirmar_1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -357,7 +355,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                             .addComponent(jLabel10))))
                 .addGap(26, 26, 26)
                 .addComponent(volverButton3)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -372,7 +370,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

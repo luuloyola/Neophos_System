@@ -23,13 +23,11 @@ public class Principal extends javax.swing.JFrame {
 
     // go_to es una funcion que nos ayuda a cambiar entre los paneles del sistema
     public void go_to(JPanel panel) {
-        System.out.println("Empieza go_to");
         inicio.setLayout(new java.awt.BorderLayout());
         inicio.removeAll();
         inicio.add(panel,BorderLayout.CENTER);
         inicio.repaint();
         inicio.revalidate();
-        System.out.println("Termina go_to");
     }
     
     

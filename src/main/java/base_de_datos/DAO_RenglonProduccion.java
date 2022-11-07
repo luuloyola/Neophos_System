@@ -5,11 +5,27 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import logico.RenglonProduccion;
-import logico.Renglon_Compra;
 public class DAO_RenglonProduccion implements DAO<RenglonProduccion>{
 
     @Override
     public void create(RenglonProduccion object) throws Exception {
+        int id_Orden = 0;
+        try {
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(ID_OrdenDeProduccion) from OrdenDeProduccion;");
+            ResultSet rs = st.executeQuery();
+            if(rs.next()) id_Orden = rs.getInt(1);
+            st = ConexionBD.getConexion()
+                    .prepareStatement("INSERT INTO Renglon_Produccion (Cantidad, Precio, Nombre_Producto_Tiene, ID_Orden_Corresponde) VALUES (?,?,?,?)");
+            st.setDouble(1, object.getCantidad());
+            st.setDouble(2, object.getPrecio());
+            st.setObject(3, object.getNombre_Tiene());
+            st.setInt(4, id_Orden);
+            st.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionBD.cerrar();
+        }
     }
 
     @Override

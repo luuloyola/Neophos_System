@@ -265,10 +265,11 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
             return;
         }
 
-        Date fecha;
+        Date fecha_lim, fecha_now;
 
         if (verificar_fecha()){
-            fecha = new Date(Integer.parseInt(año_lim.getText()),Integer.parseInt(mes_lim.getText()),Integer.parseInt(dia_lim.getText()));
+            fecha_lim = new Date((Integer.parseInt(año_lim.getText())-1900),Integer.parseInt(mes_lim.getText()),Integer.parseInt(dia_lim.getText()));
+            fecha_now = new Date((LocalDate.now().getYear()-1900),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
         }
         else return;
 
@@ -278,7 +279,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
             manager_orden = ManagerOrdenProduccion.getInstance();
 
             try {
-                manager_orden.generarOrdenDeProduccion(fecha, precio_total, renglon);
+                manager_orden.generarOrdenDeProduccion(fecha_now, precio_total, fecha_lim," - ",renglon);
                 JOptionPane.showMessageDialog(this, "Orden de produccion cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
@@ -363,7 +364,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this,"Debe ingresar un año valido","", JOptionPane.WARNING_MESSAGE);
                 return false;
             }
-            if ((!(0<Integer.parseInt(mes_lim.getText()) && Integer.parseInt(mes_lim.getText()) <12))||((Integer.parseInt(año_lim.getText())== fecha.getYear()) && fecha.getMonthValue()> Integer.parseInt(mes_lim.getText()))){
+            if ((!(0<Integer.parseInt(mes_lim.getText()) && Integer.parseInt(mes_lim.getText()) <=12))||((Integer.parseInt(año_lim.getText())== fecha.getYear()) && fecha.getMonthValue()> Integer.parseInt(mes_lim.getText()))){
                 JOptionPane.showMessageDialog(this,"Debe ingresar un mes valido","", JOptionPane.WARNING_MESSAGE);
                 return false;
             }
