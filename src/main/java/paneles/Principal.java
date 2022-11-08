@@ -250,7 +250,11 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultar_ordebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_ordebActionPerformed
-        go_to(new ConsultarOrdenDeCompra());
+       try {
+            go_to(new ConsultarOrdenDeCompra());
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_consultar_ordebActionPerformed
 
     private void cargar_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_materiaActionPerformed

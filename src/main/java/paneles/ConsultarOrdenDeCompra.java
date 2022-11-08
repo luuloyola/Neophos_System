@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logico.Manager_OrdenCompra;
@@ -21,11 +23,26 @@ import logico.Renglon_Compra;
  */
 public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
   
-    public ConsultarOrdenDeCompra() {
+    private List<Orden_Compra> ordenes = new ArrayList<>();
+    private Orden_Compra orden = new Orden_Compra();
+    private DefaultTableModel modelo;
+        
+    public ConsultarOrdenDeCompra() throws Exception {
         initComponents();
-        inicializarLabels();
+        
+        muestra.setVisible(false);
+        
+        ordenes = Manager_OrdenCompra.getInstance().consultarTodasLasOrdenes();
+        
+        modelo = (DefaultTableModel) tablaInicio.getModel();
+        
+        for (int i = 0; i<ordenes.size(); i++){
+            orden = ordenes.get(i);
+            modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
+        }
     }
     
+    /*
     public void inicializarLabels(){
         infoOrdenLabel.setEnabled(false);
         FechaPLabel.setEnabled(false);
@@ -61,6 +78,8 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         PrecioLabel2.setText("");
     }
 
+    */
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,60 +89,141 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contenedor = new javax.swing.JPanel();
+        contenedor1 = new javax.swing.JPanel();
         inicio = new javax.swing.JPanel();
-        Titulo = new javax.swing.JLabel();
-        Separador6 = new javax.swing.JLabel();
-        ingresarID = new javax.swing.JLabel();
-        aceptarButton = new javax.swing.JButton();
-        textIDConsultar = new javax.swing.JTextField();
+        titulo1 = new javax.swing.JLabel();
+        separador7 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaInicio = new javax.swing.JTable();
+        volverButton1 = new javax.swing.JButton();
+        mesas1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        muestra = new javax.swing.JPanel();
+        titulo = new javax.swing.JLabel();
+        separador6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaRenglones = new javax.swing.JTable();
         volverButton = new javax.swing.JButton();
         infoOrdenLabel = new javax.swing.JLabel();
-        IDLabel = new javax.swing.JLabel();
-        FechaPLabel = new javax.swing.JLabel();
-        PrecioLabel = new javax.swing.JLabel();
-        IDProveedorLabel = new javax.swing.JLabel();
+        fechaPLabel = new javax.swing.JLabel();
+        precioLabel = new javax.swing.JLabel();
+        nomProveedorLabel = new javax.swing.JLabel();
         infoRenglonesLabel = new javax.swing.JLabel();
-        FechaPLabel2 = new javax.swing.JLabel();
-        PrecioLabel2 = new javax.swing.JLabel();
-        IDProveedorLabel2 = new javax.swing.JLabel();
-        IDLabel2 = new javax.swing.JLabel();
+        fechaPLabel2 = new javax.swing.JLabel();
+        precioLabel2 = new javax.swing.JLabel();
+        nomProveedorLabel2 = new javax.swing.JLabel();
         mesas = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
-        contenedor.setBackground(new java.awt.Color(204, 204, 204));
-        contenedor.setMaximumSize(new java.awt.Dimension(1042, 619));
-        contenedor.setLayout(new java.awt.CardLayout());
+        contenedor1.setBackground(new java.awt.Color(204, 204, 204));
+        contenedor1.setMaximumSize(new java.awt.Dimension(1042, 619));
+        contenedor1.setLayout(new java.awt.CardLayout());
 
         inicio.setBackground(new java.awt.Color(227, 227, 218));
         inicio.setMaximumSize(new java.awt.Dimension(1042, 619));
         inicio.setPreferredSize(new java.awt.Dimension(1065, 619));
 
-        Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
-        Titulo.setForeground(new java.awt.Color(97, 34, 34));
-        Titulo.setText("CONSULTAR ORDEN DE COMPRA");
+        titulo1.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
+        titulo1.setForeground(new java.awt.Color(97, 34, 34));
+        titulo1.setText("CONSULTAR ORDEN DE COMPRA");
 
-        Separador6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Separador6.setForeground(new java.awt.Color(97, 34, 34));
-        Separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
+        separador7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        separador7.setForeground(new java.awt.Color(97, 34, 34));
+        separador7.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
-        ingresarID.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
-        ingresarID.setText("Ingrese el ID de la Orden de Compra que desea consultar:");
+        tablaInicio.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        tablaInicio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        aceptarButton.setText("Aceptar");
-        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
+            },
+            new String [] {
+                "Fecha Pedido", "Precio Total", "Nombre Proveedor"
+            }
+        ));
+        tablaInicio.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tablaInicio);
+
+        volverButton1.setFont(new java.awt.Font("Microsoft YaHei", 0, 11)); // NOI18N
+        volverButton1.setText("Cancelar");
+        volverButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aceptarButtonActionPerformed(evt);
+                volverButton1ActionPerformed(evt);
             }
         });
 
-        textIDConsultar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textIDConsultarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Seleccione orden de compra que desea consultar");
+
+        javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
+        inicio.setLayout(inicioLayout);
+        inicioLayout.setHorizontalGroup(
+            inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inicioLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(titulo1))
+                    .addComponent(separador7)
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                                .addComponent(volverButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mesas1)))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        inicioLayout.setVerticalGroup(
+            inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inicioLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(titulo1)
+                .addGap(1, 1, 1)
+                .addComponent(separador7)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(mesas1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(volverButton1)
+                            .addComponent(jButton1))
+                        .addGap(49, 49, 49))))
+        );
+
+        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
+
+        contenedor1.add(inicio, "card2");
+
+        muestra.setBackground(new java.awt.Color(227, 227, 218));
+        muestra.setMaximumSize(new java.awt.Dimension(1042, 619));
+        muestra.setPreferredSize(new java.awt.Dimension(1065, 619));
+
+        titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
+        titulo.setForeground(new java.awt.Color(97, 34, 34));
+        titulo.setText("CONSULTAR ORDEN DE COMPRA");
+
+        separador6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        separador6.setForeground(new java.awt.Color(97, 34, 34));
+        separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
         tablaRenglones.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         tablaRenglones.setModel(new javax.swing.table.DefaultTableModel(
@@ -131,7 +231,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Cantidad", "Precio ", "ID Materia"
+                "Cantidad", "Precio ", "Producto que tiene"
             }
         ));
         tablaRenglones.getTableHeader().setReorderingAllowed(false);
@@ -149,131 +249,100 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         infoOrdenLabel.setForeground(new java.awt.Color(97, 34, 34));
         infoOrdenLabel.setText("Información de la Orden de Compra consultada:");
 
-        IDLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        IDLabel.setForeground(new java.awt.Color(97, 34, 34));
-        IDLabel.setText("ID:");
+        fechaPLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        fechaPLabel.setForeground(new java.awt.Color(97, 34, 34));
+        fechaPLabel.setText("Fecha Pedido:");
 
-        FechaPLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        FechaPLabel.setForeground(new java.awt.Color(97, 34, 34));
-        FechaPLabel.setText("Fecha Pedido:");
+        precioLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        precioLabel.setForeground(new java.awt.Color(97, 34, 34));
+        precioLabel.setText("Precio Total:");
 
-        PrecioLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        PrecioLabel.setForeground(new java.awt.Color(97, 34, 34));
-        PrecioLabel.setText("Precio Total:");
-
-        IDProveedorLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        IDProveedorLabel.setForeground(new java.awt.Color(97, 34, 34));
-        IDProveedorLabel.setText("ID Proveedor:");
+        nomProveedorLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        nomProveedorLabel.setForeground(new java.awt.Color(97, 34, 34));
+        nomProveedorLabel.setText("Nombre Proveedor:");
 
         infoRenglonesLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         infoRenglonesLabel.setForeground(new java.awt.Color(97, 34, 34));
         infoRenglonesLabel.setText("Información de su/s renglon/es:");
 
-        jLabel1.setText("(*)");
-
-        javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
-        inicio.setLayout(inicioLayout);
-        inicioLayout.setHorizontalGroup(
-            inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inicioLayout.createSequentialGroup()
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inicioLayout.createSequentialGroup()
+        javax.swing.GroupLayout muestraLayout = new javax.swing.GroupLayout(muestra);
+        muestra.setLayout(muestraLayout);
+        muestraLayout.setHorizontalGroup(
+            muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(muestraLayout.createSequentialGroup()
+                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(muestraLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(inicioLayout.createSequentialGroup()
+                        .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(muestraLayout.createSequentialGroup()
                                 .addGap(98, 98, 98)
-                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(inicioLayout.createSequentialGroup()
-                                        .addComponent(ingresarID)
-                                        .addGap(46, 46, 46)
-                                        .addComponent(textIDConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jLabel1)
-                                        .addGap(66, 66, 66)
-                                        .addComponent(aceptarButton))
-                                    .addGroup(inicioLayout.createSequentialGroup()
-                                        .addComponent(infoOrdenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(135, 135, 135)
-                                        .addComponent(mesas))
-                                    .addGroup(inicioLayout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(inicioLayout.createSequentialGroup()
-                                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(FechaPLabel)
-                                                    .addComponent(PrecioLabel)
-                                                    .addComponent(IDProveedorLabel))
-                                                .addGap(35, 35, 35)
-                                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(IDProveedorLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(PrecioLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(FechaPLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(inicioLayout.createSequentialGroup()
-                                                .addComponent(IDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(31, 31, 31)
-                                                .addComponent(IDLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(44, 44, 44)
-                                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(infoRenglonesLabel)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(inicioLayout.createSequentialGroup()
+                                .addComponent(infoOrdenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(135, 135, 135)
+                                .addComponent(mesas))
+                            .addGroup(muestraLayout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(Titulo))
-                            .addComponent(Separador6)))
-                    .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(410, 410, 410)
+                                .addComponent(titulo))
+                            .addComponent(separador6)
+                            .addGroup(muestraLayout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(fechaPLabel)
+                                    .addComponent(precioLabel)
+                                    .addComponent(nomProveedorLabel))
+                                .addGap(35, 35, 35)
+                                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nomProveedorLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(precioLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fechaPLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(44, 44, 44)
+                                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(infoRenglonesLabel)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(muestraLayout.createSequentialGroup()
+                        .addGap(427, 427, 427)
                         .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
-        inicioLayout.setVerticalGroup(
-            inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inicioLayout.createSequentialGroup()
+        muestraLayout.setVerticalGroup(
+            muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(muestraLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(Titulo)
+                .addComponent(titulo)
                 .addGap(1, 1, 1)
-                .addComponent(Separador6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textIDConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aceptarButton)
-                    .addComponent(ingresarID)
-                    .addComponent(jLabel1))
-                .addGap(30, 30, 30)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(inicioLayout.createSequentialGroup()
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(separador6)
+                .addGap(64, 64, 64)
+                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(muestraLayout.createSequentialGroup()
+                        .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(infoOrdenLabel)
                             .addComponent(mesas))
-                        .addGap(18, 18, 18)
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(IDLabel)
-                            .addComponent(IDLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(57, 57, 57))
                     .addComponent(infoRenglonesLabel))
-                .addGap(22, 22, 22)
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inicioLayout.createSequentialGroup()
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(FechaPLabel)
-                            .addComponent(FechaPLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(PrecioLabel)
-                            .addComponent(PrecioLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IDProveedorLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(IDProveedorLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52))
-                    .addGroup(inicioLayout.createSequentialGroup()
+                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fechaPLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaPLabel))
+                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(muestraLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(precioLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(precioLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nomProveedorLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomProveedorLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, muestraLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(57, 57, 57)))
                 .addComponent(volverButton)
-                .addGap(116, 116, 116))
+                .addGap(79, 79, 79))
         );
 
         mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
 
-        contenedor.add(inicio, "card2");
+        contenedor1.add(muestra, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -283,7 +352,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contenedor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -292,61 +361,10 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contenedor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
-        comienzaConsultar();
-        
-        int idOrden = 0;
-        Map<Orden_Compra, List<Renglon_Compra>> ordenCompleta = new HashMap<>();
-        Orden_Compra infoOrden = new Orden_Compra();
-        List<Renglon_Compra> infoRenglones = new ArrayList<Renglon_Compra>();
-        DefaultTableModel modelo = (DefaultTableModel) tablaRenglones.getModel();
-
-        try {
-            if((textIDConsultar.getText().isEmpty()) || ("0".equals(textIDConsultar.getText().toString()))){
-                JOptionPane.showMessageDialog(null, "ID no puede estar vacio o ser cero.\n");
-                textIDConsultar.setText("");
-                aceptarButton.setEnabled(true);
-            }else{
-                idOrden = Integer.parseInt(textIDConsultar.getText());
-                ordenCompleta = Manager_OrdenCompra.getInstance().consultarOrdenDeCompra(idOrden);
-
-                Set<Orden_Compra> keys = ordenCompleta.keySet();
-                for(Orden_Compra key : keys){
-                    infoOrden = key;
-                }
-
-                if(infoOrden.getPrecioTotal() == 0){
-                    JOptionPane.showMessageDialog(null, "La Orden de Compra consultada no existe.\n");
-                    limpiarVariables();
-                    modelo.setRowCount(0);
-                }else{
-                    infoRenglones = ordenCompleta.get(infoOrden);
-
-                    IDLabel2.setText(String.valueOf(idOrden));
-                    FechaPLabel2.setText(infoOrden.getFechaPedido().toString());
-                    PrecioLabel2.setText(String.valueOf(infoOrden.getPrecioTotal()));
-                    IDProveedorLabel2.setText(infoOrden.getProveedor().toString());
-
-
-                    for(Renglon_Compra info: infoRenglones){
-                        modelo.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getNombre_Tiene()});
-                    }
-                }
-            }
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Sucedió un error inesperado.\n");
-        }
-    }//GEN-LAST:event_aceptarButtonActionPerformed
-
-    private void textIDConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIDConsultarActionPerformed
-        aceptarButton.setEnabled(true);
-    }//GEN-LAST:event_textIDConsultarActionPerformed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
         int eleccion= JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar la operación?", "Confirmar", JOptionPane.CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -355,29 +373,77 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_volverButtonActionPerformed
 
+    private void volverButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volverButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Map<Orden_Compra, List<Renglon_Compra>> ordenCompleta = new HashMap<>();
+        Orden_Compra infoOrden = new Orden_Compra();
+        List<Renglon_Compra> infoRenglones = new ArrayList<Renglon_Compra>();
+        modelo = (DefaultTableModel) tablaRenglones.getModel();
+
+        
+        if (tablaInicio.getSelectedRow()==-1){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else{
+
+                orden = ordenes.get(tablaInicio.getSelectedRow());
+
+                int id = orden.getId();
+
+        try {
+                ordenCompleta = Manager_OrdenCompra.getInstance().consultarOrdenDeCompra(id);
+           
+                Set<Orden_Compra> keys = ordenCompleta.keySet();
+                for(Orden_Compra key : keys){
+                    infoOrden = key;
+                }
+
+                infoRenglones = ordenCompleta.get(infoOrden);
+
+                fechaPLabel2.setText(infoOrden.getFechaPedido().toString());
+                precioLabel2.setText(String.valueOf(infoOrden.getPrecioTotal()));
+                nomProveedorLabel2.setText(infoOrden.getProveedor());
+
+
+                for(Renglon_Compra info: infoRenglones){
+                    modelo.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getNombre_Tiene()});
+                }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ConsultarOrdenDeCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel FechaPLabel;
-    private javax.swing.JLabel FechaPLabel2;
-    private javax.swing.JLabel IDLabel;
-    private javax.swing.JLabel IDLabel2;
-    private javax.swing.JLabel IDProveedorLabel;
-    private javax.swing.JLabel IDProveedorLabel2;
-    private javax.swing.JLabel PrecioLabel;
-    private javax.swing.JLabel PrecioLabel2;
-    private javax.swing.JLabel Separador6;
-    private javax.swing.JLabel Titulo;
-    private javax.swing.JButton aceptarButton;
-    private javax.swing.JPanel contenedor;
+    private javax.swing.JPanel contenedor1;
+    private javax.swing.JLabel fechaPLabel;
+    private javax.swing.JLabel fechaPLabel2;
     private javax.swing.JLabel infoOrdenLabel;
     private javax.swing.JLabel infoRenglonesLabel;
-    private javax.swing.JLabel ingresarID;
     private javax.swing.JPanel inicio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel mesas;
+    private javax.swing.JLabel mesas1;
+    private javax.swing.JPanel muestra;
+    private javax.swing.JLabel nomProveedorLabel;
+    private javax.swing.JLabel nomProveedorLabel2;
+    private javax.swing.JLabel precioLabel;
+    private javax.swing.JLabel precioLabel2;
+    private javax.swing.JLabel separador6;
+    private javax.swing.JLabel separador7;
+    private javax.swing.JTable tablaInicio;
     private javax.swing.JTable tablaRenglones;
-    private javax.swing.JTextField textIDConsultar;
+    private javax.swing.JLabel titulo;
+    private javax.swing.JLabel titulo1;
     private javax.swing.JButton volverButton;
+    private javax.swing.JButton volverButton1;
     // End of variables declaration//GEN-END:variables
 }
