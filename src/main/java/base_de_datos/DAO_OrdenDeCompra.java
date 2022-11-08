@@ -63,13 +63,14 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     @Override
     public List<Orden_Compra> findAll() throws Exception {
         List<Orden_Compra> listaOrdenes = null;
-        Orden_Compra orden = new Orden_Compra();
+        
         try {
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM OrdenDeCompra");
             listaOrdenes = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while(rs.next()){
+                Orden_Compra orden = new Orden_Compra();
                 orden.setFechaPedido(rs.getDate(1));
                 orden.setPrecioTotal(rs.getDouble(2));
                 orden.setProveedor(rs.getString(3));

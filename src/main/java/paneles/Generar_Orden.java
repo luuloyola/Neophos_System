@@ -377,7 +377,7 @@ public class Generar_Orden extends javax.swing.JPanel {
             manager_orden = Manager_OrdenCompra.getInstance();
 
             try {
-                manager_orden.generarOrdenDeCompra(proveedor_lista.getSelectedItem().toString(), fecha, precio_total, renglon);
+                manager_orden.generarOrdenDeCompra(proveedor_lista.getSelectedItem().toString(), fecha, precio_total, 0, renglon);
                 JOptionPane.showMessageDialog(this, "Orden de compra cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
