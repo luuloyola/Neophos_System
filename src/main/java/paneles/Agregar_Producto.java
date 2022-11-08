@@ -23,9 +23,8 @@ public class Agregar_Producto extends javax.swing.JPanel {
         manager_provee = Manager_Provee.getInstance();
         modelo = (DefaultTableModel) materia.getModel();
         
-        proveedor_lista.addItem("ID Proveedor - Nombre");
-        
-        if (proveedor != ""){
+        proveedor_lista.addItem("Nombre Proveedor");
+        if (!"".equals(proveedor)){
             proveedor_lista.addItem(proveedor);
             proveedor_lista.setSelectedIndex(1);
             proveedor_lista.setEnabled(false);
@@ -43,7 +42,6 @@ public class Agregar_Producto extends javax.swing.JPanel {
 
             ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
             String auxiliar;
-            proveedor_lista.addItem("Nombre Proveedor");
 
 
             for (int i = 0; i<proveedores.size(); i++){
