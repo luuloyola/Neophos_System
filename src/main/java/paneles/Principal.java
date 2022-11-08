@@ -30,7 +30,6 @@ public class Principal extends javax.swing.JFrame {
         inicio.revalidate();
     }
     
-    
     public static JPanel getGenerar_Orden(){
         return generar_orden;
     }

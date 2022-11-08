@@ -20,7 +20,6 @@ public class OrdenProduccion extends Orden{
         this.fecha_limite = new Date(0,0,0);
         this.receta = "";
         this.fecha_realizacion = new Date(0,0,0);
-        this.id = 0;
     }
     
     public int getId(){

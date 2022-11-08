@@ -33,9 +33,9 @@ public class Manager_OrdenCompra {
     parametro el nombre del proveedor con el que decidio realizar la orden de compra, la fecha que se realizo el pedido,
     el precio total que tendra la orden de compra 
     */
-    public void generarOrdenDeCompra(String proveedor, Date fecha_pedido, double precio_total, int id, ArrayList<Renglon_Compra> renglones) throws Exception{
+    public void generarOrdenDeCompra(String proveedor, Date fecha_pedido, double precio_total, ArrayList<Renglon_Compra> renglones) throws Exception{
         
-        Orden_Compra nueva_Orden = new Orden_Compra(fecha_pedido, precio_total, proveedor, id);
+        Orden_Compra nueva_Orden = new Orden_Compra(fecha_pedido, precio_total, proveedor);
         dao.create(nueva_Orden);
         
         for (int i = 0; i < renglones.size(); i++) {
@@ -47,6 +47,10 @@ public class Manager_OrdenCompra {
     
     public List<Orden_Compra> consultarTodasLasOrdenes() throws Exception{
        return dao.findAll();
+    }
+    
+    public List<Orden_Compra> consultarOrdenPorProveedor(String nombre) throws Exception{
+        return dao.findAllPorProveedor(nombre);
     }
     
     public Map<Orden_Compra, List<Renglon_Compra>> consultarOrdenDeCompra(int id) throws Exception{

@@ -11,10 +11,9 @@ public class Orden_Compra extends Orden {
     private String proveedor;
     private int id;
 
-    public Orden_Compra(Date fecha_pedido, double precio_total, String proveedor, int id){
+    public Orden_Compra(Date fecha_pedido, double precio_total, String proveedor){
         super(fecha_pedido, precio_total);
         this.proveedor = proveedor;
-        this.id = id;
     }
 
     public Orden_Compra(){

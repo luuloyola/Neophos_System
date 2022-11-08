@@ -52,6 +52,7 @@ public class DAO_OrdenProduccion implements DAO<OrdenProduccion>{
             ResultSet rs = st.executeQuery();
             while(rs.next()){
                 OrdenProduccion orden = new OrdenProduccion();
+                orden.setId(rs.getInt(1));
                 orden.setFechaPedido(rs.getDate(2));
                 orden.setFecha_limite(rs.getDate(3));
                 orden.setFecha_realizacion(rs.getDate(4));
@@ -80,6 +81,7 @@ public class DAO_OrdenProduccion implements DAO<OrdenProduccion>{
             ResultSet rs = st.executeQuery();
             
             while(rs.next()){
+                orden.setId(rs.getInt(1));
                 orden.setFechaPedido(rs.getDate(2));
                 orden.setFecha_limite(rs.getDate(3));
                 orden.setFecha_realizacion(rs.getDate(4));

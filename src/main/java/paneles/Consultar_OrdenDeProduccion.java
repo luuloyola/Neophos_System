@@ -22,6 +22,7 @@ import logico.RenglonProduccion;
 public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
 
     private DefaultTableModel modelo;
+    private DefaultTableModel modelo2;
     private List<OrdenProduccion> ordenes = new ArrayList<>();
     private OrdenProduccion orden = new OrdenProduccion();
     
@@ -30,15 +31,29 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         
         modelo = (DefaultTableModel) tablaInicio1.getModel();
         
+        modelo2 = (DefaultTableModel) tablaRenglones1.getModel();
+        
         ordenes = ManagerOrdenProduccion.getInstance().consultarTodasLasOrdenes();
         
-        for(int i = 0; i<ordenes.size(); i++){
+        if(ordenes.get(1).getPrecioTotal() == 0){
+            JOptionPane.showMessageDialog(this,"No hay ordenes de producción en la base de datos.","", JOptionPane.WARNING_MESSAGE);
+        }else{
+            for(int i = 0; i<ordenes.size(); i++){
             orden = ordenes.get(i);
             modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal()});
+        }
         }
     }
        
 
+    public void reiniciar(){
+        fechaPText.setText("");
+        fechaLimiteText.setText("");
+        recetaText.setText("");
+        precioTotalText.setText("");
+        modelo2.setRowCount(0);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +70,6 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         aceptarButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaInicio1 = new javax.swing.JTable();
-        volverButton1 = new javax.swing.JButton();
         mesas1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         mesas = new javax.swing.JLabel();
@@ -68,14 +82,12 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         infoOrdenLabel1 = new javax.swing.JLabel();
         FechaPLabel1 = new javax.swing.JLabel();
         fechaLimiteLabel = new javax.swing.JLabel();
-        fechaRealizacionLabel = new javax.swing.JLabel();
         infoRenglonesLabel1 = new javax.swing.JLabel();
         fechaPText = new javax.swing.JLabel();
         fechaLimiteText = new javax.swing.JLabel();
         precioTotalText = new javax.swing.JLabel();
         mesas2 = new javax.swing.JLabel();
         recetaLabel = new javax.swing.JLabel();
-        fechaRealizacionText = new javax.swing.JLabel();
         precioTotalLabel = new javax.swing.JLabel();
         recetaText = new javax.swing.JLabel();
 
@@ -95,7 +107,10 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         Separador7.setForeground(new java.awt.Color(97, 34, 34));
         Separador7.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
-        aceptarButton1.setText("Aceptar");
+        aceptarButton1.setBackground(new java.awt.Color(117, 49, 49));
+        aceptarButton1.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        aceptarButton1.setForeground(new java.awt.Color(255, 255, 255));
+        aceptarButton1.setText("ACEPTAR");
         aceptarButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarButton1ActionPerformed(evt);
@@ -114,14 +129,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         tablaInicio1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablaInicio1);
 
-        volverButton1.setFont(new java.awt.Font("Microsoft YaHei", 0, 11)); // NOI18N
-        volverButton1.setText("Cancelar");
-        volverButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverButton1ActionPerformed(evt);
-            }
-        });
-
+        jLabel3.setFont(new java.awt.Font("Microsoft YaHei", 2, 12)); // NOI18N
         jLabel3.setText("Seleccione la orden de producción que desea consultar");
 
         mesas.setText("              ");
@@ -131,20 +139,8 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         inicioOPLayout.setHorizontalGroup(
             inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioOPLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(55, 55, 55)
                 .addGroup(inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioOPLayout.createSequentialGroup()
-                        .addGroup(inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
-                            .addGroup(inicioOPLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
-                            .addGroup(inicioOPLayout.createSequentialGroup()
-                                .addComponent(volverButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(aceptarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mesas1))
                     .addGroup(inicioOPLayout.createSequentialGroup()
                         .addGroup(inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(inicioOPLayout.createSequentialGroup()
@@ -153,8 +149,20 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
                                 .addGap(188, 188, 188)
                                 .addComponent(mesas))
                             .addComponent(Separador7))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addGap(0, 2, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioOPLayout.createSequentialGroup()
+                        .addGroup(inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(inicioOPLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mesas1)))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioOPLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(aceptarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         inicioOPLayout.setVerticalGroup(
             inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,20 +174,17 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addComponent(Separador7)
                 .addGroup(inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(inicioOPLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioOPLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addComponent(mesas1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(inicioOPLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(mesas1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioOPLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(aceptarButton1)
-                            .addComponent(volverButton1))
-                        .addGap(114, 114, 114))))
+                        .addGap(18, 18, 18)
+                        .addComponent(aceptarButton1)))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -211,7 +216,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tablaRenglones1);
 
         volverButton2.setFont(new java.awt.Font("Microsoft YaHei", 0, 11)); // NOI18N
-        volverButton2.setText("Cancelar");
+        volverButton2.setText("VOLVER");
         volverButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButton2ActionPerformed(evt);
@@ -229,10 +234,6 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         fechaLimiteLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         fechaLimiteLabel.setForeground(new java.awt.Color(97, 34, 34));
         fechaLimiteLabel.setText("Fecha Limite:");
-
-        fechaRealizacionLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
-        fechaRealizacionLabel.setForeground(new java.awt.Color(97, 34, 34));
-        fechaRealizacionLabel.setText("Fecha Realización:");
 
         infoRenglonesLabel1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         infoRenglonesLabel1.setForeground(new java.awt.Color(97, 34, 34));
@@ -254,92 +255,88 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(muestraOPLayout.createSequentialGroup()
-                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(muestraOPLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(Titulo2))
-                            .addComponent(Separador8))
-                        .addGap(58, 58, 58))
+                        .addGap(9, 9, 9)
+                        .addComponent(Titulo2))
+                    .addComponent(Separador8)
                     .addGroup(muestraOPLayout.createSequentialGroup()
-                        .addGap(0, 262, Short.MAX_VALUE)
-                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fechaLimiteText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(precioTotalText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaPText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaRealizacionText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(recetaText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(71, 71, 71)
-                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, muestraOPLayout.createSequentialGroup()
-                                .addComponent(infoRenglonesLabel1)
-                                .addGap(293, 293, 293))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, muestraOPLayout.createSequentialGroup()
-                                .addComponent(mesas2)
-                                .addGap(58, 58, 58))
-                            .addGroup(muestraOPLayout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
+                        .addGap(0, 978, Short.MAX_VALUE)
+                        .addComponent(mesas2)))
+                .addGap(58, 58, 58))
             .addGroup(muestraOPLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(infoOrdenLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(muestraOPLayout.createSequentialGroup()
-                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(fechaLimiteLabel)
-                            .addComponent(FechaPLabel1)
-                            .addComponent(fechaRealizacionLabel)
-                            .addComponent(recetaLabel)
-                            .addComponent(precioTotalLabel))
+                        .addGap(34, 34, 34)
+                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(muestraOPLayout.createSequentialGroup()
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(fechaLimiteLabel)
+                                    .addComponent(FechaPLabel1)
+                                    .addComponent(recetaLabel)
+                                    .addComponent(precioTotalLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fechaPText, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fechaLimiteText, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(precioTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(recetaText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(infoRenglonesLabel1)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(muestraOPLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(volverButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(muestraOPLayout.createSequentialGroup()
-                .addGap(438, 438, 438)
-                .addComponent(volverButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         muestraOPLayout.setVerticalGroup(
             muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(muestraOPLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(Titulo2)
+                .addGap(1, 1, 1)
+                .addComponent(Separador8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(infoOrdenLabel1)
+                .addGap(14, 14, 14)
                 .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mesas2)
                     .addGroup(muestraOPLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(Separador8)
-                        .addGap(38, 38, 38)
-                        .addComponent(infoOrdenLabel1)
-                        .addGap(7, 7, 7)
+                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fechaPText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FechaPLabel1)
+                            .addComponent(infoRenglonesLabel1))
                         .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(muestraOPLayout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(infoRenglonesLabel1))
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(muestraOPLayout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(fechaLimiteLabel))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, muestraOPLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(fechaLimiteText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(muestraOPLayout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addComponent(recetaLabel))
+                                    .addGroup(muestraOPLayout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(recetaText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(muestraOPLayout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(precioTotalLabel))
+                                    .addGroup(muestraOPLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(precioTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(muestraOPLayout.createSequentialGroup()
-                                .addComponent(mesas2)
-                                .addGap(57, 57, 57)
-                                .addComponent(FechaPLabel1))
-                            .addComponent(fechaPText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
-                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(fechaLimiteLabel)
-                            .addComponent(fechaLimiteText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(fechaRealizacionLabel)
-                            .addComponent(fechaRealizacionText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
-                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(recetaLabel)
-                            .addComponent(recetaText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(precioTotalText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(precioTotalLabel, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(muestraOPLayout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                                .addGap(28, 28, 28)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(16, 16, 16)
                 .addComponent(volverButton2)
-                .addGap(55, 55, 55))
+                .addGap(0, 173, Short.MAX_VALUE))
         );
 
         mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -373,7 +370,6 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         Map<OrdenProduccion, List<RenglonProduccion>> ordenCompleta = new HashMap<>();
         OrdenProduccion infoOrden = new OrdenProduccion();
         List<RenglonProduccion> infoRenglones = new ArrayList<RenglonProduccion>();
-        DefaultTableModel modelo2 = (DefaultTableModel) tablaRenglones1.getModel();
 
         if (tablaInicio1.getSelectedRow()==-1){
             JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
@@ -399,7 +395,6 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
 
                 fechaPText.setText(infoOrden.getFechaPedido().toString());
                 fechaLimiteText.setText(infoOrden.getFecha_limite().toString());
-                fechaRealizacionText.setText(infoOrden.getFecha_realizacion().toString());
                 recetaText.setText(infoOrden.getReceta());
                 precioTotalText.setText(String.valueOf(infoOrden.getPrecioTotal()));
 
@@ -414,15 +409,9 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_aceptarButton1ActionPerformed
 
-    private void volverButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButton1ActionPerformed
-        int eleccion= JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar la operación?", "Confirmar", JOptionPane.CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if(eleccion==0){
-            System.exit(0);
-        }
-    }//GEN-LAST:event_volverButton1ActionPerformed
-
     private void volverButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButton2ActionPerformed
-        // TODO add your handling code here:
+        muestraOP.setVisible(false);
+        reiniciar();
     }//GEN-LAST:event_volverButton2ActionPerformed
 
 
@@ -437,8 +426,6 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
     private javax.swing.JLabel fechaLimiteLabel;
     private javax.swing.JLabel fechaLimiteText;
     private javax.swing.JLabel fechaPText;
-    private javax.swing.JLabel fechaRealizacionLabel;
-    private javax.swing.JLabel fechaRealizacionText;
     private javax.swing.JLabel infoOrdenLabel1;
     private javax.swing.JLabel infoRenglonesLabel1;
     private javax.swing.JPanel inicioOP;
@@ -455,7 +442,6 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
     private javax.swing.JLabel recetaText;
     private javax.swing.JTable tablaInicio1;
     private javax.swing.JTable tablaRenglones1;
-    private javax.swing.JButton volverButton1;
     private javax.swing.JButton volverButton2;
     // End of variables declaration//GEN-END:variables
 }
