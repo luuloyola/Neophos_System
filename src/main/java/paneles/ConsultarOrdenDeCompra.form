@@ -76,11 +76,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                              <Component id="Titulo1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="Separador7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jScrollPane2" alignment="1" pref="966" max="32767" attributes="0"/>
@@ -97,6 +92,18 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="mesas1" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                      <Component id="Titulo1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                                      <Component id="mesas" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="Separador7" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="74" max="32767" attributes="0"/>
                   </Group>
@@ -106,7 +113,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="Titulo1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Titulo1" min="-2" max="-2" attributes="0"/>
+                          <Component id="mesas" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Component id="Separador7" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -207,6 +217,11 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Seleccione la orden de compra que desea consultar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="mesas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="              "/>
               </Properties>
             </Component>
           </SubComponents>
