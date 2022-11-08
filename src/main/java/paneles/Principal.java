@@ -117,9 +117,9 @@ public class Principal extends javax.swing.JFrame {
 
         logo.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
         logo.setForeground(new java.awt.Color(227, 227, 218));
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("iconos/logo.png"))); // NOI18N
 
-        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/menu.png"))); // NOI18N
+        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("iconos/menu.png"))); // NOI18N
         menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuMouseClicked(evt);
