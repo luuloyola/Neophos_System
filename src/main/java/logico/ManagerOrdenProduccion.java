@@ -30,8 +30,12 @@ public class ManagerOrdenProduccion {
         }
     }
 
+    public List<OrdenProduccion> consultarTodasLasOrdenes() throws Exception{
+       return dao.findAll();
+    }
+    
     public Map<OrdenProduccion, List<RenglonProduccion>> consultarOrdenDeProduccion(int id) throws Exception{
-       OrdenProduccion orden = null;
+       OrdenProduccion orden = new OrdenProduccion();
        List<RenglonProduccion> renglones = new ArrayList<>();
        Map<OrdenProduccion, List<RenglonProduccion>> ordenCompleta = new HashMap<>();
        
@@ -42,6 +46,8 @@ public class ManagerOrdenProduccion {
        ordenCompleta.put(orden, renglones);
        
        return ordenCompleta; 
+       
     }
+    
     
 }

@@ -68,6 +68,7 @@ public class Principal extends javax.swing.JFrame {
         consultar_ordeb = new javax.swing.JButton();
         generar_orde = new javax.swing.JButton();
         jtest = new javax.swing.JButton();
+        consultar_op = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -100,7 +101,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Titulo)
                     .addComponent(Separador6))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(Titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Separador6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
@@ -177,6 +178,17 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        consultar_op.setBackground(new java.awt.Color(117, 49, 49));
+        consultar_op.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        consultar_op.setForeground(new java.awt.Color(172, 172, 163));
+        consultar_op.setText("CONSULTAR ORDEN DE PRODUCCION");
+        consultar_op.setBorder(null);
+        consultar_op.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultar_opActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout franja_rojaLayout = new javax.swing.GroupLayout(franja_roja);
         franja_roja.setLayout(franja_rojaLayout);
         franja_rojaLayout.setHorizontalGroup(
@@ -186,6 +198,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(franja_rojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(franja_rojaLayout.createSequentialGroup()
                         .addComponent(jtest, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(consultar_op, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(franja_rojaLayout.createSequentialGroup()
                         .addComponent(cargar_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +224,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(generar_orde, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtest, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(franja_rojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtest, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultar_op, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7))
         );
 
@@ -289,6 +305,14 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtestActionPerformed
 
+    private void consultar_opActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_opActionPerformed
+        try {
+            go_to(new Consultar_OrdenDeProduccion());
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_consultar_opActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -339,6 +363,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel Titulo2;
     private javax.swing.JButton cargar_materia;
     private javax.swing.JButton consultar_mat;
+    private javax.swing.JButton consultar_op;
     private javax.swing.JButton consultar_ordeb;
     private javax.swing.JPanel contenedor;
     private javax.swing.JPanel franja_roja;
@@ -347,4 +372,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jtest;
     private javax.swing.JLabel mesas;
     // End of variables declaration//GEN-END:variables
+
 }

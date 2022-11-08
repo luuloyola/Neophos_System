@@ -22,6 +22,7 @@ public class Generar_Orden extends javax.swing.JPanel {
     private Agregar_Producto consultar;
     private DefaultTableModel modelo;
     private double precio_total;
+    private int id;
     
     public Generar_Orden() throws Exception {
         manager_proveedor = Manager_Proveedor.getInstance();
@@ -377,7 +378,7 @@ public class Generar_Orden extends javax.swing.JPanel {
             manager_orden = Manager_OrdenCompra.getInstance();
 
             try {
-                manager_orden.generarOrdenDeCompra(proveedor_lista.getSelectedItem().toString(), fecha, precio_total, 0, renglon);
+                manager_orden.generarOrdenDeCompra(proveedor_lista.getSelectedItem().toString(), fecha, precio_total, id++, renglon);
                 JOptionPane.showMessageDialog(this, "Orden de compra cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {

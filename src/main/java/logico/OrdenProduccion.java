@@ -6,6 +6,7 @@ public class OrdenProduccion extends Orden{
     private Date fecha_limite;
     private Date fecha_realizacion;
     private String receta;
+    private int id;
     
     public OrdenProduccion(Date fecha_pedido, double precio_total, Date fecha_limite, String receta){
         super(fecha_pedido, precio_total);
@@ -13,6 +14,23 @@ public class OrdenProduccion extends Orden{
         this.receta = receta;
         this.fecha_realizacion = null;
     }
+    
+    public OrdenProduccion(){
+        super(new Date(0,0,0), 0);
+        this.fecha_limite = new Date(0,0,0);
+        this.receta = "";
+        this.fecha_realizacion = new Date(0,0,0);
+        this.id = 0;
+    }
+    
+    public int getId(){
+        return id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public Date getFecha_limite() {
         return fecha_limite;
     }
