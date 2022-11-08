@@ -9,12 +9,10 @@ import java.sql.Date;
 public class Orden_Compra extends Orden {
 
     private String proveedor;
-    private int id;
 
-    public Orden_Compra(Date fecha_pedido, double precio_total, int id, String proveedor){
+    public Orden_Compra(Date fecha_pedido, double precio_total, String proveedor){
         super(fecha_pedido, precio_total);
         this.proveedor = proveedor;
-        this.id = id;
     }
 
     public Orden_Compra(){
@@ -28,14 +26,6 @@ public class Orden_Compra extends Orden {
 
     public String getProveedor(){
         return proveedor;
-    }
-    
-    public void setId(int id){
-        this.id = id;
-    }
-    
-    public int getId(){
-        return id;
     }
     
 }

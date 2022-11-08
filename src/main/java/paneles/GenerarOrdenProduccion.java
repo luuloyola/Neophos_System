@@ -326,7 +326,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
             manager_orden = ManagerOrdenProduccion.getInstance();
 
             try {
-                manager_orden.generarOrdenDeProduccion(fecha_now,precio_total, fecha_lim,recetas,renglon);
+                manager_orden.generarOrdenDeProduccion(fecha_now, precio_total, fecha_lim,recetas,renglon);
                 JOptionPane.showMessageDialog(this, "Orden de produccion cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
