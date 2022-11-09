@@ -155,14 +155,12 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
                             .addComponent(jScrollPane2)
                             .addGroup(inicioOPLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel3)))
+                                .addGroup(inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(aceptarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mesas1)))
                 .addContainerGap(72, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioOPLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(aceptarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
         );
         inicioOPLayout.setVerticalGroup(
             inicioOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,12 +177,12 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
                         .addComponent(mesas1))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, inicioOPLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(aceptarButton1)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(aceptarButton1)
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
