@@ -344,7 +344,6 @@ public class Generar_Orden extends javax.swing.JPanel {
             if(consultar.getRenglon()!=null){
                 if (proveedor_lista.isEnabled()) proveedor_lista.setEnabled(false);
                 for(int i=0; i< renglon.size(); i++){
-                    
                     if (renglon.get(i).getNombre_Tiene().equals(consultar.getRenglon().getNombre_Tiene())){
                         JOptionPane.showMessageDialog(this,"La materia seleccionada ya se encontraba en el listado","", JOptionPane.WARNING_MESSAGE);
                         return;

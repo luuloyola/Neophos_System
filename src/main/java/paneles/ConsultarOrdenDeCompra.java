@@ -174,7 +174,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(0, 102, Short.MAX_VALUE)
+                        .addGap(0, 65, Short.MAX_VALUE)
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(aceptarButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,8 +195,8 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                                 .addGap(188, 188, 188)
                                 .addComponent(mesas))
                             .addComponent(Separador7))
-                        .addGap(0, 115, Short.MAX_VALUE)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                        .addGap(0, 78, Short.MAX_VALUE)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +227,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(aceptarButton1)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -371,7 +371,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
                 .addComponent(volverButton2)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -384,19 +384,13 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1115, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 25, Short.MAX_VALUE)
-                    .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 25, Short.MAX_VALUE)))
+                .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 1115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGap(0, 631, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
