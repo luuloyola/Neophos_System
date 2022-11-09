@@ -27,12 +27,7 @@ public class Principal extends javax.swing.JFrame {
 
     // go_to es una funcion que nos ayuda a cambiar entre los paneles del sistema
     public void go_to(JPanel panel) {
-        if (!pantalla_principal.isShowing()){
-            int input = JOptionPane.showConfirmDialog(this,"Seguro desea cambiar de panel? Perdera los cambios que haya realizado y no guardado", "¡Cuidado!",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-            if (input != 0){
-                return;
-            }
-        }
+        
         if (panel == pantalla_principal){
             logo.setVisible(false);
         }else if (!logo.isVisible()){
@@ -173,7 +168,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(inicioLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(pantalla_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         franja_roja.setBackground(new java.awt.Color(97, 34, 34));
@@ -351,7 +346,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(contenedorLayout.createSequentialGroup()
                 .addComponent(franja_roja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

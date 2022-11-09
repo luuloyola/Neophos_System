@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logico.Iterator_Provee;
 import logico.Manager_Provee;
 import logico.Manager_Proveedor;
 import logico.Provee;
@@ -31,6 +32,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
             
         }
         else{
+            Titulo.setText("CONSULTAR MATERIA PRIMA DE LOS PROVEEDORES");
             volver.setVisible(false);
             cantidad_ingresar.setVisible(false);
             requerida.setVisible(false);
@@ -203,13 +205,13 @@ public class Agregar_Producto extends javax.swing.JPanel {
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Titulo)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(110, 110, 110)
                         .addComponent(jLabel1))
                     .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(Titulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Separador6)
                         .addGap(18, 18, 18)
@@ -230,7 +232,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
                     .addComponent(cantidadtext)
                     .addComponent(requerida)
                     .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -333,12 +335,13 @@ public class Agregar_Producto extends javax.swing.JPanel {
         }
         else if (!nombre_materiaprima.getText().isBlank()){
             try {
-                arreglo = manager_provee.buscar_Materias_porMateria(nombre_Materia);
-                if (arreglo == null){
+                Iterator_Provee iterator = new Iterator_Provee(manager_provee.buscar_Materias_porMateria(nombre_Materia));
+                if (!iterator.hayMas()){
                     no_hay_valores();
                 }
-                for (int i = 0; i<arreglo.size(); i++){
-                    materia_consultada = arreglo.get(i);
+
+                while(iterator.hayMas()){
+                    materia_consultada = iterator.siguiente();
                     modelo.addRow(new Object[] {materia_consultada.getNombre_Proveedor(), materia_consultada.getNombre_Producto(), materia_consultada.getPrecio()});
                 }
             } catch (Exception ex) {

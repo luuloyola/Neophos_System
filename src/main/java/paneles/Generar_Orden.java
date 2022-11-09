@@ -12,6 +12,7 @@ import logico.Manager_OrdenCompra;
 import logico.Manager_Proveedor;
 import logico.Proveedor;
 import logico.Renglon_Compra;
+import logico.Iterator_Proveedores;
 
 
 public class Generar_Orden extends javax.swing.JPanel {
@@ -37,15 +38,14 @@ public class Generar_Orden extends javax.swing.JPanel {
         
         modelo = (DefaultTableModel) tablaRenglones.getModel();
         
-        ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
-        String auxiliar;
+        Iterator_Proveedores iterator = new Iterator_Proveedores(manager_proveedor.getAllProveedores());
+        
         proveedor_lista.addItem("Nombre Proveedor");
         
         restablecer_valores();
 
-        for (int i = 0; i<proveedores.size(); i++){
-            auxiliar = proveedores.get(i).getNombre();
-            proveedor_lista.addItem(auxiliar);
+        while(iterator.hayMas()){
+            proveedor_lista.addItem(iterator.siguiente().getNombre());
         }
         
     }
