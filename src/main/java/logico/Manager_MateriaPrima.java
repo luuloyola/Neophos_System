@@ -22,6 +22,11 @@ public class Manager_MateriaPrima {
         MateriaPrima materia = daoMatPrima.consulta(id);
         return materia;
     }
+    public MateriaPrima consultarMateriaPrimaPorNombre(String nombre) throws Exception{
+        MateriaPrima materia = daoMatPrima.consultaNombre(nombre);
+        return materia;
+    }
+    
     
     public void modificarMateriaPrima(MateriaPrima materia) throws Exception{
         //No Support yet

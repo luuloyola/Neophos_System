@@ -80,6 +80,30 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         return materia;
     }
 
+    public MateriaPrima consultaNombre(String nombre) throws Exception {
+        MateriaPrima materia = new MateriaPrima();
+        try {
+            PreparedStatement st = ConexionBD.getConexion()
+                    .prepareStatement("SELECT * FROM MateriaPrima WHERE Nombre_MateriaPrima = ?");
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                materia.setNombre(rs.getString(1));
+                materia.setDescripcion(rs.getString(2));
+                materia.setTipoMateriaPrima(rs.getString(3));
+                materia.setPrecio_unidad(rs.getDouble(4));
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionBD.cerrar();
+        }
+        return materia;
+    }
+    
     @Override
     public List<MateriaPrima> findAll() throws Exception {
         return null; //No Support yet

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import logico.Manager_MateriaPrima;
 import logico.Manager_Producto;
 import logico.Manager_Proveedor;
+import logico.MateriaPrima;
 import logico.Producto;
 
 public class CargarMateriaPrima extends javax.swing.JPanel {
@@ -287,11 +288,15 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             cant = Double.parseDouble(fieldCantidad.getText());
             
             try {
-                manager_mat.cargarMateriaPrima(nombre, des, tipo, precio, cant);
-                JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
-                clean();
+                MateriaPrima mat = manager_mat.consultarMateriaPrimaPorNombre(nombre);
+                if(mat.getNombre() == null){
+                    manager_mat.cargarMateriaPrima(nombre, des, tipo, precio, cant);
+                    JOptionPane.showMessageDialog(null, "Se cargo correctamente!");
+                    clean();
+                }else JOptionPane.showMessageDialog(null, "La materia ya fue registrada");
+                
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Hubo un problema al cargar :(");
+                JOptionPane.showMessageDialog(null, "Hubo un problema al cargar");
                 System.out.println(ex.getMessage());
             }
         }
