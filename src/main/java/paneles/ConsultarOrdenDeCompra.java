@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import logico.IteradorCOrdenCompra;
 import logico.Manager_OrdenCompra;
 import logico.Orden_Compra;
 import logico.Renglon_Compra;
@@ -27,26 +28,37 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
   
     private DefaultTableModel modelo;
     private DefaultTableModel modelo2;
-    private List<Orden_Compra> ordenes = new ArrayList<>();
+    public List<Orden_Compra> ordenes = new ArrayList<>();
     private Orden_Compra orden = new Orden_Compra();
-    
+   
     public ConsultarOrdenDeCompra() throws Exception{
         initComponents();
         
+        IteradorCOrdenCompra iterador = this.getIterador();
+        
         modelo = (DefaultTableModel) tablaInicio.getModel();
         modelo2 = (DefaultTableModel) tablaRenglones.getModel();
-        
+       
         ordenes = Manager_OrdenCompra.getInstance().consultarTodasLasOrdenes();
 
-        if(ordenes.isEmpty()){
+        if(iterador.hayMas() == false){
             JOptionPane.showMessageDialog(this,"No hay ordenes de compra en la base de datos.","", JOptionPane.WARNING_MESSAGE);
         }else{
-            for(int i = 0; i<ordenes.size(); i++){
+           /* for(int i = 0; i<ordenes.size(); i++){
                 orden = ordenes.get(i);
                 modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
-            }
+            }*/
+           while(iterador.hayMas()){
+               orden = iterador.siguiente();
+               modelo.addRow(new Object[]{orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
+           }
         }
-        
+       
+    }
+   
+    public IteradorCOrdenCompra getIterador()
+    {
+        return new IteradorCOrdenCompra(this);
     }
     
     public void go_to(JPanel panel) {

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logico.IteradorCOrdenProduccion;
 import logico.ManagerOrdenProduccion;
 import logico.OrdenProduccion;
 import logico.RenglonProduccion;
@@ -23,26 +24,38 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
 
     private DefaultTableModel modelo;
     private DefaultTableModel modelo2;
-    private List<OrdenProduccion> ordenes = new ArrayList<>();
+    public List<OrdenProduccion> ordenes = new ArrayList<>();
     private OrdenProduccion orden = new OrdenProduccion();
-    
+   
     public Consultar_OrdenDeProduccion() throws Exception {
         initComponents();
-        
+       
+        IteradorCOrdenProduccion iterador = this.getIterador();
+       
         modelo = (DefaultTableModel) tablaInicio1.getModel();
-        
+       
         modelo2 = (DefaultTableModel) tablaRenglones1.getModel();
-        
+       
         ordenes = ManagerOrdenProduccion.getInstance().consultarTodasLasOrdenes();
-        
+       
         if(ordenes.get(1).getPrecioTotal() == 0){
             JOptionPane.showMessageDialog(this,"No hay ordenes de producción en la base de datos.","", JOptionPane.WARNING_MESSAGE);
         }else{
+            /*
             for(int i = 0; i<ordenes.size(); i++){
             orden = ordenes.get(i);
-            modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal()});
+            modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal()});*/
+           
+            while(iterador.hayMas()){
+                orden = iterador.siguiente();
+                modelo.addRow(new Object[]{orden.getFechaPedido(), orden.getPrecioTotal()});
+            }
         }
-        }
+    }
+   
+    public IteradorCOrdenProduccion getIterador()
+    {
+        return new IteradorCOrdenProduccion(this);
     }
        
 
