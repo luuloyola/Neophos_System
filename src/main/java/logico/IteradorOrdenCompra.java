@@ -4,17 +4,18 @@
  */
 package logico;
 
+import java.util.List;
 import paneles.ConsultarOrdenDeCompra;
 
 /**
  *
  * @author Usuario
  */
-public class IteradorCOrdenCompra implements Iterador{
-    private ConsultarOrdenDeCompra consultar;
+public class IteradorOrdenCompra implements Iterador{
+    private List<Orden_Compra> consultar;
     private int posicion_actual = 0;
 
-    public IteradorCOrdenCompra(ConsultarOrdenDeCompra cons)
+    public IteradorOrdenCompra(List<Orden_Compra> cons)
     {
         this.consultar = cons;
     }
@@ -25,9 +26,9 @@ public class IteradorCOrdenCompra implements Iterador{
     {
         Orden_Compra obj = new Orden_Compra();
 
-        if( this.consultar.ordenes.isEmpty() == false){
+        if( this.consultar.isEmpty() == false){
             this.posicion_actual = 0;
-            obj = this.consultar.ordenes.get(0);
+            obj = this.consultar.get(0);
         }
 
         return obj;
@@ -39,9 +40,9 @@ public class IteradorCOrdenCompra implements Iterador{
     {
         Orden_Compra obj = new Orden_Compra();
 
-        if( (this.posicion_actual ) < this.consultar.ordenes.size() )
+        if( (this.posicion_actual ) < this.consultar.size() )
         {
-            obj = this.consultar.ordenes.get(this.posicion_actual);
+            obj = this.consultar.get(this.posicion_actual);
             this.posicion_actual = this.posicion_actual + 1;
         }
 
@@ -54,7 +55,7 @@ public class IteradorCOrdenCompra implements Iterador{
     {
         boolean ok = false;
 
-        if( this.posicion_actual < (this.consultar.ordenes.size() ) )
+        if( this.posicion_actual < (this.consultar.size() ) )
         {
             ok = true;
         }
@@ -67,9 +68,9 @@ public class IteradorCOrdenCompra implements Iterador{
     {
         Orden_Compra obj = new Orden_Compra();
 
-        if( this.posicion_actual < this.consultar.ordenes.size() )
+        if( this.posicion_actual < this.consultar.size() )
         {
-            obj = this.consultar.ordenes.get(this.posicion_actual);
+            obj = this.consultar.get(this.posicion_actual);
         }
 
         return obj;

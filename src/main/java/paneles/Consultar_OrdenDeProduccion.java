@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import logico.IteradorCOrdenProduccion;
+import logico.IteradorOrdenProduccion;
 import logico.ManagerOrdenProduccion;
 import logico.OrdenProduccion;
 import logico.RenglonProduccion;
@@ -30,13 +30,13 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
     public Consultar_OrdenDeProduccion() throws Exception {
         initComponents();
        
-        IteradorCOrdenProduccion iterador = this.getIterador();
-       
         modelo = (DefaultTableModel) tablaInicio1.getModel();
        
         modelo2 = (DefaultTableModel) tablaRenglones1.getModel();
        
         ordenes = ManagerOrdenProduccion.getInstance().consultarTodasLasOrdenes();
+       
+        IteradorOrdenProduccion iterador = new IteradorOrdenProduccion(ordenes);
        
         if(ordenes.get(1).getPrecioTotal() == 0){
             JOptionPane.showMessageDialog(this,"No hay ordenes de producción en la base de datos.","", JOptionPane.WARNING_MESSAGE);
@@ -52,11 +52,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
             }
         }
     }
-   
-    public IteradorCOrdenProduccion getIterador()
-    {
-        return new IteradorCOrdenProduccion(this);
-    }
+  
        
 
     public void reiniciar(){

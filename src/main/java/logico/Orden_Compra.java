@@ -36,4 +36,5 @@ public class Orden_Compra extends Orden {
     public void setId(int id){
         this.id = id;
     }
+    
 }

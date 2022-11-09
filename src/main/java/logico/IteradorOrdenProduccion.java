@@ -4,17 +4,18 @@
  */
 package logico;
 
+import java.util.List;
 import paneles.Consultar_OrdenDeProduccion;
 
 /**
  *
  * @author Usuario
  */
-public class IteradorCOrdenProduccion implements Iterador{
-    private Consultar_OrdenDeProduccion consultar;
+public class IteradorOrdenProduccion implements Iterador{
+    private List<OrdenProduccion> consultar;
     private int posicion_actual = 0;
 
-    public IteradorCOrdenProduccion(Consultar_OrdenDeProduccion cons)
+    public IteradorOrdenProduccion(List<OrdenProduccion> cons)
     {
         this.consultar = cons;
     }
@@ -25,9 +26,9 @@ public class IteradorCOrdenProduccion implements Iterador{
     {
         OrdenProduccion obj = new OrdenProduccion();
 
-        if( this.consultar.ordenes.isEmpty() == false){
+        if( this.consultar.isEmpty() == false){
             this.posicion_actual = 0;
-            obj = this.consultar.ordenes.get(0);
+            obj = this.consultar.get(0);
         }
 
         return obj;
@@ -39,9 +40,9 @@ public class IteradorCOrdenProduccion implements Iterador{
     {
         OrdenProduccion obj = new OrdenProduccion();
 
-        if( (this.posicion_actual ) < this.consultar.ordenes.size() )
+        if( (this.posicion_actual ) < this.consultar.size() )
         {
-            obj = this.consultar.ordenes.get(this.posicion_actual);
+            obj = this.consultar.get(this.posicion_actual);
             this.posicion_actual = this.posicion_actual + 1;
         }
 
@@ -54,7 +55,7 @@ public class IteradorCOrdenProduccion implements Iterador{
     {
         boolean ok = false;
 
-        if( this.posicion_actual < (this.consultar.ordenes.size() ) )
+        if( this.posicion_actual < (this.consultar.size() ) )
         {
             ok = true;
         }
@@ -67,9 +68,9 @@ public class IteradorCOrdenProduccion implements Iterador{
     {
         OrdenProduccion obj = new OrdenProduccion();
 
-        if( this.posicion_actual < this.consultar.ordenes.size() )
+        if( this.posicion_actual < this.consultar.size() )
         {
-            obj = this.consultar.ordenes.get(this.posicion_actual);
+            obj = this.consultar.get(this.posicion_actual);
         }
 
         return obj;

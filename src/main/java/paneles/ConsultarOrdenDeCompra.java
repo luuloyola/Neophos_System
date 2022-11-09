@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import logico.IteradorCOrdenCompra;
+import logico.IteradorOrdenCompra;
 import logico.Manager_OrdenCompra;
 import logico.Orden_Compra;
 import logico.Renglon_Compra;
@@ -34,12 +34,12 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
     public ConsultarOrdenDeCompra() throws Exception{
         initComponents();
         
-        IteradorCOrdenCompra iterador = this.getIterador();
-        
         modelo = (DefaultTableModel) tablaInicio.getModel();
         modelo2 = (DefaultTableModel) tablaRenglones.getModel();
        
         ordenes = Manager_OrdenCompra.getInstance().consultarTodasLasOrdenes();
+        
+        IteradorOrdenCompra iterador = new IteradorOrdenCompra(ordenes);
 
         if(iterador.hayMas() == false){
             JOptionPane.showMessageDialog(this,"No hay ordenes de compra en la base de datos.","", JOptionPane.WARNING_MESSAGE);
@@ -54,11 +54,6 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
            }
         }
        
-    }
-   
-    public IteradorCOrdenCompra getIterador()
-    {
-        return new IteradorCOrdenCompra(this);
     }
     
     public void go_to(JPanel panel) {
