@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package logico;
 
 import java.util.ArrayList;
 
-public class Iterator_Proveedores {
+public class Iterator_Proveedores implements Iterador{
     private ArrayList<Proveedor> proveedores;
     private int posicion_actual = 0;
     
@@ -14,7 +11,7 @@ public class Iterator_Proveedores {
          this.proveedores = proveedores;
     }
     
-    //@Override
+    @Override
      public Proveedor primero()
     {
         Proveedor obj = null;
@@ -25,7 +22,7 @@ public class Iterator_Proveedores {
         return obj;
     }
     
-    //@Override
+    @Override
      public Proveedor siguiente()
     {
         Proveedor obj = null;
@@ -37,7 +34,7 @@ public class Iterator_Proveedores {
         return obj;
     }
     
-    //@Override
+    @Override
      public boolean hayMas()
     {
         boolean ok = false;
@@ -48,7 +45,7 @@ public class Iterator_Proveedores {
         return ok;
     }
     
-    //@Override
+    @Override
      public Proveedor actual()
     {
         Proveedor obj = null;

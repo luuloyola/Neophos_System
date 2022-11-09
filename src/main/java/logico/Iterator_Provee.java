@@ -3,7 +3,7 @@ package logico;
 
 import java.util.ArrayList;
 
-public class Iterator_Provee {
+public class Iterator_Provee implements Iterador{
     private ArrayList<Provee> materias;
     private int posicion_actual = 0;
     
@@ -11,7 +11,7 @@ public class Iterator_Provee {
          this.materias = materias;
     }
     
-    //@Override
+    @Override
      public Provee primero()
     {
         Provee obj = null;
@@ -22,7 +22,7 @@ public class Iterator_Provee {
         return obj;
     }
     
-    //@Override
+    @Override
      public Provee siguiente()
     {
         Provee obj = null;
@@ -34,7 +34,7 @@ public class Iterator_Provee {
         return obj;
     }
     
-    //@Override
+    @Override
      public boolean hayMas()
     {
         boolean ok = false;
@@ -45,7 +45,7 @@ public class Iterator_Provee {
         return ok;
     }
     
-    //@Override
+    @Override
      public Provee actual()
     {
         Provee obj = null;
