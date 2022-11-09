@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import logico.IteradorOrdenCompra;
+import logico.IteradorRenglonCompra;
 import logico.Manager_OrdenCompra;
 import logico.Orden_Compra;
 import logico.Renglon_Compra;
@@ -404,6 +405,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         Map<Orden_Compra, List<Renglon_Compra>> ordenCompleta = new HashMap<>();
         Orden_Compra infoOrden = new Orden_Compra();
         List<Renglon_Compra> infoRenglones = new ArrayList<Renglon_Compra>();
+        Renglon_Compra info = new Renglon_Compra();
 
         if (tablaInicio.getSelectedRow()==-1){
             JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
@@ -421,6 +423,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                 }
 
                 infoRenglones = ordenCompleta.get(infoOrden);
+                IteradorRenglonCompra iterador = new IteradorRenglonCompra(infoRenglones);
 
                 inicio.setVisible(false);
                 muestra.setVisible(true);
@@ -429,7 +432,8 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
                 PrecioLabel3.setText(String.valueOf(infoOrden.getPrecioTotal()));
                 IDProveedorLabel3.setText(infoOrden.getProveedor());
 
-                for(Renglon_Compra info: infoRenglones){
+                while(iterador.hayMas()){
+                    info = iterador.siguiente();
                     modelo2.addRow(new Object[] {info.getCantidad(), info.getPrecio(), info.getNombre_Tiene()});
                 }
 
