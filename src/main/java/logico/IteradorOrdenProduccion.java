@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package logico;
 
 import java.util.List;
-import paneles.Consultar_OrdenDeProduccion;
 
-/**
- *
- * @author Usuario
- */
 public class IteradorOrdenProduccion implements Iterador{
     private List<OrdenProduccion> consultar;
     private int posicion_actual = 0;
