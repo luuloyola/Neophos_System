@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logico.IteradorRenglonProduccion;
 import logico.ManagerOrdenProduccion;
 import logico.RenglonProduccion;
 
@@ -24,6 +25,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         modelo = (DefaultTableModel) tablaRenglones.getModel();
         fechaAuto.setText("Fecha Pedido:  "+LocalDate.now().getYear()+" / "+LocalDate.now().getMonthValue()+" / "+LocalDate.now().getDayOfMonth());
         eliminar.setVisible(false);
+        
         
     }
     @SuppressWarnings("unchecked")
@@ -371,9 +373,9 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
     private void inicioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_inicioAncestorAdded
         if (consultar != null){
             if(consultar.getRenglon()!=null){
-                for(int i=0; i< renglon.size(); i++){
-                    
-                    if (renglon.get(i).getNombre_Tiene().equals(consultar.getRenglon().getNombre_Tiene())){
+                IteradorRenglonProduccion iterador = new IteradorRenglonProduccion(renglon);
+                while(iterador.hayMas()){
+                    if (iterador.siguiente().getNombre_Tiene().equals(consultar.getRenglon().getNombre_Tiene())){
                         JOptionPane.showMessageDialog(this,"La materia seleccionada ya se encontraba en el listado","", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
