@@ -466,7 +466,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             ArrayList<String> materias = new ArrayList();
             try {
                 materias = manager_pFinal.compuesto_por(productoFinal.getNombre_Producto());
-                System.out.println(materias.get(0));
+                
             } catch (Exception ex) {
                 Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
             }
