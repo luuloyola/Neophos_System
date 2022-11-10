@@ -22,7 +22,7 @@ import logico.RenglonProduccion;
  * @author Usuario
  */
 public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
-
+    private ManagerOrdenProduccion manager;
     private DefaultTableModel modelo;
     private DefaultTableModel modelo2;
     public List<OrdenProduccion> ordenes = new ArrayList<>();
@@ -35,21 +35,16 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
        
         modelo2 = (DefaultTableModel) tablaRenglones1.getModel();
        
-        ordenes = ManagerOrdenProduccion.getInstance().consultarTodasLasOrdenes();
+        ordenes = manager.consultarTodasLasOrdenes();
        
         IteradorOrdenProduccion iterador = new IteradorOrdenProduccion(ordenes);
        
         if(ordenes.get(1).getPrecioTotal() == 0){
             JOptionPane.showMessageDialog(this,"No hay ordenes de producción en la base de datos.","", JOptionPane.WARNING_MESSAGE);
         }else{
-            /*
-            for(int i = 0; i<ordenes.size(); i++){
-            orden = ordenes.get(i);
-            modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal()});*/
-           
             while(iterador.hayMas()){
                 orden = iterador.siguiente();
-                modelo.addRow(new Object[]{orden.getFechaPedido(), orden.getPrecioTotal()});
+                modelo.addRow(new Object[]{orden.getFechaPedido(), orden.getFecha_limite(), orden.getPrecioTotal()});
             }
         }
     }
@@ -59,7 +54,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
     public void reiniciar(){
         fechaPText.setText("");
         fechaLimiteText.setText("");
-        recetaText.setText("");
+        fechaRealizacionText.setText("");
         precioTotalText.setText("");
         modelo2.setRowCount(0);
     }
@@ -99,7 +94,9 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         mesas2 = new javax.swing.JLabel();
         recetaLabel = new javax.swing.JLabel();
         precioTotalLabel = new javax.swing.JLabel();
-        recetaText = new javax.swing.JLabel();
+        fechaRealizacionText = new javax.swing.JLabel();
+        fechaRealizacionLabel = new javax.swing.JLabel();
+        recetaText1 = new javax.swing.JLabel();
 
         contenedor.setBackground(new java.awt.Color(204, 204, 204));
         contenedor.setMaximumSize(new java.awt.Dimension(1042, 619));
@@ -133,7 +130,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Fecha Pedido", "Precio Total"
+                "Fecha Pedido", "Fecha Limite", "Precio Total"
             }
         ));
         tablaInicio1.getTableHeader().setReorderingAllowed(false);
@@ -255,6 +252,10 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         precioTotalLabel.setForeground(new java.awt.Color(97, 34, 34));
         precioTotalLabel.setText("Precio Total:");
 
+        fechaRealizacionLabel.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
+        fechaRealizacionLabel.setForeground(new java.awt.Color(97, 34, 34));
+        fechaRealizacionLabel.setText("Fecha Realizacion:");
+
         javax.swing.GroupLayout muestraOPLayout = new javax.swing.GroupLayout(muestraOP);
         muestraOP.setLayout(muestraOPLayout);
         muestraOPLayout.setHorizontalGroup(
@@ -282,14 +283,16 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
                                     .addComponent(fechaLimiteLabel)
                                     .addComponent(FechaPLabel1)
                                     .addComponent(recetaLabel)
-                                    .addComponent(precioTotalLabel))
+                                    .addComponent(precioTotalLabel)
+                                    .addComponent(fechaRealizacionLabel))
                                 .addGap(18, 18, 18)
-                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fechaPText, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fechaLimiteText, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(precioTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(recetaText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fechaPText, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(fechaLimiteText, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(precioTotalText, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(fechaRealizacionText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(recetaText1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(81, 81, 81)
                                 .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(infoRenglonesLabel1)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -318,33 +321,34 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
                             .addComponent(infoRenglonesLabel1))
                         .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(muestraOPLayout.createSequentialGroup()
-                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(muestraOPLayout.createSequentialGroup()
-                                        .addGap(48, 48, 48)
-                                        .addComponent(fechaLimiteLabel))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, muestraOPLayout.createSequentialGroup()
+                                        .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(muestraOPLayout.createSequentialGroup()
+                                                .addGap(48, 48, 48)
+                                                .addComponent(fechaLimiteLabel))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, muestraOPLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(fechaLimiteText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(42, 42, 42)
+                                        .addComponent(fechaRealizacionLabel))
+                                    .addGroup(muestraOPLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fechaLimiteText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(muestraOPLayout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(recetaLabel))
-                                    .addGroup(muestraOPLayout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(recetaText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(muestraOPLayout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addComponent(precioTotalLabel))
-                                    .addGroup(muestraOPLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(precioTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(fechaRealizacionText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(21, 21, 21)
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(recetaLabel)
+                                    .addComponent(recetaText1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(15, 15, 15)
+                                .addGroup(muestraOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(precioTotalLabel)
+                                    .addComponent(precioTotalText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(muestraOPLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(16, 16, 16)
+                .addGap(29, 29, 29)
                 .addComponent(volverButton2)
-                .addGap(0, 186, Short.MAX_VALUE))
+                .addGap(0, 172, Short.MAX_VALUE))
         );
 
         mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -383,7 +387,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
             int id = orden.getId();
 
             try {
-                ordenCompleta = ManagerOrdenProduccion.getInstance().consultarOrdenDeProduccion(id);
+                ordenCompleta = manager.consultarOrdenDeProduccion(id);
                         
                 Set<OrdenProduccion> keys = ordenCompleta.keySet();
                 for(OrdenProduccion key : keys){
@@ -398,7 +402,8 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
 
                 fechaPText.setText(infoOrden.getFechaPedido().toString());
                 fechaLimiteText.setText(infoOrden.getFecha_limite().toString());
-                recetaText.setText(infoOrden.getReceta());
+                fechaRealizacionText.setText("Pendiente");
+                fechaRealizacionText.setText(infoOrden.getReceta());
                 precioTotalText.setText(String.valueOf(infoOrden.getPrecioTotal()));
 
                 while(iterador.hayMas()){
@@ -430,6 +435,8 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
     private javax.swing.JLabel fechaLimiteLabel;
     private javax.swing.JLabel fechaLimiteText;
     private javax.swing.JLabel fechaPText;
+    private javax.swing.JLabel fechaRealizacionLabel;
+    private javax.swing.JLabel fechaRealizacionText;
     private javax.swing.JLabel infoOrdenLabel1;
     private javax.swing.JLabel infoRenglonesLabel1;
     private javax.swing.JPanel inicioOP;
@@ -443,7 +450,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
     private javax.swing.JLabel precioTotalLabel;
     private javax.swing.JLabel precioTotalText;
     private javax.swing.JLabel recetaLabel;
-    private javax.swing.JLabel recetaText;
+    private javax.swing.JLabel recetaText1;
     private javax.swing.JTable tablaInicio1;
     private javax.swing.JTable tablaRenglones1;
     private javax.swing.JButton volverButton2;

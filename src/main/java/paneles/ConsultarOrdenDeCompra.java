@@ -27,6 +27,7 @@ import logico.Renglon_Compra;
  */
 public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
   
+    private Manager_OrdenCompra manager;
     private DefaultTableModel modelo;
     private DefaultTableModel modelo2;
     public List<Orden_Compra> ordenes = new ArrayList<>();
@@ -38,17 +39,13 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         modelo = (DefaultTableModel) tablaInicio.getModel();
         modelo2 = (DefaultTableModel) tablaRenglones.getModel();
        
-        ordenes = Manager_OrdenCompra.getInstance().consultarTodasLasOrdenes();
+        ordenes = manager.consultarTodasLasOrdenes();
         
         IteradorOrdenCompra iterador = new IteradorOrdenCompra(ordenes);
 
         if(iterador.hayMas() == false){
             JOptionPane.showMessageDialog(this,"No hay ordenes de compra en la base de datos.","", JOptionPane.WARNING_MESSAGE);
         }else{
-           /* for(int i = 0; i<ordenes.size(); i++){
-                orden = ordenes.get(i);
-                modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
-            }*/
            while(iterador.hayMas()){
                orden = iterador.siguiente();
                modelo.addRow(new Object[]{orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
@@ -401,7 +398,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButton1ActionPerformed
-
+ 
         Map<Orden_Compra, List<Renglon_Compra>> ordenCompleta = new HashMap<>();
         Orden_Compra infoOrden = new Orden_Compra();
         List<Renglon_Compra> infoRenglones = new ArrayList<Renglon_Compra>();
@@ -415,7 +412,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
             int id = orden.getId();
 
             try {
-                ordenCompleta = Manager_OrdenCompra.getInstance().consultarOrdenDeCompra(id);
+                ordenCompleta = manager.consultarOrdenDeCompra(id);
 
                 Set<Orden_Compra> keys = ordenCompleta.keySet();
                 for(Orden_Compra key : keys){
@@ -455,26 +452,31 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
     private void filtrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarButtonActionPerformed
         String nombre = nombreText.getText();
         List<Orden_Compra> ordenes = new ArrayList<>();
+        IteradorOrdenCompra iterador;
         
         if(nombre.equals("")){
             JOptionPane.showMessageDialog(null, "Si desea filtrar la búsqueda debe ingresar el nombre de un Proveedor..\n");
         }else{
             try {
                 modelo.setRowCount(0);
-                ordenes = Manager_OrdenCompra.getInstance().consultarOrdenPorProveedor(nombre);
-                for(int i = 0; i<ordenes.size(); i++){
-                            orden = ordenes.get(i);
-                            modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
+                ordenes = manager.consultarOrdenPorProveedor(nombre);
+                iterador = new IteradorOrdenCompra(ordenes);
+                while(iterador.hayMas()){
+                    orden = iterador.siguiente();
+                    modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
+                
                 }
 
                 if(ordenes.isEmpty()){
                     JOptionPane.showMessageDialog(this,"No hay ordenes de compra con ese proveedor asociado.","", JOptionPane.WARNING_MESSAGE);
                     nombreText.setText("");
-                    ordenes = Manager_OrdenCompra.getInstance().consultarTodasLasOrdenes();
-                    for(int i = 0; i<ordenes.size(); i++){
-                            orden = ordenes.get(i);
-                            modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
-                        }
+                    ordenes = manager.consultarTodasLasOrdenes();
+                    iterador = new IteradorOrdenCompra(ordenes);
+                    while(iterador.hayMas()){
+                        orden = iterador.siguiente();
+                        modelo.addRow(new Object[] {orden.getFechaPedido(), orden.getPrecioTotal(), orden.getProveedor()});
+                        
+                    }
                 }
             } catch (Exception ex) {
                 Logger.getLogger(ConsultarOrdenDeCompra.class.getName()).log(Level.SEVERE, null, ex);
