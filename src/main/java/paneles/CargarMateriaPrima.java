@@ -6,33 +6,32 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import logico.IteradorProducto;
 import logico.Manager_MateriaPrima;
 import logico.Manager_Producto;
-import logico.Manager_Proveedor;
 import logico.MateriaPrima;
 import logico.Producto;
 
 public class CargarMateriaPrima extends javax.swing.JPanel {
 
     Manager_MateriaPrima manager_mat;
-    Manager_Proveedor manager_proveedor;
     
     public CargarMateriaPrima(String proveedor) throws SQLException, Exception {
         initComponents();
         manager_mat = new Manager_MateriaPrima();
-        manager_proveedor = new Manager_Proveedor();
         
         JTipo.addItem("PRODUCTO_QUIMICO");
         JTipo.addItem("INSUMO");
         
         List<Producto> productos = Manager_Producto.getInstance().getAllProductos();
+        IteradorProducto iterador = new IteradorProducto(productos);
         String auxiliar;
         JMat.addItem("Seleccionar Materia Prima");
         
         JMat.setSelectedIndex(0);
-
-        for (int i = 0; i<productos.size(); i++){
-            auxiliar = productos.get(i).getNombre();
+        
+        while(iterador.hayMas()){
+            auxiliar = iterador.siguiente().getNombre();
             JMat.addItem(auxiliar);
         }
     }
