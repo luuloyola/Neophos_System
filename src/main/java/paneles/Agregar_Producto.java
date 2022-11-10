@@ -292,26 +292,25 @@ public class Agregar_Producto extends javax.swing.JPanel {
     }//GEN-LAST:event_confirmarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        modelo.setRowCount(0);
         if(proveedor_lista.getSelectedIndex() == 0 && nombre_materiaprima.getText().isBlank()){
             JOptionPane.showMessageDialog(this,"Debe seleccionar un proveedor o ingresar un id","", JOptionPane.WARNING_MESSAGE);
             
             return;
         }
-        modelo.setRowCount(0);
+        
 
         String proveedor = proveedor_lista.getSelectedItem().toString();
         String nombre_Materia = nombre_materiaprima.getText();;
 
         Provee materia_consultada;
-        ArrayList<Provee> arreglo= null;
-        
-        
         
         if(proveedor_lista.getSelectedIndex() != 0 && !nombre_materiaprima.getText().isBlank()){
             try {
                 materia_consultada = manager_provee.consultar_todos(proveedor, nombre_Materia);
                 if (materia_consultada.getNombre_Producto() == ""){
                     no_hay_valores();
+                    return;
                 }
                 modelo.addRow(new Object[] {materia_consultada.getNombre_Proveedor(), materia_consultada.getNombre_Producto(), materia_consultada.getPrecio()});
             } catch (Exception ex) {
@@ -320,13 +319,13 @@ public class Agregar_Producto extends javax.swing.JPanel {
         }
         else if (proveedor_lista.getSelectedIndex() != 0){
             try {
-                arreglo = manager_provee.buscar_Materias_porProveedor(proveedor);
-                if (arreglo == null){
+                Iterator_Provee iterator = new Iterator_Provee(manager_provee.buscar_Materias_porProveedor(proveedor));
+                if (!iterator.hayMas()){
                     no_hay_valores();
+                    return;
                 }
-                
-                for (int i = 0; i<arreglo.size(); i++){
-                    materia_consultada = arreglo.get(i);
+                while(iterator.hayMas()){
+                    materia_consultada = iterator.siguiente();
                     modelo.addRow(new Object[] {materia_consultada.getNombre_Proveedor(), materia_consultada.getNombre_Producto(), materia_consultada.getPrecio()});
                 }
             } catch (Exception ex) {
@@ -338,6 +337,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
                 Iterator_Provee iterator = new Iterator_Provee(manager_provee.buscar_Materias_porMateria(nombre_Materia));
                 if (!iterator.hayMas()){
                     no_hay_valores();
+                    return;
                 }
 
                 while(iterator.hayMas()){
@@ -358,6 +358,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,"No hay resultados disponibles para la busqueda realizada","", JOptionPane.WARNING_MESSAGE);
         nombre_materiaprima.setText("");
         if (proveedor_lista.isEnabled()) proveedor_lista.setSelectedIndex(0);
+        
         return;
     }
     
