@@ -58,7 +58,8 @@ public class DAO_OrdenProduccion implements DAO<OrdenProduccion>{
                 orden.setFecha_limite(rs.getDate(3));
                 orden.setFecha_realizacion(rs.getDate(4));
                 orden.setReceta(rs.getString(5));
-                orden.setPrecioTotal(rs.getDouble(6));
+                orden.setNombreC(rs.getString(6));
+                orden.setPrecioTotal(rs.getDouble(7));
                 listaOrdenes.add(orden);
             }
             rs.close();
@@ -87,7 +88,8 @@ public class DAO_OrdenProduccion implements DAO<OrdenProduccion>{
                 orden.setFecha_limite(rs.getDate(3));
                 orden.setFecha_realizacion(rs.getDate(4));
                 orden.setReceta(rs.getString(5));
-                orden.setPrecioTotal(rs.getDouble(6));
+                orden.setNombreC(rs.getString(6));
+                orden.setPrecioTotal(rs.getDouble(7));
             }
             rs.close();
             st.close();
