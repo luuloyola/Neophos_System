@@ -84,6 +84,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         tipo1 = new javax.swing.JTextField();
         precio1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         contenedor.setBackground(new java.awt.Color(204, 204, 204));
         contenedor.setMaximumSize(new java.awt.Dimension(1042, 619));
@@ -112,6 +113,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             }
         });
 
+        productos.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
         productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -246,21 +248,23 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
 
         Separador7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Separador7.setForeground(new java.awt.Color(97, 34, 34));
-        Separador7.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
+        Separador7.setText("_________________________________________________________________________________________________________________________________________________________________________________________________________");
 
         infoOrdenLabel1.setFont(new java.awt.Font("Microsoft YaHei", 1, 14)); // NOI18N
         infoOrdenLabel1.setForeground(new java.awt.Color(97, 34, 34));
         infoOrdenLabel1.setText("Informacion del Producto Final consultado:");
 
-        volverButton3.setFont(new java.awt.Font("Microsoft YaHei", 0, 11)); // NOI18N
-        volverButton3.setText("Cancelar");
+        volverButton3.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        volverButton3.setText("Volver");
         volverButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButton3ActionPerformed(evt);
             }
         });
 
-        materias1.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        jScrollPane4.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
+
+        materias1.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
         materias1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -272,17 +276,37 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         materias1.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(materias1);
 
+        jLabel7.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Nombre:");
 
+        nombre1.setEditable(false);
+        nombre1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Descripcion:");
 
+        descripcion1.setEditable(false);
+        descripcion1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Tipo de Empaquetado");
 
+        tipo1.setEditable(false);
+        tipo1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
+
+        precio1.setEditable(false);
+        precio1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Precio:");
+
+        jLabel11.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Compuesto por:");
 
         javax.swing.GroupLayout muestraLayout = new javax.swing.GroupLayout(muestra);
         muestra.setLayout(muestraLayout);
@@ -294,51 +318,55 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                     .addComponent(Separador7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, muestraLayout.createSequentialGroup()
                         .addComponent(Titulo1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(muestraLayout.createSequentialGroup()
-                        .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(infoOrdenLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(muestraLayout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(muestraLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, muestraLayout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(descripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(muestraLayout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(precio1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(muestraLayout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, muestraLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(infoOrdenLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(muestraLayout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, muestraLayout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(descripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(muestraLayout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(precio1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(muestraLayout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addGap(18, 18, 18)
+                            .addComponent(tipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
             .addGroup(muestraLayout.createSequentialGroup()
-                .addGap(418, 418, 418)
+                .addGap(433, 433, 433)
                 .addComponent(volverButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         muestraLayout.setVerticalGroup(
             muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(muestraLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(Titulo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Separador7)
+                .addGap(28, 28, 28)
+                .addComponent(infoOrdenLabel1)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel11)
                 .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(muestraLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(muestraLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(infoOrdenLabel1)
                         .addGap(29, 29, 29)
                         .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -355,9 +383,9 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                         .addGroup(muestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(precio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))))
-                .addGap(26, 26, 26)
+                .addGap(62, 62, 62)
                 .addComponent(volverButton3)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -368,7 +396,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 1011, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,9 +443,10 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     private void confirmar_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_1ActionPerformed
        
         if(context == 0){
-                if (productos.getSelectedRow()==-1)
+              
+            if (productos.getSelectedRow()==-1)
             {
-                JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Debe seleccionar un producto final","", JOptionPane.WARNING_MESSAGE);
                 seleccionar.setForeground(Color.RED);
                 return;
             }
@@ -449,7 +478,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
         } else {
             if (productos.getSelectedRow()==-1)
             {
-                JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Debe seleccionar un producto final","", JOptionPane.WARNING_MESSAGE);
                 seleccionar.setForeground(Color.RED);
                 return;
             }
@@ -509,6 +538,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     private javax.swing.JPanel inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

@@ -27,7 +27,7 @@ import logico.Renglon_Compra;
  */
 public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
   
-    private Manager_OrdenCompra manager;
+    private Manager_OrdenCompra manager = Manager_OrdenCompra.getInstance();
     private DefaultTableModel modelo;
     private DefaultTableModel modelo2;
     public List<Orden_Compra> ordenes = new ArrayList<>();
