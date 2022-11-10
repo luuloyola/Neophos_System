@@ -377,6 +377,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         OrdenProduccion infoOrden = new OrdenProduccion();
         List<RenglonProduccion> infoRenglones = new ArrayList<RenglonProduccion>();
         RenglonProduccion info = new RenglonProduccion();
+        String text = "Pendiente";
 
         if (tablaInicio1.getSelectedRow()==-1){
             JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
@@ -402,8 +403,8 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
 
                 fechaPText.setText(infoOrden.getFechaPedido().toString());
                 fechaLimiteText.setText(infoOrden.getFecha_limite().toString());
-                fechaRealizacionText.setText("Pendiente");
-                fechaRealizacionText.setText(infoOrden.getReceta());
+                fechaRealizacionText.setText(text.toString());
+                recetaText1.setText(infoOrden.getReceta());
                 precioTotalText.setText(String.valueOf(infoOrden.getPrecioTotal()));
 
                 while(iterador.hayMas()){
