@@ -14,10 +14,10 @@ public class Manager_StockMateria {
         StockMateria stock = new StockMateria(cant,dep.getId(),mat.getNombre());
         daostockMateria.create(stock);
     }
-    public void modificarStockMateria(StockMateria stock) throws Exception{
-        //No Support yet
+    public void modificarStockMateria(String nombre, double cant) throws Exception{
+        daostockMateria.modificarStockMateria(nombre, cant);
     }
-    public void eliminarStockMateria(StockMateria stock) throws Exception{
+    public void eliminarStockMateria(String nombre) throws Exception{
         //No Support yet
     }
     public List<StockMateria> listarStockAll() throws Exception{

@@ -36,6 +36,20 @@ public class DAOStockMateria implements DAO<StockMateria>{
     public void update(StockMateria object, int id) throws Exception {
         //No Support yet
     }
+    public void modificarStockMateria(String nombre, double cant) throws Exception{
+        try {
+            PreparedStatement st = ConexionBD.getConexion()
+                    .prepareStatement("UPDATE Stock_Materia SET cantidad = ? WHERE Nombre_MateriaPrima_Proveida = ?");
+            st.setDouble(1,cant);
+            st.setString(2,nombre);
+            st.executeUpdate();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionBD.cerrar();
+        }
+    }
 
     @Override
     public void delete(int id) throws Exception {
@@ -44,6 +58,7 @@ public class DAOStockMateria implements DAO<StockMateria>{
 
     @Override
     public List<StockMateria> findAll() throws Exception {
+        
         ArrayList<StockMateria> stock = null;
         try {
             PreparedStatement st = ConexionBD.getConexion()
@@ -51,7 +66,7 @@ public class DAOStockMateria implements DAO<StockMateria>{
             stock = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while(rs.next()){
-                StockMateria s = new StockMateria(rs.getInt(3),rs.getInt(1),rs.getString(2));
+                StockMateria s = new StockMateria(rs.getDouble(3),rs.getInt(1),rs.getString(2));
                 stock.add(s);
             }
             rs.close();

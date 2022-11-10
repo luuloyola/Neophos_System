@@ -47,7 +47,7 @@ public class Principal extends javax.swing.JFrame {
         return generar_orden;
     }
     public static JPanel getGenerar_Orden_Por_Necesidad(){
-       try {
+        try {
             generar_orden = new Generar_Orden(1);
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);

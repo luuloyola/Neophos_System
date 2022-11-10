@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import logico.ManagerCompuestoPor;
-import logico.Manager_OrdenCompra;
 import logico.Manager_ProductoFinal;
 import logico.Manager_StockMateria;
 import logico.ProductoFinal;
@@ -513,14 +512,27 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                 ManagerCompuestoPor p = ManagerCompuestoPor.getInstance();
                 Map<String,Integer> prod = p.buscar_Materias_porProductos(productos.getValueAt(productos.getSelectedRow() , 0).toString());
                 for (StockMateria mat1 : mat) {
-                       if (prod.containsKey( mat1.nom_mat)&& (prod.get(mat1.nom_mat)*Integer.parseInt(cantidad_ingresar.getText()))> mat1.cantidad){
-                           mat_sinStock.add(mat1.nom_mat);
-                    } 
+                    
+                       if (prod.containsKey( mat1.nom_mat)){
+                           if((prod.get(mat1.nom_mat)*Integer.parseInt(cantidad_ingresar.getText()))> mat1.cantidad)mat_sinStock.add(mat1.nom_mat);
+                           else stock.modificarStockMateria(mat1.getNom_mat(),mat1.cantidad -(prod.get(mat1.nom_mat)*Integer.parseInt(cantidad_ingresar.getText())));
+                    }
                 }
                 if(!mat_sinStock.isEmpty()){
                     int input = JOptionPane.showConfirmDialog(this,"No hay stock de algunas materias primas para realizar el producto, desea solicitar una orden de compra?", "",JOptionPane.YES_NO_CANCEL_OPTION);
-                    if (input == 0)paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Por_Necesidad());
+                    if (input == 0){
+                        renglon = new RenglonProduccion();
+                        renglon.setNombre_Tiene((productos.getValueAt(productos.getSelectedRow() , 0).toString()));
+                        renglon.setCantidad(Integer.parseInt(cantidad_ingresar.getText()));
+                        renglon.setPrecio(getRenglon().getCantidad()*(double)productos.getValueAt(productos.getSelectedRow() , 2));
+                        paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Por_Necesidad());}
                 }
+                else {
+                    renglon = new RenglonProduccion();
+                    renglon.setNombre_Tiene((productos.getValueAt(productos.getSelectedRow() , 0).toString()));
+                    renglon.setCantidad(Integer.parseInt(cantidad_ingresar.getText()));
+                    renglon.setPrecio(getRenglon().getCantidad()*(double)productos.getValueAt(productos.getSelectedRow() , 2));
+                    paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Produccion());}
             } catch (SQLException ex) {
                 Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
@@ -528,13 +540,9 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             }
             
             
-            // Si hay stock entonces se genera el renglon
-            renglon = new RenglonProduccion();
-            renglon.setNombre_Tiene((productos.getValueAt(productos.getSelectedRow() , 0).toString()));
-            renglon.setCantidad(Integer.parseInt(cantidad_ingresar.getText()));
-            renglon.setPrecio(getRenglon().getCantidad()*(double)productos.getValueAt(productos.getSelectedRow() , 2));
+            
 
-            //paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Produccion());
+            //
         }
         
     }//GEN-LAST:event_confirmar_1ActionPerformed

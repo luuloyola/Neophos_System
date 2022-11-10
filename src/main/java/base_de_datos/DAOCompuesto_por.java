@@ -7,11 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import logico.Compuesto_por;
-import logico.MateriaPrima;
-import logico.Provee;
 
 public class DAOCompuesto_por implements DAO<Compuesto_por>{
 
+    public DAOCompuesto_por() {
+    }
+
+    
     @Override
     public void create(Compuesto_por object) throws Exception {
         
@@ -42,7 +44,6 @@ public class DAOCompuesto_por implements DAO<Compuesto_por>{
         return null;
     }
     public Map<String,Integer> findAll_Materia_PorProveedor(String nombre_producto) throws SQLException{
-        System.out.println("findAll de materias");
         Map<String,Integer> listaMaterias = null;
         try {
             PreparedStatement st = ConexionBD.getConexion()
