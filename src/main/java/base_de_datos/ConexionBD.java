@@ -107,7 +107,8 @@ public class ConexionBD {
                 
                 + "CREATE TABLE IF NOT EXISTS Compuesto_Por("
                 + "Nombre_Producto_Compuesto TEXT NOT NULL, "
-                + "Nombre_MateriaPrima_Compuesta TEXT NOT NULL, "                
+                + "Nombre_MateriaPrima_Compuesta TEXT NOT NULL, "
+                + "Cantidad_requerida INTEGER NOT NULL, "
                 + "PRIMARY KEY (Nombre_Producto_Compuesto, Nombre_MateriaPrima_Compuesta),"
                 + "FOREIGN KEY (Nombre_Producto_Compuesto) REFERENCES ProductoFinal (Nombre_Producto),"
                 + "FOREIGN KEY (Nombre_MateriaPrima_Compuesta) REFERENCES MateriaPrima (Nombre_MateriaPrima));"

@@ -13,22 +13,17 @@ public class DAOStockMateria implements DAO<StockMateria>{
     
     @Override
     public void create(StockMateria object) throws Exception {
-        int id_mat=0;
         try {
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("SELECT max(id_materiaprima) from materiaprima;");
-            ResultSet rs = st.executeQuery();
-            if(rs.next()) id_mat = rs.getInt(1);
-            st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO Stock_Materia (Cantidad, ID_MateriaPrima_Proveida, ID_Deposito) VALUES (?,?,?)");
+            PreparedStatement st = ConexionBD.getConexion()
+                    .prepareStatement("INSERT INTO Stock_Materia (Cantidad, Nombre_MateriaPrima_Proveida, ID_Deposito) VALUES (?,?,?)");
             st.setDouble(1,object.getCantidad());
-            st.setInt(2,id_mat);
+            st.setString(2,object.materiaPrima.getNombre());
             st.setInt(3,0); // Esto porque el deposito es Unico
             st.executeUpdate();
-            rs.close();
             st.close();
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocurrio un problema");
+            JOptionPane.showMessageDialog(null, "Ocurrio un problema en el Stock");
         }finally {
             ConexionBD.cerrar();
             }
