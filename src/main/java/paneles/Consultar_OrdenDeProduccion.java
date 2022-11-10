@@ -22,7 +22,7 @@ import logico.RenglonProduccion;
  * @author Usuario
  */
 public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
-    private ManagerOrdenProduccion manager;
+    private ManagerOrdenProduccion manager = ManagerOrdenProduccion.getInstance();
     private DefaultTableModel modelo;
     private DefaultTableModel modelo2;
     public List<OrdenProduccion> ordenes = new ArrayList<>();

@@ -3,6 +3,7 @@ package paneles;
 
 import java.awt.Color;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logico.Manager_OrdenCompra;
 import logico.Manager_Proveedor;
-import logico.Proveedor;
 import logico.Renglon_Compra;
 import logico.Iterator_Proveedores;
 
@@ -37,6 +37,8 @@ public class Generar_Orden extends javax.swing.JPanel {
         
         
         modelo = (DefaultTableModel) tablaRenglones.getModel();
+        fecha.setText(LocalDate.now().getYear()+" / "+LocalDate.now().getMonthValue()+" / "+LocalDate.now().getDayOfMonth());
+        
         
         Iterator_Proveedores iterator = new Iterator_Proveedores(manager_proveedor.getAllProveedores());
         
@@ -51,9 +53,6 @@ public class Generar_Orden extends javax.swing.JPanel {
     }
 
     public void restablecer_valores(){
-        año.setText("yyyy");
-        mes.setText("mm");
-        dia.setText("dd");
         proveedor_lista.setSelectedIndex(0);
         proveedor_lista.setEnabled(true);
         renglon.clear();
@@ -83,12 +82,7 @@ public class Generar_Orden extends javax.swing.JPanel {
         tablaRenglones = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        año = new javax.swing.JTextField();
-        mes = new javax.swing.JTextField();
-        dia = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        req = new javax.swing.JLabel();
+        fecha = new javax.swing.JTextField();
         eliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         precio_total_field = new javax.swing.JTextField();
@@ -121,8 +115,6 @@ public class Generar_Orden extends javax.swing.JPanel {
                 proveedor_listaActionPerformed(evt);
             }
         });
-
-        prov.setForeground(new java.awt.Color(0, 0, 0));
 
         agregar_renglon.setText("Agregar Renglón");
         agregar_renglon.addActionListener(new java.awt.event.ActionListener() {
@@ -162,46 +154,16 @@ public class Generar_Orden extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaRenglones);
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Proveedor");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha:");
 
-        año.setText("yyyy");
-        año.addMouseListener(new java.awt.event.MouseAdapter() {
+        fecha.setEditable(false);
+        fecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                añoMouseClicked(evt);
+                fechaMouseClicked(evt);
             }
         });
-        año.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                añoActionPerformed(evt);
-            }
-        });
-
-        mes.setText("mm");
-        mes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mesMouseClicked(evt);
-            }
-        });
-
-        dia.setText("dd");
-        dia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                diaMouseClicked(evt);
-            }
-        });
-
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("/");
-
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("/");
-
-        req.setForeground(new java.awt.Color(51, 51, 51));
-        req.setText("(*)");
 
         eliminar.setText("Eliminar Renglon");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -210,9 +172,9 @@ public class Generar_Orden extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Precio total:");
 
+        precio_total_field.setEditable(false);
         precio_total_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 precio_total_fieldActionPerformed(evt);
@@ -238,18 +200,8 @@ public class Generar_Orden extends javax.swing.JPanel {
                         .addComponent(proveedor_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(año, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(req)
+                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(inicioLayout.createSequentialGroup()
@@ -278,12 +230,7 @@ public class Generar_Orden extends javax.swing.JPanel {
                     .addComponent(agregar_renglon, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(req))
+                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -296,7 +243,7 @@ public class Generar_Orden extends javax.swing.JPanel {
                             .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 5, Short.MAX_VALUE)))
                 .addGap(96, 96, 96))
         );
 
@@ -310,7 +257,7 @@ public class Generar_Orden extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -361,23 +308,15 @@ public class Generar_Orden extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Debe ingresar renglones","", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Date fecha;
         
-        
-        if (verificar_fecha()){
-            int año1 = Integer.parseInt(año.getText()) -1900;
-            int mes1 = Integer.parseInt(mes.getText()) - 1;
-            fecha = new Date(año1, mes1, Integer.parseInt(dia.getText()));
-        }
-        else return;
-        
+        Date fecha_now = new Date((LocalDate.now().getYear()-1900),LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
         int input = JOptionPane.showConfirmDialog(this,"Seguro desea confirmar la orden en proceso?", "",JOptionPane.YES_NO_CANCEL_OPTION);
         
         if (input == 0){
             manager_orden = Manager_OrdenCompra.getInstance();
 
             try {
-                manager_orden.generarOrdenDeCompra(proveedor_lista.getSelectedItem().toString(), fecha, precio_total, renglon);
+                manager_orden.generarOrdenDeCompra(proveedor_lista.getSelectedItem().toString(), fecha_now, precio_total, renglon);
                 JOptionPane.showMessageDialog(this, "Orden de compra cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
@@ -387,21 +326,9 @@ public class Generar_Orden extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_confirmarActionPerformed
 
-    private void añoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_añoMouseClicked
-        año.setText("");
-    }//GEN-LAST:event_añoMouseClicked
-
-    private void mesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesMouseClicked
-        mes.setText("");
-    }//GEN-LAST:event_mesMouseClicked
-
-    private void diaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diaMouseClicked
-        dia.setText("");
-    }//GEN-LAST:event_diaMouseClicked
-
-    private void añoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_añoActionPerformed
+    private void fechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaMouseClicked
+        fecha.setText("");
+    }//GEN-LAST:event_fechaMouseClicked
 
     private void tablaRenglonesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaRenglonesMouseClicked
         if (tablaRenglones.getSelectedRow()!=-1){
@@ -424,50 +351,23 @@ public class Generar_Orden extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_precio_total_fieldActionPerformed
 
-    public boolean verificar_fecha(){
-        try{
-            if (1990>Integer.parseInt(año.getText())){
-                JOptionPane.showMessageDialog(this,"Debe ingresar un año valido","", JOptionPane.WARNING_MESSAGE);
-                return false;
-            }
-            if (!(0<Integer.parseInt(mes.getText()) &&Integer.parseInt(mes.getText()) <12)){
-                JOptionPane.showMessageDialog(this,"Debe ingresar un mes valido","", JOptionPane.WARNING_MESSAGE);
-                return false;
-            }
-            if (!(0<Integer.parseInt(dia.getText()) &&Integer.parseInt(dia.getText()) <31)){
-                JOptionPane.showMessageDialog(this,"Debe ingresar un dia valido","", JOptionPane.WARNING_MESSAGE);
-                return false;
-            }
-
-            return true;
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,"Debe cambiar los valores de la fecha del pedido","", JOptionPane.WARNING_MESSAGE);
-            req.setForeground(Color.red);
-            return false;
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Separador6;
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton agregar_renglon;
-    private javax.swing.JTextField año;
     private javax.swing.JButton cancelar;
     private javax.swing.JButton confirmar;
-    private javax.swing.JTextField dia;
     private javax.swing.JButton eliminar;
+    private javax.swing.JTextField fecha;
     private javax.swing.JPanel inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField mes;
     private javax.swing.JTextField precio_total_field;
     private javax.swing.JLabel prov;
     private javax.swing.JComboBox<String> proveedor_lista;
-    private javax.swing.JLabel req;
     private javax.swing.JTable tablaRenglones;
     // End of variables declaration//GEN-END:variables
 }

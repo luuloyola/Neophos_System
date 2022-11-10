@@ -80,6 +80,7 @@ public class Principal extends javax.swing.JFrame {
         Titulo2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         franja_roja = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         menu = new javax.swing.JLabel();
@@ -110,39 +111,46 @@ public class Principal extends javax.swing.JFrame {
         Separador7.setForeground(new java.awt.Color(97, 34, 34));
         Separador7.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
-        Titulo2.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
+        Titulo2.setFont(new java.awt.Font("Microsoft YaHei", 1, 30)); // NOI18N
         Titulo2.setForeground(new java.awt.Color(97, 34, 34));
         Titulo2.setText("NEOPHOS");
 
-        jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 21)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("el manejo de los productos, pedidos y costos de la empresa”");
 
-        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 21)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("VISIÓN: “Convertirnos en una opción fiable, segura y eficiente para ");
+
+        jLabel4.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 21)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Sistema (en construcción) para la administración de los productos, pedidos y costos de la empresa");
 
         javax.swing.GroupLayout pantalla_principalLayout = new javax.swing.GroupLayout(pantalla_principal);
         pantalla_principal.setLayout(pantalla_principalLayout);
         pantalla_principalLayout.setHorizontalGroup(
             pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pantalla_principalLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(Separador7)
-                .addContainerGap(91, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_principalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Titulo2)
+                .addGap(488, 488, 488))
+            .addGroup(pantalla_principalLayout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(pantalla_principalLayout.createSequentialGroup()
                 .addGroup(pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_principalLayout.createSequentialGroup()
-                        .addComponent(Titulo2)
-                        .addGap(506, 506, 506))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_principalLayout.createSequentialGroup()
-                        .addGroup(pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_principalLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(38, 38, 38)))
-                        .addGap(233, 233, 233))))
+                    .addGroup(pantalla_principalLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(Separador7))
+                    .addGroup(pantalla_principalLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel4))
+                    .addGroup(pantalla_principalLayout.createSequentialGroup()
+                        .addGap(257, 257, 257)
+                        .addComponent(jLabel2)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         pantalla_principalLayout.setVerticalGroup(
             pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,18 +159,20 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(Titulo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Separador7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
+                .addGap(67, 67, 67)
+                .addComponent(jLabel4)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel3)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pantalla_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 1139, Short.MAX_VALUE)
+            .addComponent(pantalla_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 1168, Short.MAX_VALUE)
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +347,7 @@ public class Principal extends javax.swing.JFrame {
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(franja_roja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 1139, Short.MAX_VALUE)
+            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 1168, Short.MAX_VALUE)
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,6 +505,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel inicio;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel menu;
