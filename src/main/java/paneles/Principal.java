@@ -2,6 +2,7 @@ package paneles;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,17 +12,28 @@ public class Principal extends javax.swing.JFrame {
     
     private static Principal neophos;
     private static Generar_Orden generar_orden;
+    private static GenerarOrdenProduccion orden;
     
     public Principal(){
         initComponents();
-        
+        opciones.setVisible(false);
+        logo.setVisible(false);
+        pintarImagen(logo, "src/iconos/logo.png");
     }
+    
     public static Principal getNeophos(){
         return neophos;
     }
 
     // go_to es una funcion que nos ayuda a cambiar entre los paneles del sistema
     public void go_to(JPanel panel) {
+        
+        if (panel == pantalla_principal){
+            logo.setVisible(false);
+        }else if (!logo.isVisible()){
+            logo.setVisible(true);
+        }
+        
         inicio.setLayout(new java.awt.BorderLayout());
         inicio.removeAll();
         inicio.add(panel,BorderLayout.CENTER);
@@ -29,12 +41,20 @@ public class Principal extends javax.swing.JFrame {
         inicio.revalidate();
     }
     
-    
     public static JPanel getGenerar_Orden(){
         return generar_orden;
     }
-   
-
+    public static JPanel getGenerar_Orden_Produccion(){
+        return orden;
+    }
+    
+    private void pintarImagen(JLabel lb1, String ruta){
+        
+        ImageIcon imagen = new ImageIcon(ruta);
+        ImageIcon icon = new ImageIcon(imagen.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT)); 
+        lb1.setIcon(icon);
+        this.repaint();
+    }
 
     // PopUp es una funcion que mostrara por pantalla mensajes necesarios para comunicar al usuario
     // por parametro toma Imprimir (string que dira la informacion importante), 
@@ -52,18 +72,26 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollBar1 = new javax.swing.JScrollBar();
         contenedor = new javax.swing.JPanel();
         inicio = new javax.swing.JPanel();
-        mesas = new javax.swing.JLabel();
-        Titulo = new javax.swing.JLabel();
-        Separador6 = new javax.swing.JLabel();
-        franja_roja = new javax.swing.JPanel();
+        pantalla_principal = new javax.swing.JPanel();
+        Separador7 = new javax.swing.JLabel();
         Titulo2 = new javax.swing.JLabel();
-        cargar_materia = new javax.swing.JButton();
-        consultar_mat = new javax.swing.JButton();
-        consultar_ordeb = new javax.swing.JButton();
-        generar_orde = new javax.swing.JButton();
-        jtest = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        franja_roja = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
+        menu = new javax.swing.JLabel();
+        opciones = new javax.swing.JPanel();
+        cargar_materia = new javax.swing.JLabel();
+        consultar_materia = new javax.swing.JLabel();
+        generar_orden_compra = new javax.swing.JLabel();
+        generar_orden_produccion = new javax.swing.JLabel();
+        consultar_orden_produccion = new javax.swing.JLabel();
+        consultar_orden = new javax.swing.JLabel();
+        consultar_producto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -75,150 +103,258 @@ public class Principal extends javax.swing.JFrame {
         inicio.setMaximumSize(new java.awt.Dimension(1042, 619));
         inicio.setPreferredSize(new java.awt.Dimension(1042, 619));
 
-        Titulo.setFont(new java.awt.Font("Microsoft YaHei", 1, 21)); // NOI18N
-        Titulo.setForeground(new java.awt.Color(97, 34, 34));
-        Titulo.setText("MENU PRINCIPAL");
+        pantalla_principal.setBackground(new java.awt.Color(227, 227, 218));
+        pantalla_principal.setMaximumSize(new java.awt.Dimension(1042, 619));
+        pantalla_principal.setPreferredSize(new java.awt.Dimension(1042, 619));
 
-        Separador6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Separador6.setForeground(new java.awt.Color(97, 34, 34));
-        Separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
+        Separador7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Separador7.setForeground(new java.awt.Color(97, 34, 34));
+        Separador7.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
+
+        Titulo2.setFont(new java.awt.Font("Microsoft YaHei", 1, 30)); // NOI18N
+        Titulo2.setForeground(new java.awt.Color(97, 34, 34));
+        Titulo2.setText("NEOPHOS");
+
+        jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 21)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("el manejo de los productos, pedidos y costos de la empresa”");
+
+        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 21)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("VISIÓN: “Convertirnos en una opción fiable, segura y eficiente para ");
+
+        jLabel4.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 21)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Sistema (en construcción) para la administración de los productos, pedidos y costos de la empresa");
+
+        javax.swing.GroupLayout pantalla_principalLayout = new javax.swing.GroupLayout(pantalla_principal);
+        pantalla_principal.setLayout(pantalla_principalLayout);
+        pantalla_principalLayout.setHorizontalGroup(
+            pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_principalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Titulo2)
+                .addGap(488, 488, 488))
+            .addGroup(pantalla_principalLayout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(pantalla_principalLayout.createSequentialGroup()
+                .addGroup(pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pantalla_principalLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(Separador7))
+                    .addGroup(pantalla_principalLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel4))
+                    .addGroup(pantalla_principalLayout.createSequentialGroup()
+                        .addGap(257, 257, 257)
+                        .addComponent(jLabel2)))
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+        pantalla_principalLayout.setVerticalGroup(
+            pantalla_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pantalla_principalLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(Titulo2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Separador7)
+                .addGap(67, 67, 67)
+                .addComponent(jLabel4)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel3)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel2)
+                .addContainerGap(217, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inicioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
-            .addGroup(inicioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Titulo)
-                    .addComponent(Separador6))
-                .addContainerGap(117, Short.MAX_VALUE))
+            .addComponent(pantalla_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 1168, Short.MAX_VALUE)
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inicioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Titulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Separador6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(mesas, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+            .addComponent(pantalla_principal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
-
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
 
         franja_roja.setBackground(new java.awt.Color(97, 34, 34));
 
-        Titulo2.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
-        Titulo2.setForeground(new java.awt.Color(227, 227, 218));
-        Titulo2.setText("NEOPHOS");
-
-        cargar_materia.setBackground(new java.awt.Color(117, 49, 49));
-        cargar_materia.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
-        cargar_materia.setForeground(new java.awt.Color(172, 172, 163));
-        cargar_materia.setText("CARGAR MATERIA PRIMA");
-        cargar_materia.setBorder(null);
-        cargar_materia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargar_materiaActionPerformed(evt);
+        logo.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
+        logo.setForeground(new java.awt.Color(227, 227, 218));
+        logo.setText("NEOPHOS");
+        logo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoMouseClicked(evt);
             }
         });
 
-        consultar_mat.setBackground(new java.awt.Color(117, 49, 49));
-        consultar_mat.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
-        consultar_mat.setForeground(new java.awt.Color(172, 172, 163));
-        consultar_mat.setText("CONSULTAR MATERIA PRIMA");
-        consultar_mat.setBorder(null);
-        consultar_mat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultar_matActionPerformed(evt);
+        menu.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 40)); // NOI18N
+        menu.setForeground(new java.awt.Color(255, 255, 255));
+        menu.setText("=");
+        menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuMouseClicked(evt);
             }
         });
 
-        consultar_ordeb.setBackground(new java.awt.Color(117, 49, 49));
-        consultar_ordeb.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
-        consultar_ordeb.setForeground(new java.awt.Color(172, 172, 163));
-        consultar_ordeb.setText("CONSULTAR ORDEN DE COMPRA");
-        consultar_ordeb.setBorder(null);
-        consultar_ordeb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultar_ordebActionPerformed(evt);
+        opciones.setBackground(new java.awt.Color(74, 22, 22));
+
+        cargar_materia.setBackground(new java.awt.Color(97, 34, 34));
+        cargar_materia.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 13)); // NOI18N
+        cargar_materia.setForeground(new java.awt.Color(227, 227, 218));
+        cargar_materia.setText("    Cargar Materia Prima");
+        cargar_materia.setOpaque(true);
+        cargar_materia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cargar_materiaMouseClicked(evt);
             }
         });
 
-        generar_orde.setBackground(new java.awt.Color(117, 49, 49));
-        generar_orde.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
-        generar_orde.setForeground(new java.awt.Color(172, 172, 163));
-        generar_orde.setText("GENERAR ORDEN DE COMPRA");
-        generar_orde.setBorder(null);
-        generar_orde.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generar_ordeActionPerformed(evt);
+        consultar_materia.setBackground(new java.awt.Color(97, 34, 34));
+        consultar_materia.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 13)); // NOI18N
+        consultar_materia.setForeground(new java.awt.Color(227, 227, 218));
+        consultar_materia.setText("  Consultar Materia Prima");
+        consultar_materia.setOpaque(true);
+        consultar_materia.setPreferredSize(new java.awt.Dimension(163, 34));
+        consultar_materia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultar_materiaMouseClicked(evt);
             }
         });
 
-        jtest.setText("TEST");
-        jtest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtestActionPerformed(evt);
+        generar_orden_compra.setBackground(new java.awt.Color(97, 34, 34));
+        generar_orden_compra.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 13)); // NOI18N
+        generar_orden_compra.setForeground(new java.awt.Color(227, 227, 218));
+        generar_orden_compra.setText("   Generar Orden de Compra  ");
+        generar_orden_compra.setOpaque(true);
+        generar_orden_compra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                generar_orden_compraMouseClicked(evt);
             }
         });
+
+        generar_orden_produccion.setBackground(new java.awt.Color(97, 34, 34));
+        generar_orden_produccion.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 13)); // NOI18N
+        generar_orden_produccion.setForeground(new java.awt.Color(227, 227, 218));
+        generar_orden_produccion.setText("    Generar Orden de Produccion  ");
+        generar_orden_produccion.setOpaque(true);
+        generar_orden_produccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                generar_orden_produccionMouseClicked(evt);
+            }
+        });
+
+        consultar_orden_produccion.setBackground(new java.awt.Color(97, 34, 34));
+        consultar_orden_produccion.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 13)); // NOI18N
+        consultar_orden_produccion.setForeground(new java.awt.Color(227, 227, 218));
+        consultar_orden_produccion.setText("  Consultar Orden de Produccion  ");
+        consultar_orden_produccion.setOpaque(true);
+        consultar_orden_produccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultar_orden_produccionMouseClicked(evt);
+            }
+        });
+
+        consultar_orden.setBackground(new java.awt.Color(97, 34, 34));
+        consultar_orden.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 13)); // NOI18N
+        consultar_orden.setForeground(new java.awt.Color(227, 227, 218));
+        consultar_orden.setText("  Consultar Orden de Compra");
+        consultar_orden.setOpaque(true);
+        consultar_orden.setPreferredSize(new java.awt.Dimension(156, 34));
+        consultar_orden.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultar_ordenMouseClicked(evt);
+            }
+        });
+
+        consultar_producto.setBackground(new java.awt.Color(97, 34, 34));
+        consultar_producto.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 13)); // NOI18N
+        consultar_producto.setForeground(new java.awt.Color(227, 227, 218));
+        consultar_producto.setText("  Consultar Producto Final  ");
+        consultar_producto.setOpaque(true);
+        consultar_producto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultar_productoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
+        opciones.setLayout(opcionesLayout);
+        opcionesLayout.setHorizontalGroup(
+            opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cargar_materia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(consultar_materia, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(generar_orden_compra, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                    .addComponent(consultar_orden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(consultar_orden_produccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(generar_orden_produccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(consultar_producto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        opcionesLayout.setVerticalGroup(
+            opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cargar_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generar_orden_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generar_orden_produccion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultar_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(consultar_materia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultar_orden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultar_orden_produccion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout franja_rojaLayout = new javax.swing.GroupLayout(franja_roja);
         franja_roja.setLayout(franja_rojaLayout);
         franja_rojaLayout.setHorizontalGroup(
             franja_rojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, franja_rojaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cargar_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(consultar_mat, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(consultar_ordeb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(generar_orde, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jtest, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Titulo2)
-                .addGap(14, 14, 14))
+                .addGap(15, 15, 15)
+                .addComponent(menu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         franja_rojaLayout.setVerticalGroup(
             franja_rojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(franja_rojaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(franja_rojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cargar_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(consultar_mat, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(consultar_ordeb, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(generar_orde, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtest, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                .addGroup(franja_rojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(franja_rojaLayout.createSequentialGroup()
+                        .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        mesas.setFont(new java.awt.Font("DialogInput", 1, 28));
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(franja_roja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(contenedorLayout.createSequentialGroup()
-                .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 1054, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 1168, Short.MAX_VALUE)
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addComponent(franja_roja, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE))
+                .addComponent(franja_roja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,41 +373,78 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void consultar_ordebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_ordebActionPerformed
-        go_to(new ConsultarOrdenDeCompra());
-    }//GEN-LAST:event_consultar_ordebActionPerformed
+    private void menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMouseClicked
+        System.out.println("entre");
+        opciones.setVisible(true);
+        System.out.println("no funciono");
+    }//GEN-LAST:event_menuMouseClicked
 
-    private void cargar_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_materiaActionPerformed
+    private void consultar_ordenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_ordenMouseClicked
+        opciones.setVisible(false);
+        try {
+            go_to(new ConsultarOrdenDeCompra());
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_consultar_ordenMouseClicked
+
+    private void cargar_materiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cargar_materiaMouseClicked
+        opciones.setVisible(false);
         try {
             go_to(new CargarMateriaPrima(""));
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_cargar_materiaActionPerformed
+    }//GEN-LAST:event_cargar_materiaMouseClicked
 
-    private void generar_ordeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generar_ordeActionPerformed
+    private void generar_orden_compraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generar_orden_compraMouseClicked
+        opciones.setVisible(false);
         try {
             go_to(generar_orden = new Generar_Orden());
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_generar_ordeActionPerformed
+    }//GEN-LAST:event_generar_orden_compraMouseClicked
 
-    private void consultar_matActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_matActionPerformed
+    private void consultar_materiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_materiaMouseClicked
+        opciones.setVisible(false);
         try {
-            go_to(new Consultar_ProductoFinal());
+            go_to(new Agregar_Producto(""));
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_consultar_matActionPerformed
+    }//GEN-LAST:event_consultar_materiaMouseClicked
 
-    private void jtestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtestActionPerformed
+    private void generar_orden_produccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generar_orden_produccionMouseClicked
+        opciones.setVisible(false);
         try {
-            go_to(new GenerarOrdenProduccion());
+            go_to(orden = new GenerarOrdenProduccion());
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jtestActionPerformed
+    }//GEN-LAST:event_generar_orden_produccionMouseClicked
+
+    private void consultar_orden_produccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_orden_produccionMouseClicked
+        opciones.setVisible(false);
+        try {
+            go_to(new Consultar_OrdenDeProduccion());
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_consultar_orden_produccionMouseClicked
+
+    private void consultar_productoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_productoMouseClicked
+        opciones.setVisible(false);
+        try {
+            go_to(new Consultar_ProductoFinal(0));
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_consultar_productoMouseClicked
+
+    private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
+        go_to(pantalla_principal);
+    }//GEN-LAST:event_logoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -318,17 +491,26 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Separador6;
-    private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel Separador7;
     private javax.swing.JLabel Titulo2;
-    private javax.swing.JButton cargar_materia;
-    private javax.swing.JButton consultar_mat;
-    private javax.swing.JButton consultar_ordeb;
+    private javax.swing.JLabel cargar_materia;
+    private javax.swing.JLabel consultar_materia;
+    private javax.swing.JLabel consultar_orden;
+    private javax.swing.JLabel consultar_orden_produccion;
+    private javax.swing.JLabel consultar_producto;
     private javax.swing.JPanel contenedor;
     private javax.swing.JPanel franja_roja;
-    private javax.swing.JButton generar_orde;
+    private javax.swing.JLabel generar_orden_compra;
+    private javax.swing.JLabel generar_orden_produccion;
     private javax.swing.JPanel inicio;
-    private javax.swing.JButton jtest;
-    private javax.swing.JLabel mesas;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel menu;
+    private javax.swing.JPanel opciones;
+    private javax.swing.JPanel pantalla_principal;
     // End of variables declaration//GEN-END:variables
+
 }

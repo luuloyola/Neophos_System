@@ -14,7 +14,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     public void create_con_id (MateriaPrima object, int id_proveedor) throws Exception{
         int id_materia = 0;
         try {
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre_materiaprima, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setObject(3, object.getTipoMateriaPrima().toString());
@@ -41,7 +41,7 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
     @Override
     public void create(MateriaPrima object) throws Exception {
         try {
-            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
+            PreparedStatement st = ConexionBD.getConexion().prepareStatement("INSERT INTO MateriaPrima (Nombre_MateriaPrima, Descripcion, Tipo_Mat, Precio_Unidad) VALUES (?,?,CAST(? AS Tipo_Mat),?)");
             st.setString(1, object.getNombre());
             st.setString(2, object.getDescripcion());
             st.setObject(3, object.getTipoMateriaPrima().toString());
@@ -80,6 +80,30 @@ public class DAOMateriaPrima implements DAO<MateriaPrima>{
         return materia;
     }
 
+    public MateriaPrima consultaNombre(String nombre) throws Exception {
+        MateriaPrima materia = new MateriaPrima();
+        try {
+            PreparedStatement st = ConexionBD.getConexion()
+                    .prepareStatement("SELECT * FROM MateriaPrima WHERE Nombre_MateriaPrima = ?");
+            st.setString(1, nombre);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                materia.setNombre(rs.getString(1));
+                materia.setDescripcion(rs.getString(2));
+                materia.setTipoMateriaPrima(rs.getString(3));
+                materia.setPrecio_unidad(rs.getDouble(4));
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionBD.cerrar();
+        }
+        return materia;
+    }
+    
     @Override
     public List<MateriaPrima> findAll() throws Exception {
         return null; //No Support yet

@@ -63,16 +63,18 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
     @Override
     public List<Orden_Compra> findAll() throws Exception {
         List<Orden_Compra> listaOrdenes = null;
-        Orden_Compra orden = new Orden_Compra();
+        
         try {
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM OrdenDeCompra");
             listaOrdenes = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while(rs.next()){
+                Orden_Compra orden = new Orden_Compra();
                 orden.setFechaPedido(rs.getDate(1));
                 orden.setPrecioTotal(rs.getDouble(2));
                 orden.setProveedor(rs.getString(3));
+                orden.setId(rs.getInt(4));
                 listaOrdenes.add(orden);
             }
             rs.close();
@@ -89,12 +91,11 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
         Orden_Compra orden = new Orden_Compra();
         
         try {
-            System.out.println("esta por hacer el select orden de compra");
             PreparedStatement st = ConexionBD.getConexion()
                     .prepareStatement("SELECT * FROM OrdenDeCompra WHERE ID_OrdenDeCompra = ?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
-            System.out.println("termino de hacer el select compra");
+            
             while(rs.next()){
                 orden.setFechaPedido(rs.getDate(1));
                 orden.setPrecioTotal(rs.getDouble(2));
@@ -108,6 +109,34 @@ public class DAO_OrdenDeCompra implements DAO<Orden_Compra>{
             ConexionBD.cerrar();
         }
         return orden;
+    }
+    
+    public List<Orden_Compra> findAllPorProveedor(String nombre) throws Exception {
+        List<Orden_Compra> listaOrdenes = null;
+        
+        try {
+            PreparedStatement st = ConexionBD.getConexion()
+                    .prepareStatement("SELECT * FROM OrdenDeCompra WHERE Nombre_Proveedor_Tiene = ?");
+            st.setString(1, nombre);
+            
+            listaOrdenes = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Orden_Compra orden = new Orden_Compra();
+                orden.setFechaPedido(rs.getDate(1));
+                orden.setPrecioTotal(rs.getDouble(2));
+                orden.setProveedor(rs.getString(3));
+                orden.setId(rs.getInt(4));
+                listaOrdenes.add(orden);
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            throw e;
+        } finally{
+            ConexionBD.cerrar();
+        }
+        return listaOrdenes;
     }
     
     @Override

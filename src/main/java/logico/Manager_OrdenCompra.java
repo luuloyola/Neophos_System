@@ -44,6 +44,15 @@ public class Manager_OrdenCompra {
         }
     }
 
+    
+    public List<Orden_Compra> consultarTodasLasOrdenes() throws Exception{
+       return dao.findAll();
+    }
+    
+    public List<Orden_Compra> consultarOrdenPorProveedor(String nombre) throws Exception{
+        return dao.findAllPorProveedor(nombre);
+    }
+    
     public Map<Orden_Compra, List<Renglon_Compra>> consultarOrdenDeCompra(int id) throws Exception{
        Orden_Compra orden = null;
        List<Renglon_Compra> renglones = new ArrayList<>();

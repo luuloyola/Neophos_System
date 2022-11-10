@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logico.Iterator_Provee;
 import logico.Manager_Provee;
 import logico.Manager_Proveedor;
 import logico.Provee;
@@ -23,15 +24,15 @@ public class Agregar_Producto extends javax.swing.JPanel {
         manager_provee = Manager_Provee.getInstance();
         modelo = (DefaultTableModel) materia.getModel();
         
-        proveedor_lista.addItem("ID Proveedor - Nombre");
-        
-        if (proveedor != ""){
+        proveedor_lista.addItem("Nombre Proveedor");
+        if (!"".equals(proveedor)){
             proveedor_lista.addItem(proveedor);
             proveedor_lista.setSelectedIndex(1);
             proveedor_lista.setEnabled(false);
             
         }
         else{
+            Titulo.setText("CONSULTAR MATERIA PRIMA DE LOS PROVEEDORES");
             volver.setVisible(false);
             cantidad_ingresar.setVisible(false);
             requerida.setVisible(false);
@@ -43,7 +44,6 @@ public class Agregar_Producto extends javax.swing.JPanel {
 
             ArrayList<Proveedor> proveedores = manager_proveedor.getAllProveedores();
             String auxiliar;
-            proveedor_lista.addItem("Nombre Proveedor");
 
 
             for (int i = 0; i<proveedores.size(); i++){
@@ -205,13 +205,13 @@ public class Agregar_Producto extends javax.swing.JPanel {
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inicioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Titulo)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inicioLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(110, 110, 110)
                         .addComponent(jLabel1))
                     .addGroup(inicioLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(Titulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Separador6)
                         .addGap(18, 18, 18)
@@ -232,7 +232,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
                     .addComponent(cantidadtext)
                     .addComponent(requerida)
                     .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 28));
@@ -303,7 +303,6 @@ public class Agregar_Producto extends javax.swing.JPanel {
         String nombre_Materia = nombre_materiaprima.getText();;
 
         Provee materia_consultada;
-        ArrayList<Provee> arreglo= null;
         
         
         
@@ -312,6 +311,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
                 materia_consultada = manager_provee.consultar_todos(proveedor, nombre_Materia);
                 if (materia_consultada.getNombre_Producto() == ""){
                     no_hay_valores();
+                    return;
                 }
                 modelo.addRow(new Object[] {materia_consultada.getNombre_Proveedor(), materia_consultada.getNombre_Producto(), materia_consultada.getPrecio()});
             } catch (Exception ex) {
@@ -320,27 +320,31 @@ public class Agregar_Producto extends javax.swing.JPanel {
         }
         else if (proveedor_lista.getSelectedIndex() != 0){
             try {
-                arreglo = manager_provee.buscar_Materias_porProveedor(proveedor);
-                if (arreglo == null){
+                Iterator_Provee iterator = new Iterator_Provee(manager_provee.buscar_Materias_porProveedor(proveedor));
+                if (!iterator.hayMas()){
                     no_hay_valores();
+                    return;
                 }
-                
-                for (int i = 0; i<arreglo.size(); i++){
-                    materia_consultada = arreglo.get(i);
+
+                while(iterator.hayMas()){
+                    materia_consultada = iterator.siguiente();
                     modelo.addRow(new Object[] {materia_consultada.getNombre_Proveedor(), materia_consultada.getNombre_Producto(), materia_consultada.getPrecio()});
                 }
+                
             } catch (Exception ex) {
                 Logger.getLogger(Agregar_Producto.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if (!nombre_materiaprima.getText().isBlank()){
             try {
-                arreglo = manager_provee.buscar_Materias_porMateria(nombre_Materia);
-                if (arreglo == null){
+                Iterator_Provee iterator = new Iterator_Provee(manager_provee.buscar_Materias_porMateria(nombre_Materia));
+                if (!iterator.hayMas()){
                     no_hay_valores();
+                    return;
                 }
-                for (int i = 0; i<arreglo.size(); i++){
-                    materia_consultada = arreglo.get(i);
+
+                while(iterator.hayMas()){
+                    materia_consultada = iterator.siguiente();
                     modelo.addRow(new Object[] {materia_consultada.getNombre_Proveedor(), materia_consultada.getNombre_Producto(), materia_consultada.getPrecio()});
                 }
             } catch (Exception ex) {
@@ -357,6 +361,7 @@ public class Agregar_Producto extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,"No hay resultados disponibles para la busqueda realizada","", JOptionPane.WARNING_MESSAGE);
         nombre_materiaprima.setText("");
         if (proveedor_lista.isEnabled()) proveedor_lista.setSelectedIndex(0);
+        
         return;
     }
     

@@ -19,9 +19,9 @@ public class ManagerOrdenProduccion {
         ManagerOrdenProduccion.manager = new ManagerOrdenProduccion();
         return ManagerOrdenProduccion.manager;
     }
-     public void generarOrdenDeProduccion(Date fecha_pedido, double precio_total, ArrayList<RenglonProduccion> renglones) throws Exception{
+     public void generarOrdenDeProduccion(Date fecha_pedido, double precio_total, Date fecha_limite, String receta, ArrayList<RenglonProduccion> renglones) throws Exception{
         
-        OrdenProduccion nueva_Orden = new OrdenProduccion(fecha_pedido, precio_total);
+        OrdenProduccion nueva_Orden = new OrdenProduccion(fecha_pedido, precio_total, fecha_limite, receta);
         dao.create(nueva_Orden);
         
         for (int i = 0; i < renglones.size(); i++) {
@@ -30,8 +30,12 @@ public class ManagerOrdenProduccion {
         }
     }
 
+    public List<OrdenProduccion> consultarTodasLasOrdenes() throws Exception{
+       return dao.findAll();
+    }
+    
     public Map<OrdenProduccion, List<RenglonProduccion>> consultarOrdenDeProduccion(int id) throws Exception{
-       OrdenProduccion orden = null;
+       OrdenProduccion orden = new OrdenProduccion();
        List<RenglonProduccion> renglones = new ArrayList<>();
        Map<OrdenProduccion, List<RenglonProduccion>> ordenCompleta = new HashMap<>();
        
@@ -42,6 +46,8 @@ public class ManagerOrdenProduccion {
        ordenCompleta.put(orden, renglones);
        
        return ordenCompleta; 
+       
     }
+    
     
 }
