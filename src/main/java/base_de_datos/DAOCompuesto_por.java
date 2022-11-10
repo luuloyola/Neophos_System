@@ -42,6 +42,7 @@ public class DAOCompuesto_por implements DAO<Compuesto_por>{
         return null;
     }
     public Map<String,Integer> findAll_Materia_PorProveedor(String nombre_producto) throws SQLException{
+        System.out.println("findAll de materias");
         Map<String,Integer> listaMaterias = null;
         try {
             PreparedStatement st = ConexionBD.getConexion()

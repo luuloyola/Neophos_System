@@ -15,10 +15,11 @@ public class Principal extends javax.swing.JFrame {
     private static GenerarOrdenProduccion orden;
     
     public Principal(){
-        initComponents();
-        opciones.setVisible(false);
-        logo.setVisible(false);
-        pintarImagen(logo, "src/iconos/logo.png");
+
+            initComponents();
+            opciones.setVisible(false);
+            logo.setVisible(false);
+            pintarImagen(logo, "src/iconos/logo.png");
     }
     
     public static Principal getNeophos(){
@@ -27,7 +28,7 @@ public class Principal extends javax.swing.JFrame {
 
     // go_to es una funcion que nos ayuda a cambiar entre los paneles del sistema
     public void go_to(JPanel panel) {
-        
+        System.out.println("Hace un go_to");
         if (panel == pantalla_principal){
             logo.setVisible(false);
         }else if (!logo.isVisible()){
@@ -39,9 +40,18 @@ public class Principal extends javax.swing.JFrame {
         inicio.add(panel,BorderLayout.CENTER);
         inicio.repaint();
         inicio.revalidate();
+        System.out.println("Termina go_to");
     }
     
     public static JPanel getGenerar_Orden(){
+        return generar_orden;
+    }
+    public static JPanel getGenerar_Orden_Por_Necesidad(){
+       try {
+            generar_orden = new Generar_Orden(1);
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return generar_orden;
     }
     public static JPanel getGenerar_Orden_Produccion(){
@@ -374,9 +384,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMouseClicked
-        System.out.println("entre");
         opciones.setVisible(true);
-        System.out.println("no funciono");
     }//GEN-LAST:event_menuMouseClicked
 
     private void consultar_ordenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_ordenMouseClicked
@@ -400,7 +408,7 @@ public class Principal extends javax.swing.JFrame {
     private void generar_orden_compraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generar_orden_compraMouseClicked
         opciones.setVisible(false);
         try {
-            go_to(generar_orden = new Generar_Orden());
+            go_to(generar_orden = new Generar_Orden(0));
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }

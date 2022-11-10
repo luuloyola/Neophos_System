@@ -3,15 +3,23 @@ package paneles;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import logico.ManagerCompuestoPor;
+import logico.Manager_OrdenCompra;
 import logico.Manager_ProductoFinal;
+import logico.Manager_StockMateria;
 import logico.ProductoFinal;
 import logico.RenglonProduccion;
+import logico.StockMateria;
 
 public class Consultar_ProductoFinal extends javax.swing.JPanel {
     
@@ -21,6 +29,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
     private ProductoFinal productoFinal = new ProductoFinal();
     private RenglonProduccion renglon;
     private ArrayList<ProductoFinal> arreglo;
+    private static Generar_Orden generar_orden;
     private int context;
     
     public Consultar_ProductoFinal(int context) throws Exception{
@@ -442,7 +451,7 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
 
     private void confirmar_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_1ActionPerformed
        
-        if(context == 0){
+        if(context == 0){ // (Rol) Consultar producto final
               
             if (productos.getSelectedRow()==-1)
             {
@@ -475,7 +484,8 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                         modeloMateria.addRow(new Object[] {materias.get(i)});
             }
             borrar_panel(muestra);
-        } else {
+        } else {  // (Rol) Agregar productos a la Orden de compra
+            
             if (productos.getSelectedRow()==-1)
             {
                 JOptionPane.showMessageDialog(this,"Debe seleccionar un producto final","", JOptionPane.WARNING_MESSAGE);
@@ -494,13 +504,37 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                     seleccionar.setForeground(Color.red);
                     return;
             }
-
+            
+            // Si todo esta OK, se revisa que hay stock para realizar el producto final
+            try {
+                Manager_StockMateria stock = new Manager_StockMateria();
+                List<StockMateria> mat = stock.listarStockAll();
+                List<String> mat_sinStock = new ArrayList<>();
+                ManagerCompuestoPor p = ManagerCompuestoPor.getInstance();
+                Map<String,Integer> prod = p.buscar_Materias_porProductos(productos.getValueAt(productos.getSelectedRow() , 0).toString());
+                for (StockMateria mat1 : mat) {
+                       if (prod.containsKey( mat1.nom_mat)&& (prod.get(mat1.nom_mat)*Integer.parseInt(cantidad_ingresar.getText()))> mat1.cantidad){
+                           mat_sinStock.add(mat1.nom_mat);
+                    } 
+                }
+                if(!mat_sinStock.isEmpty()){
+                    int input = JOptionPane.showConfirmDialog(this,"No hay stock de algunas materias primas para realizar el producto, desea solicitar una orden de compra?", "",JOptionPane.YES_NO_CANCEL_OPTION);
+                    if (input == 0)paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Por_Necesidad());
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(Consultar_ProductoFinal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            // Si hay stock entonces se genera el renglon
             renglon = new RenglonProduccion();
             renglon.setNombre_Tiene((productos.getValueAt(productos.getSelectedRow() , 0).toString()));
             renglon.setCantidad(Integer.parseInt(cantidad_ingresar.getText()));
             renglon.setPrecio(getRenglon().getCantidad()*(double)productos.getValueAt(productos.getSelectedRow() , 2));
 
-            paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Produccion());
+            //paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Produccion());
         }
         
     }//GEN-LAST:event_confirmar_1ActionPerformed

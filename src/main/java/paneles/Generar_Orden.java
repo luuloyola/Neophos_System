@@ -22,12 +22,13 @@ public class Generar_Orden extends javax.swing.JPanel {
     private ArrayList<Renglon_Compra> renglon;
     private Agregar_Producto consultar;
     private DefaultTableModel modelo;
+    private static GenerarOrdenProduccion generarOrdenProduccion;
     private double precio_total;
-    private int id;
+    private int context;
     
-    public Generar_Orden() throws Exception {
+    public Generar_Orden(int context) throws Exception {
         manager_proveedor = Manager_Proveedor.getInstance();
-
+        this.context = context;
         initComponents();
         
         eliminar.setVisible(false);
@@ -287,6 +288,7 @@ public class Generar_Orden extends javax.swing.JPanel {
 
     private void inicioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_inicioAncestorAdded
         System.out.println("Hace el ancestor");
+        System.out.println("Consulta es: "+consultar);
         if (consultar != null){
             if(consultar.getRenglon()!=null){
                 if (proveedor_lista.isEnabled()) proveedor_lista.setEnabled(false);
@@ -304,6 +306,7 @@ public class Generar_Orden extends javax.swing.JPanel {
     }//GEN-LAST:event_inicioAncestorAdded
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
+        
         if (modelo.getRowCount()<=0){
             JOptionPane.showMessageDialog(this,"Debe ingresar renglones","", JOptionPane.WARNING_MESSAGE);
             return;
@@ -322,6 +325,13 @@ public class Generar_Orden extends javax.swing.JPanel {
             } catch (Exception ex) {
                 Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex.getMessage());
+            }
+        }
+        if(context != 0){
+            try {
+                paneles.Principal.getNeophos().go_to(paneles.Principal.getGenerar_Orden_Produccion());
+            } catch (Exception ex) {
+                Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_confirmarActionPerformed

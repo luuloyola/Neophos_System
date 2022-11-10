@@ -3,40 +3,39 @@ package logico;
 public class StockMateria {
     
     public double cantidad;
-    public Deposito deposito;
-    public MateriaPrima materiaPrima;
-    
-    public StockMateria(Deposito deposito, MateriaPrima materiaPrima, double cant){
-        this.deposito = deposito;
-        this.materiaPrima = materiaPrima;
-        this.cantidad = cant;
-    }
+    public int nro_deposito;
+    public String nom_mat;
 
-    public StockMateria() {
+    public StockMateria(double cantidad, int nro_deposito, String nom_mat) {
+        this.cantidad = cantidad;
+        this.nro_deposito = nro_deposito;
+        this.nom_mat = nom_mat;
     }
 
     public double getCantidad() {
         return cantidad;
     }
 
-    public Deposito getDeposito() {
-        return deposito;
+    public String getNom_mat() {
+        return nom_mat;
     }
 
-    public MateriaPrima getMateriaPrima() {
-        return materiaPrima;
+    public int getNro_deposito() {
+        return nro_deposito;
     }
-    
-    public void setCantidad(int cantidad) {
+
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 
-    public void setDeposito(Deposito deposito) {
-        this.deposito = deposito;
+    public void setNom_mat(String nom_mat) {
+        this.nom_mat = nom_mat;
     }
 
-    public void setMateriaPrima(MateriaPrima materiaPrima) {
-        this.materiaPrima = materiaPrima;
+    public void setNro_deposito(int nro_deposito) {
+        this.nro_deposito = nro_deposito;
     }
+    
+    
         
 }
