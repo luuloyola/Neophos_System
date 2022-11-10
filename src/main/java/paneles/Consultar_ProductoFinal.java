@@ -31,7 +31,6 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             cantidad_ingresar.setVisible(false);
             volver.setVisible(false);
             seleccionar.setText("Seleccione el producto que desea consultar");
-            
         } else {seleccionar.setText("Seleccione el producto que desea ordenar");}
         this.context = context;
         muestra.setVisible(false);

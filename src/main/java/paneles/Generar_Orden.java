@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logico.IteradorRenglonCompra;
 import logico.Manager_OrdenCompra;
 import logico.Manager_Proveedor;
 import logico.Renglon_Compra;
@@ -23,7 +24,6 @@ public class Generar_Orden extends javax.swing.JPanel {
     private Agregar_Producto consultar;
     private DefaultTableModel modelo;
     private double precio_total;
-    private int id;
     
     public Generar_Orden() throws Exception {
         manager_proveedor = Manager_Proveedor.getInstance();
@@ -110,12 +110,6 @@ public class Generar_Orden extends javax.swing.JPanel {
         Separador6.setForeground(new java.awt.Color(97, 34, 34));
         Separador6.setText("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
-        proveedor_lista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                proveedor_listaActionPerformed(evt);
-            }
-        });
-
         agregar_renglon.setText("Agregar Renglón");
         agregar_renglon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,11 +153,6 @@ public class Generar_Orden extends javax.swing.JPanel {
         jLabel2.setText("Fecha:");
 
         fecha.setEditable(false);
-        fecha.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                fechaMouseClicked(evt);
-            }
-        });
 
         eliminar.setText("Eliminar Renglon");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -175,11 +164,6 @@ public class Generar_Orden extends javax.swing.JPanel {
         jLabel5.setText("Precio total:");
 
         precio_total_field.setEditable(false);
-        precio_total_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precio_total_fieldActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
@@ -261,10 +245,6 @@ public class Generar_Orden extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void proveedor_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedor_listaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_proveedor_listaActionPerformed
-
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         int input = JOptionPane.showConfirmDialog(this,"Seguro desea cancelar la orden en proceso?", "¡Cuidado!",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
         if (input == 0){
@@ -286,16 +266,18 @@ public class Generar_Orden extends javax.swing.JPanel {
     }//GEN-LAST:event_agregar_renglonActionPerformed
 
     private void inicioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_inicioAncestorAdded
-        System.out.println("Hace el ancestor");
+        
         if (consultar != null){
             if(consultar.getRenglon()!=null){
                 if (proveedor_lista.isEnabled()) proveedor_lista.setEnabled(false);
-                for(int i=0; i< renglon.size(); i++){
-                    if (renglon.get(i).getNombre_Tiene().equals(consultar.getRenglon().getNombre_Tiene())){
+                IteradorRenglonCompra iterador = new IteradorRenglonCompra(renglon);
+                while (iterador.hayMas()){
+                    if (iterador.siguiente().getNombre_Tiene().equals(consultar.getRenglon().getNombre_Tiene())){
                         JOptionPane.showMessageDialog(this,"La materia seleccionada ya se encontraba en el listado","", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
                 }
+                
                 renglon.add(consultar.getRenglon());
                 precio_total = precio_total + consultar.getRenglon().getPrecio();
                 precio_total_field.setText(Double.toString(precio_total));
@@ -326,10 +308,6 @@ public class Generar_Orden extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_confirmarActionPerformed
 
-    private void fechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaMouseClicked
-        fecha.setText("");
-    }//GEN-LAST:event_fechaMouseClicked
-
     private void tablaRenglonesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaRenglonesMouseClicked
         if (tablaRenglones.getSelectedRow()!=-1){
             eliminar.setVisible(true);
@@ -346,10 +324,6 @@ public class Generar_Orden extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_eliminarActionPerformed
-
-    private void precio_total_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precio_total_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_precio_total_fieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Separador6;
