@@ -507,8 +507,13 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                 Manager_StockMateria stock = new Manager_StockMateria();
                 List<StockMateria> mat = stock.listarStockAll();
                 List<String> mat_sinStock = new ArrayList<>();
+                
+                System.out.println("manager compuesto");
                 ManagerCompuestoPor p = ManagerCompuestoPor.getInstance();
+                
+                System.out.println("finaliza");
                 Map<String,Integer> prod = p.buscar_Materias_porProductos(productos.getValueAt(productos.getSelectedRow() , 0).toString());
+               
                 for (StockMateria mat1 : mat) {
                        if (prod.containsKey( mat1.nom_mat)){
                            if((prod.get(mat1.nom_mat)*Integer.parseInt(cantidad_ingresar.getText()))> mat1.cantidad)mat_sinStock.add(mat1.nom_mat);

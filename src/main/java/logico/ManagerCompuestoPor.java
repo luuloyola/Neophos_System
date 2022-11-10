@@ -9,6 +9,8 @@ public class ManagerCompuestoPor {
     private static DAOCompuesto_por dao;
 
     private ManagerCompuestoPor() {
+        
+        System.out.println("manager compuesto");
         ManagerCompuestoPor.dao = new DAOCompuesto_por();
     }
     
@@ -20,6 +22,8 @@ public class ManagerCompuestoPor {
 
     
     public Map<String,Integer> buscar_Materias_porProductos(String nombre_producto) throws Exception{
+        
+                System.out.println("buscar productos");
         return dao.findAll_Materia_PorProveedor(nombre_producto);
     }
     

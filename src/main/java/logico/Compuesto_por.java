@@ -5,6 +5,8 @@ public class Compuesto_por {
     private int cantidad;
 
     public Compuesto_por(String nom_productoF, String nom_materia, int cantidad) {
+        
+                System.out.println("Constructor");
         this.nom_productoF = nom_productoF;
         this.nom_materia = nom_materia;
         this.cantidad = cantidad;
