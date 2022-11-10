@@ -39,7 +39,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
        
         IteradorOrdenProduccion iterador = new IteradorOrdenProduccion(ordenes);
        
-        if(ordenes.get(1).getPrecioTotal() == 0){
+        if(ordenes.isEmpty()){
             JOptionPane.showMessageDialog(this,"No hay ordenes de producción en la base de datos.","", JOptionPane.WARNING_MESSAGE);
         }else{
             while(iterador.hayMas()){
@@ -377,6 +377,7 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
         OrdenProduccion infoOrden = new OrdenProduccion();
         List<RenglonProduccion> infoRenglones = new ArrayList<RenglonProduccion>();
         RenglonProduccion info = new RenglonProduccion();
+        String text = "PENDIENTE";
 
         if (tablaInicio1.getSelectedRow()==-1){
             JOptionPane.showMessageDialog(this,"Debe seleccionar un renglon","", JOptionPane.WARNING_MESSAGE);
@@ -387,23 +388,24 @@ public class Consultar_OrdenDeProduccion extends javax.swing.JPanel {
             int id = orden.getId();
 
             try {
-                ordenCompleta = manager.consultarOrdenDeProduccion(id);
+                ordenCompleta = manager.consultarOrdenDeProduccion(id); //Devuelve un hashmap <OrdenDeProduccion,List<Renglon_Produccion>> -> Se devuelve una orden de produccion asociada con una lista que tiene al menos 1 renglon
                         
-                Set<OrdenProduccion> keys = ordenCompleta.keySet();
-                for(OrdenProduccion key : keys){
-                    infoOrden = key;
+                Set<OrdenProduccion> keys = ordenCompleta.keySet(); //A el set Keys se le asignan todas las llaves de ordenCompleta (es decir, todas las Ordenes de Produccion)
+                for(OrdenProduccion key : keys){ //en realidad en keys hay solo una key
+                    infoOrden = key; //Se hace una lista de Ordenes de Produccion con cada key del set keys
                 }
 
-                infoRenglones = ordenCompleta.get(infoOrden);
-                IteradorRenglonProduccion iterador = new IteradorRenglonProduccion(infoRenglones);
+                infoRenglones = ordenCompleta.get(infoOrden); //se arma una lista con todos los renglones de la orden
+                
+                IteradorRenglonProduccion iterador = new IteradorRenglonProduccion(infoRenglones); //iterador para asi poder iterar sobre los renglones
 
                 inicioOP.setVisible(false);
                 muestraOP.setVisible(true);
 
                 fechaPText.setText(infoOrden.getFechaPedido().toString());
                 fechaLimiteText.setText(infoOrden.getFecha_limite().toString());
-                fechaRealizacionText.setText("Pendiente");
-                fechaRealizacionText.setText(infoOrden.getReceta());
+                fechaRealizacionText.setText(text.toString());
+                recetaText1.setText(infoOrden.getReceta());
                 precioTotalText.setText(String.valueOf(infoOrden.getPrecioTotal()));
 
                 while(iterador.hayMas()){

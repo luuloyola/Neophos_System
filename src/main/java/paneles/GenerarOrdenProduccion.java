@@ -350,8 +350,10 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         if(!receta.getText().equals(""))recetas = receta.getText();
 
         if (verificar_fecha()){
-            fecha_lim = new Date((Integer.parseInt(año_lim.getText())-1900),Integer.parseInt(mes_lim.getText()),Integer.parseInt(dia_lim.getText()));
-            fecha_now = new Date((LocalDate.now().getYear()-1900),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+            fecha_lim = new Date((Integer.parseInt(año_lim.getText())-1900),Integer.parseInt(mes_lim.getText())-1,Integer.parseInt(dia_lim.getText()));
+            System.out.print(fecha_lim.toString());
+            fecha_now = new Date((LocalDate.now().getYear()-1900),LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
+            System.out.print(fecha_lim.toString());
         }
         else return;
 

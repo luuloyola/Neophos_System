@@ -43,7 +43,7 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
         
         IteradorOrdenCompra iterador = new IteradorOrdenCompra(ordenes);
 
-        if(iterador.hayMas() == false){
+        if(ordenes.isEmpty()){
             JOptionPane.showMessageDialog(this,"No hay ordenes de compra en la base de datos.","", JOptionPane.WARNING_MESSAGE);
         }else{
            while(iterador.hayMas()){
