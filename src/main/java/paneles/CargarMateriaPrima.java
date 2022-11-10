@@ -274,6 +274,10 @@ public class CargarMateriaPrima extends javax.swing.JPanel {
             control++;}
         else {error_cant.setText("(*)");
         error_cant.setForeground(Color.black);}
+        if (JMat.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar una Materia prima","", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
         if(control == 0){
 
