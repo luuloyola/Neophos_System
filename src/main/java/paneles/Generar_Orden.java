@@ -1,7 +1,7 @@
 
 package paneles;
 
-import java.awt.Color;
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logico.IteradorRenglonCompra;
 import logico.Manager_OrdenCompra;
 import logico.Manager_Proveedor;
 import logico.Renglon_Compra;
@@ -292,8 +293,9 @@ public class Generar_Orden extends javax.swing.JPanel {
         if (consultar != null){
             if(consultar.getRenglon()!=null){
                 if (proveedor_lista.isEnabled()) proveedor_lista.setEnabled(false);
-                for(int i=0; i< renglon.size(); i++){
-                    if (renglon.get(i).getNombre_Tiene().equals(consultar.getRenglon().getNombre_Tiene())){
+                IteradorRenglonCompra iterador = new IteradorRenglonCompra(renglon);
+                while (iterador.hayMas()){
+                    if (iterador.siguiente().getNombre_Tiene().equals(consultar.getRenglon().getNombre_Tiene())){
                         JOptionPane.showMessageDialog(this,"La materia seleccionada ya se encontraba en el listado","", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
