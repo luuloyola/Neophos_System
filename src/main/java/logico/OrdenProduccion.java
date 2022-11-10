@@ -7,12 +7,14 @@ public class OrdenProduccion extends Orden{
     private Date fecha_realizacion;
     private String receta;
     private int id;
+    private String nombreC;
     
-    public OrdenProduccion(Date fecha_pedido, double precio_total, Date fecha_limite, String receta){
+    public OrdenProduccion(Date fecha_pedido, double precio_total, Date fecha_limite, String receta, String nombreCliente){
         super(fecha_pedido, precio_total);
         this.fecha_limite = fecha_limite;
         this.receta = receta;
         this.fecha_realizacion = null;
+        nombreC = nombreCliente;
     }
     
     public OrdenProduccion(){
@@ -72,6 +74,14 @@ public class OrdenProduccion extends Orden{
     @Override
     public void setPrecioTotal(double precio_total) {
         super.setPrecioTotal(precio_total);
+    }
+
+    public String getNombreC() {
+        return nombreC;
+    }
+
+    public void setNombreC(String nombreC) {
+        this.nombreC = nombreC;
     }
     
     

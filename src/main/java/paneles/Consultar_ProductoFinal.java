@@ -484,7 +484,6 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
             }
             borrar_panel(muestra);
         } else {  // (Rol) Agregar productos a la Orden de compra
-            
             if (productos.getSelectedRow()==-1)
             {
                 JOptionPane.showMessageDialog(this,"Debe seleccionar un producto final","", JOptionPane.WARNING_MESSAGE);
@@ -512,7 +511,6 @@ public class Consultar_ProductoFinal extends javax.swing.JPanel {
                 ManagerCompuestoPor p = ManagerCompuestoPor.getInstance();
                 Map<String,Integer> prod = p.buscar_Materias_porProductos(productos.getValueAt(productos.getSelectedRow() , 0).toString());
                 for (StockMateria mat1 : mat) {
-                    
                        if (prod.containsKey( mat1.nom_mat)){
                            if((prod.get(mat1.nom_mat)*Integer.parseInt(cantidad_ingresar.getText()))> mat1.cantidad)mat_sinStock.add(mat1.nom_mat);
                            else stock.modificarStockMateria(mat1.getNom_mat(),mat1.cantidad -(prod.get(mat1.nom_mat)*Integer.parseInt(cantidad_ingresar.getText())));

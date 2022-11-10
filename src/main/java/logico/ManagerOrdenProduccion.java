@@ -19,9 +19,9 @@ public class ManagerOrdenProduccion {
         ManagerOrdenProduccion.manager = new ManagerOrdenProduccion();
         return ManagerOrdenProduccion.manager;
     }
-     public void generarOrdenDeProduccion(Date fecha_pedido, double precio_total, Date fecha_limite, String receta, ArrayList<RenglonProduccion> renglones) throws Exception{
+     public void generarOrdenDeProduccion(Date fecha_pedido, double precio_total, Date fecha_limite, String receta, ArrayList<RenglonProduccion> renglones,String nombreCliente) throws Exception{
         
-        OrdenProduccion nueva_Orden = new OrdenProduccion(fecha_pedido, precio_total, fecha_limite, receta);
+        OrdenProduccion nueva_Orden = new OrdenProduccion(fecha_pedido, precio_total, fecha_limite, receta,nombreCliente);
         dao.create(nueva_Orden);
         
         for (int i = 0; i < renglones.size(); i++) {

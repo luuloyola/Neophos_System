@@ -12,12 +12,13 @@ public class DAO_OrdenProduccion implements DAO<OrdenProduccion>{
     public void create(OrdenProduccion object) throws Exception {
         try {
             PreparedStatement st = ConexionBD.getConexion()
-                    .prepareStatement("INSERT INTO OrdenDeProduccion (fecha_Pedido, fecha_Limite, fecha_realizacion, receta, precio_total) VALUES (?,?,?,?,?)");
+                    .prepareStatement("INSERT INTO OrdenDeProduccion (fecha_Pedido, fecha_Limite, fecha_realizacion, receta,nombre_cliente, precio_total) VALUES (?,?,?,?,?,?)");
             st.setDate(1, object.getFechaPedido());
             st.setDate(2, object.getFecha_limite());
             st.setDate(3, object.getFecha_realizacion());
             st.setString(4, object.getReceta());
-            st.setDouble(5, object.getPrecioTotal());
+            st.setString(5, object.getNombreC());
+            st.setDouble(6, object.getPrecioTotal());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;

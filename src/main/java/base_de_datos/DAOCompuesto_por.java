@@ -44,6 +44,7 @@ public class DAOCompuesto_por implements DAO<Compuesto_por>{
         return null;
     }
     public Map<String,Integer> findAll_Materia_PorProveedor(String nombre_producto) throws SQLException{
+        
         Map<String,Integer> listaMaterias = null;
         try {
             PreparedStatement st = ConexionBD.getConexion()
@@ -62,6 +63,8 @@ public class DAOCompuesto_por implements DAO<Compuesto_por>{
         } finally{
             ConexionBD.cerrar();
         }
+        
+        
         return listaMaterias;
     }
 }

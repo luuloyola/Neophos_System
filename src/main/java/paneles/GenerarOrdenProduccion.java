@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logico.Cliente;
+import logico.ManagerCliente;
 import logico.ManagerOrdenProduccion;
 import logico.RenglonProduccion;
 
@@ -24,6 +27,19 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         modelo = (DefaultTableModel) tablaRenglones.getModel();
         fechaAuto.setText("Fecha Pedido:  "+LocalDate.now().getYear()+" / "+LocalDate.now().getMonthValue()+" / "+LocalDate.now().getDayOfMonth());
         eliminar.setVisible(false);
+        
+        try {
+            List<Cliente> clientes = ManagerCliente.getInstance().consultar_todos();
+            String auxiliar;
+            JMat.addItem("Seleccionar Cliente");
+            for (Cliente cliente : clientes) {
+                auxiliar = cliente.getNombre();
+                JMat.addItem(auxiliar);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GenerarOrdenProduccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         
     }
@@ -52,6 +68,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         receta = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
+        JMat = new javax.swing.JComboBox<>();
 
         inicio.setBackground(new java.awt.Color(227, 227, 218));
         inicio.setPreferredSize(new java.awt.Dimension(800, 517));
@@ -201,6 +218,16 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         jLabel4.setText("AGREGAR RECETA");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        JMat.setBackground(new java.awt.Color(97, 34, 34));
+        JMat.setFont(new java.awt.Font("Microsoft JhengHei", 1, 12)); // NOI18N
+        JMat.setForeground(new java.awt.Color(97, 34, 34));
+        JMat.setBorder(null);
+        JMat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
         inicio.setLayout(inicioLayout);
         inicioLayout.setHorizontalGroup(
@@ -211,6 +238,11 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addComponent(Separador6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fechaAuto)
+                        .addGap(86, 86, 86))
                     .addGroup(inicioLayout.createSequentialGroup()
                         .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(inicioLayout.createSequentialGroup()
@@ -222,21 +254,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                                         .addComponent(precio_total_field)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(inicioLayout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_confirma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
-                                .addGap(52, 52, 52))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
-                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(inicioLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -250,11 +268,22 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dia_lim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(req))
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fechaAuto)
-                        .addGap(86, 86, 86))))
+                                .addComponent(req)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JMat, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(inicioLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_confirma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(52, 52, 52)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         inicioLayout.setVerticalGroup(
             inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,13 +305,14 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
                             .addComponent(jLabel8)
                             .addComponent(dia_lim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(req)
-                            .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -297,7 +327,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE)
+            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,6 +338,10 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
     private void btn_confirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirmaActionPerformed
         if (tablaRenglones.getRowCount()<=0){
             JOptionPane.showMessageDialog(this,"Debe ingresar renglones","", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (JMat.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar un Cliente","", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -327,7 +361,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
             manager_orden = ManagerOrdenProduccion.getInstance();
 
             try {
-                manager_orden.generarOrdenDeProduccion(fecha_now, precio_total, fecha_lim,recetas,renglon);
+                manager_orden.generarOrdenDeProduccion(fecha_now, precio_total, fecha_lim,recetas,renglon,JMat.getSelectedItem().toString());
                 JOptionPane.showMessageDialog(this, "Orden de produccion cargada con exito", "", JOptionPane.INFORMATION_MESSAGE);
                 restablecer_valores();
             } catch (Exception ex) {
@@ -403,6 +437,10 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_eliminarActionPerformed
 
+    private void JMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JMatActionPerformed
+
     public void restablecer_valores(){
         año_lim.setText("yyyy");
         mes_lim.setText("mm");
@@ -440,6 +478,7 @@ public class GenerarOrdenProduccion extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JCalculo;
+    private javax.swing.JComboBox<String> JMat;
     private javax.swing.JLabel Separador6;
     private javax.swing.JTextField año_lim;
     private javax.swing.JButton btn_agregar;

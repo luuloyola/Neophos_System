@@ -7,6 +7,7 @@ public class StockMateria {
     public String nom_mat;
 
     public StockMateria(double cantidad, int nro_deposito, String nom_mat) {
+        System.out.println("---");
         this.cantidad = cantidad;
         this.nro_deposito = nro_deposito;
         this.nom_mat = nom_mat;

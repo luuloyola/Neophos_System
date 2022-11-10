@@ -49,6 +49,12 @@ public class ConexionBD {
                 + "Precio_Unidad FLOAT8 NOT NULL,"
                 + "PRIMARY KEY (Nombre_MateriaPrima));"
                          
+                + "CREATE TABLE IF NOT EXISTS Cliente("
+                + "Nombre TEXT NOT NULL, "
+                + "Telefono INTEGER NOT NULL, " 
+                + "Mail TEXT NOT NULL,"
+                + "PRIMARY KEY (Nombre));"
+                         
                 + "CREATE TABLE IF NOT EXISTS Producto("
                 + "Nombre_Producto TEXT NOT NULL, " 
                 + "PRIMARY KEY (Nombre_Producto));"
@@ -84,8 +90,10 @@ public class ConexionBD {
                 + "Fecha_Limite DATE NOT NULL, "
                 + "Fecha_Realizacion DATE NULL, "
                 + "Receta TEXT NULL, "         
+                + "Nombre_cliente TEXT NULL, "  
                 + "Precio_Total FLOAT8 NOT NULL, "
-                + "PRIMARY KEY (ID_OrdenDeProduccion));"
+                + "PRIMARY KEY (ID_OrdenDeProduccion),"
+                + "FOREIGN KEY (Nombre_cliente) REFERENCES Cliente (Nombre));"
                          
                 + "CREATE TABLE IF NOT EXISTS Renglon_Produccion("
                 + "ID_Renglon SERIAL, "
@@ -119,6 +127,8 @@ public class ConexionBD {
                 + "Cantidad FLOAT8 NOT NULL,"
                 + "PRIMARY KEY (ID_Deposito, Nombre_MateriaPrima_Proveida),"
                 + "FOREIGN KEY (Nombre_MateriaPrima_Proveida) REFERENCES MateriaPrima (Nombre_MateriaPrima));"
+                         
+                
         
                 
     );
