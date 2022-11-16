@@ -405,15 +405,15 @@ public class ConsultarOrdenDeCompra extends javax.swing.JPanel {
             int id = orden.getId();
 
             try {
-                ordenCompleta = manager.consultarOrdenDeCompra(id);
+                ordenCompleta = manager.consultarOrdenDeCompra(id); //Devuelve un hashmap <OrdenDeCompra,List<Renglon_Compra>> -> Se devuelve una orden de compra asociada con una lista que tiene al menos 1 renglon
 
-                Set<Orden_Compra> keys = ordenCompleta.keySet();
-                for(Orden_Compra key : keys){
-                    infoOrden = key;
+                Set<Orden_Compra> keys = ordenCompleta.keySet();//A el set Keys se le asignan todas las llaves de ordenCompleta (es decir, todas las Ordenes de Compra)
+                for(Orden_Compra key : keys){ //en keys hay solo una key
+                    infoOrden = key; //Se hace una lista de Ordenes de Compra con cada key del set keys
                 }
 
                 infoRenglones = ordenCompleta.get(infoOrden);
-                IteradorRenglonCompra iterador = new IteradorRenglonCompra(infoRenglones);
+                IteradorRenglonCompra iterador = new IteradorRenglonCompra(infoRenglones); //para asi poder iterar sobre los renglones
 
                 inicio.setVisible(false);
                 muestra.setVisible(true);
